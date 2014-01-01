@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"       
+	    xmlns:aop="http://www.springframework.org/schema/aop"
+	    xmlns:tx="http://www.springframework.org/schema/tx"
+	    xmlns:context="http://www.springframework.org/schema/context"
+	     
+	    xsi:schemaLocation="
+	    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- ================================================ -->
+	<!-- transaction config -->
+	<!-- ================================================ -->
+	<bean id="transactionManager" class="com.kelvem.common.base.KelvemTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="prepareConnection" value="false" /><!-- 预连接? -->
+	</bean>
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" rollback-for="Exception" propagation="REQUIRED" />
+			<tx:method name="find*"  read-only="true" />
+			<tx:method name="get*"   read-only="true" />
+			<tx:method name="query*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 任何Service类的public方法 aop:advisor 就是一个Aspect，定义了Advice与pointcut的组合 -->
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="serviceOperation"	expression="execution(* com.kelvem..*.*Service.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation" />
+	</aop:config>
+
+	<!-- ================================================ -->
+	<!--     Common Log                                   -->
+	<!-- ================================================ -->
+	<!--
+	<bean id="logAdvice" class="com.kelvem.common.aop.LogAdvice">
+		<property name="warningExecuteTime" value="100" />
+		<property name="logLevel" value="info" />
+	</bean>
+	
+	<bean id="simpleLogAdvice" class="com.kelvem.common.aop.SimpleLogAdvice">
+	</bean>
+	-->
+	
+	<!-- aop detail method log -->
+	<aop:config proxy-target-class="true">
+		<aop:aspect ref="logAdvice">
+			<aop:around method="writeLog" pointcut="execution(* com.kelvem..*.*Action.*(..))" />
+		</aop:aspect>
+	</aop:config>
+
+
+	<!-- aop simple method log 
+	<aop:config proxy-target-class="true">
+		<aop:aspect ref="simpleLogAdvice">
+			<aop:around method="writeLog" pointcut="execution(* com.kelvem..*.*(..))" />
+		</aop:aspect>
+	</aop:config>
+	-->
+	
+	<!-- annotation log 
+	<aop:config proxy-target-class="true">
+		<aop:aspect ref="logAdvice">
+			<aop:around method="writeLog" pointcut="@annotation(com.kelvem.common.annotation.MethodDetail)" />
+		</aop:aspect>
+	</aop:config>
+	-->
+
+	<!-- ================================================ -->
+	<!--     Method Cache                                 -->
+	<!-- ================================================ -->
+<!--
+	<aop:config proxy-target-class="true">
+		<aop:aspect ref="methodCacheAdvice">
+			<aop:around method="putCache" pointcut="execution(* com.kelvem..*.MenuCache.*(..))" />
+		</aop:aspect>
+	</aop:config>
+-->
+
+</beans>
+

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_9" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<display-name>SSH2Sample</display-name>
+
+	<!--=================================================-<
+		应用路径  - ${webapp.root}指代当前应用路径
+	<-==================================================-->
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>webapp.root</param-value>
+	</context-param>
+	
+	<!--=================================================-<
+		定义Spring字符编码过滤器
+	<-==================================================-->
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!--=================================================-<
+		定义Spring字符编码过滤器
+	<-==================================================-->
+	<filter>
+		<filter-name>AuthCreater</filter-name>
+		<filter-class>com.kelvem.common.filter.AuthCreaterFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AuthCreater</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!--=================================================-<
+		 通配的方式加载Spring配置文件
+	<-==================================================-->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/applicationContext-*.xml,classpath*:spring/**/spring-context-*.xml</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+
+	<!--=================================================-<
+		SpringSecurity配置信息
+	<-==================================================-->
+	<!-- 
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	 -->
+	<!--=================================================-<
+		 配置Struts2的Action拦截器
+	<-==================================================-->
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!--=================================================-<
+		 配置query&olap
+	<-==================================================-->
+	<servlet>
+		<servlet-name>OlapQueryServlet</servlet-name>
+		<servlet-class>com.kelvem.common.servlet.OlapQueryServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OlapQueryServlet</servlet-name>
+		<url-pattern>/OlapQueryServlet/*</url-pattern>
+	</servlet-mapping>
+
+	<!--=================================================-<
+		welcome
+	<-==================================================-->
+	<welcome-file-list>
+		<welcome-file>login.html</welcome-file>
+		<welcome-file>login.htm</welcome-file>
+		<welcome-file>login.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+</web-app>

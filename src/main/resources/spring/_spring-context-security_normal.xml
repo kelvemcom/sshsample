@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+	<global-method-security secured-annotations="disabled"
+		jsr250-annotations="disabled">
+	</global-method-security>
+
+
+	<http access-denied-page="/403.jsp"><!-- 当访问被拒绝时，会转到403.jsp -->
+		<intercept-url pattern="/bootstrap/**" filters="none" />
+		<intercept-url pattern="/common/**" filters="none" />
+		<intercept-url pattern="/js/**" filters="none" />
+		<intercept-url pattern="/jquery/**" filters="none" />
+		<intercept-url pattern="/login.jsp" filters="none" />
+		<intercept-url pattern="/about.jsp" filters="none" />
+		<intercept-url pattern="/403.jsp" filters="none" />
+		<intercept-url pattern="/404.jsp" filters="none" />
+		<intercept-url pattern="/error.jsp" filters="none" />
+
+		<form-login login-page="/login.jsp"
+			authentication-failure-url="/login.jsp?error=true"
+			default-target-url="/index.jsp" 
+			always-use-default-target="true" />
+		<logout logout-success-url="/login.jsp" />
+		<http-basic />
+		<!-- 增加一个filter -->
+		<custom-filter before="FILTER_SECURITY_INTERCEPTOR" ref="securityFilter" />
+		<remember-me use-secure-cookie="false" />
+	</http>
+
+
+	<beans:bean id="securityFilter"
+		class="com.kelvem.common.security.KelvemFilterSecurityInterceptor">
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+		<beans:property name="accessDecisionManager" ref="accessDecisionManager" />
+		<beans:property name="securityMetadataSource" ref="securityMetadataSource" />
+	</beans:bean>
+
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider user-service-ref="userDetailService">
+		</authentication-provider>
+	</authentication-manager>
+
+	<beans:bean id="userDetailService" class="com.kelvem.common.security.KelvemUserDetailService">
+	</beans:bean>
+
+	<beans:bean id="accessDecisionManager"
+		class="com.kelvem.common.security.KelvemAccessDecisionManager">
+	</beans:bean>
+
+	<beans:bean id="securityMetadataSource"
+		class="com.kelvem.common.security.KelvemInvocationSecurityMetadataSource">
+	</beans:bean>
+
+</beans:beans>
+
