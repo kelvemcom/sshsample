@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.kelvem</groupId>
-	<artifactId>sshstudy</artifactId>
+	<artifactId>sshsample</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>sshstudy Maven Webapp</name>
@@ -350,7 +350,7 @@
                 <configuration>
                     <url>http://localhost:8080/manager</url>
                     <server>tomcat-server</server>
-                    <path>/sshstudy</path>
+                    <path>/sshsample</path>
                 </configuration>
             </plugin>
 			<plugin>

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.kelvem.common.database.model;
+package com.kelvem.common.jdbc.model;
 
 import com.kelvem.common.utils.KLog;
 import com.kelvem.common.utils.ObjectUtil;

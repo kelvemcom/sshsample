@@ -17,7 +17,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.kelvem.common.base.ActionBase;
-import com.kelvem.common.model.DataTableResults;
 import com.kelvem.common.model.PageResults;
 import com.kelvem.sample.system.cache.MenuCache;
 import com.kelvem.sample.system.cache.MenuCache.MenuTree;
@@ -165,9 +164,7 @@ public class SysUserAction extends ActionBase {
 		
 		pageResult = sysUserService.querySysUser(super.getPageNo(), 10, null);
 		
-		DataTableResults<SysUserModel> dt = new DataTableResults<SysUserModel>(pageResult);
-		
-		this.setJsonData(dt);
+		this.setJsonData(pageResult);
 		
 		return "json";
 	}

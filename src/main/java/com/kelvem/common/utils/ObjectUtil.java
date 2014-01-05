@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Map;
 
-import com.kelvem.common.database.model.TableModel;
+import com.kelvem.common.jdbc.model.TableModel;
 
 /**
  * @author kelvem

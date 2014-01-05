@@ -1,4 +1,4 @@
-package com.kelvem.common.database.mysql;
+package com.kelvem.common.jdbc.mysql;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-import com.kelvem.common.database.base.ConnectionProperty;
-import com.kelvem.common.database.base.DataBaseSession;
+import com.kelvem.common.jdbc.base.ConnectionProperty;
+import com.kelvem.common.jdbc.base.DataBaseSession;
 
 public class MysqlSession extends DataBaseSession {
 

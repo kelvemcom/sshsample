@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.kelvem.common.database.model;
+package com.kelvem.common.jdbc.model;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.kelvem.common.database.model;
+package com.kelvem.common.jdbc.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;

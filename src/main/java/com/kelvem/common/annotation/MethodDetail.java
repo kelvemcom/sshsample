@@ -12,14 +12,14 @@ import java.lang.annotation.Target;
 @Documented  
 @Inherited
 /**
- * <p>记录方法运行时信息的注解</p>
+ * <p>璁板綍鏂规硶杩愯鏃朵俊鎭殑娉ㄨВ</p>
  * 
- * @param description 方法作用描述
+ * @param description 鏂规硶浣滅敤鎻忚堪
  * @author kelvem
  *
  */
 public @interface MethodDetail {
 
-	// 方法作用描述
+	// 鏂规硶浣滅敤鎻忚堪
 	public String description() default "";  
 }

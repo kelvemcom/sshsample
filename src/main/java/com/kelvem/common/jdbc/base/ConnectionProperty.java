@@ -1,4 +1,4 @@
-package com.kelvem.common.database.base;
+package com.kelvem.common.jdbc.base;
 
 public class ConnectionProperty {
 

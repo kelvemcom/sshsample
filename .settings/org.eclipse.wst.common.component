@@ -1,6 +1,6 @@
 <project-modules id="moduleCoreId" project-version="2.0">
-  <wb-module deploy-name="sshstudy">
-    <property name="context-root" value="sshstudy"/>
+  <wb-module deploy-name="sshsample">
+    <property name="context-root" value="sshsample"/>
     <wb-resource deploy-path="/" source-path="src/main/webapp"/>
     <property name="java-output-path" value="/target/classes"/>
     <dependent-module archiveName="activeio-core-3.1.4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/apache/activemq/activeio-core/3.1.4/activeio-core-3.1.4.jar">

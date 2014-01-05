@@ -1,14 +1,14 @@
 /**
  * 
  */
-package com.kelvem.common.database.mysql;
+package com.kelvem.common.jdbc.mysql;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.kelvem.common.database.model.ColumnModel;
-import com.kelvem.common.database.model.TableModel;
+import com.kelvem.common.jdbc.model.ColumnModel;
+import com.kelvem.common.jdbc.model.TableModel;
 
 
 /**

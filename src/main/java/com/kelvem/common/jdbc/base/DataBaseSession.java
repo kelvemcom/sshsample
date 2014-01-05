@@ -1,4 +1,4 @@
-package com.kelvem.common.database.base;
+package com.kelvem.common.jdbc.base;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

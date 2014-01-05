@@ -1,15 +1,15 @@
 /**
  * 
  */
-package com.kelvem.common.database.mysql;
+package com.kelvem.common.jdbc.mysql;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.kelvem.common.database.base.DataBaseSession;
-import com.kelvem.common.database.model.ColumnModel;
-import com.kelvem.common.database.model.SchemaModel;
-import com.kelvem.common.database.model.TableModel;
+import com.kelvem.common.jdbc.base.DataBaseSession;
+import com.kelvem.common.jdbc.model.ColumnModel;
+import com.kelvem.common.jdbc.model.SchemaModel;
+import com.kelvem.common.jdbc.model.TableModel;
 import com.kelvem.common.utils.KLog;
 
 /**

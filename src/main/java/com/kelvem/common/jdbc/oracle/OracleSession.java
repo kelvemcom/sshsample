@@ -1,10 +1,10 @@
-package com.kelvem.common.database.oracle;
+package com.kelvem.common.jdbc.oracle;
 
 import java.sql.ResultSet;
 import java.util.List;
 
-import com.kelvem.common.database.base.ConnectionProperty;
-import com.kelvem.common.database.base.DataBaseSession;
+import com.kelvem.common.jdbc.base.ConnectionProperty;
+import com.kelvem.common.jdbc.base.DataBaseSession;
 
 
 public class OracleSession extends DataBaseSession {

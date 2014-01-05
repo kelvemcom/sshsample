@@ -1,6 +1,6 @@
-package com.kelvem.common.database.mysql;
+package com.kelvem.common.jdbc.mysql;
 
-import com.kelvem.common.database.base.DataBaseSession;
+import com.kelvem.common.jdbc.base.DataBaseSession;
 
 public class MysqlTest {
 
