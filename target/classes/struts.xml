@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<!-- ========== -->
+	<!-- struts2配置 -->
+	<!-- ========== -->
+	<!-- 请求参数的编码方式--> 
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- 当struts.xml改动后，是否重新加载。默认值为false(生产环境下使用),开发阶段最好打开  -->
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<!-- 是否使用struts的开发模式。开发模式会有更多的调试信息。默认值为false(生产环境下使用),开发阶段最好打开  --> 
+	<constant name="struts.devMode" value="true" />
+	<!-- 指定被struts2处理的请求后缀类型。多个用逗号隔开--> 
+	<constant name="struts.action.extension" value="do,ftl,action" />
+	<!-- 设置浏览器是否缓存静态内容。默认值为true(生产环境下使用),开发阶段最好关闭  --> 
+	<constant name="struts.serve.static.browserCache" value="false" /> 
+	<!-- 是否开启动态方法调用--> 
+	<constant name="struts.enable.DynamicMethodInvocation" value="false"/> 
+	<!-- 指定由spring负责action对象的创建 -->
+	<constant name="struts.objectFactory" value="spring" /> 
+
+	<constant name="struts.xslt.nocache" value="true" />
+	<constant name="struts.multipart.maxSize" value="1024000000"></constant>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.locale" value="zh_CN" />
+	<constant name="struts.i18n.reload" value="true" />
+	<constant name="struts.custom.i18n.resources" value="kelvem" />
+
+	<package name="application-struts-default" namespace="/" extends="json-default">
+
+<!-- 
+		<result-types>
+			<result-type name="json" class="org.apache.struts2.json.JSONResult"/>
+		</result-types>
+-->	
+		<interceptors>
+			<!--<interceptor name="json" class="org.apache.struts2.json.JSONInterceptor" />-->
+
+			<interceptor name="exception" class="com.kelvem.common.interceptor.ExceptionInterceptor" />
+			<interceptor name="sample" class="com.kelvem.common.interceptor.SampleInterceptor" />
+
+			<interceptor-stack name="applicationStack">
+				<!-- <interceptor-ref name="tokenSession"></interceptor-ref> -->
+				<interceptor-ref name="json"></interceptor-ref>
+				<interceptor-ref name="sample"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="exception">
+					<param name="logEnabled">true</param>
+				</interceptor-ref>
+			</interceptor-stack>  
+		</interceptors>
+		<default-interceptor-ref name="applicationStack"/>
+	
+		<default-action-ref name="404Page" />
+	
+		<global-results>
+			<result name="json" type="json">
+				<param name="root">jsonData</param>
+			</result>
+			<result name="login">/login.jsp</result>
+			<result name="main">/index.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="invalid.token">/invocationToken.jsp</result>
+			<result name="exception">/error.jsp</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception" result="error" />
+		</global-exception-mappings>
+
+		<action name="404Page">
+			<result>/404.jsp</result>
+		</action>
+		
+		<!-- 
+		<action name="*_*List" class="{1}Action" method="{2}List">
+			<result name="success">{2}List.jsp</result>
+		</action>
+		
+		<action name="*_*AddDone" class="{1}Action" method="{2}AddDone">
+			<result name="success">{2}List.jsp</result>
+		</action>
+		
+		<action name="*_*UpdateDone" class="{1}Action" method="{2}UpdateDone">
+			<result name="success">{2}List.jsp</result>
+		</action>
+		
+		<action name="*_*Del" class="{1}Action" method="{2}Del">
+			<result name="success">{2}List.jsp</result>
+		</action>
+		 -->
+		 
+		<action name="*_*" class="{1}Action" method="{2}">
+			<result name="success" type="dispatcher">{2}.jsp</result>
+			<result name="list" type="dispatcher">{1}List.jsp</result>
+			<!-- <result name="list" type="redirectAction">{1}_{1}List.action</result> -->
+			<result name="index" type="dispatcher">/index.jsp</result>
+			<result name="json" type="json">/index.jsp</result>
+		</action>
+		
+		<action name="*" class="{1}Action"/>
+		
+	</package>
+	
+	<package name="struts-page" namespace="/page" extends="application-struts-default">
+	</package>
+	
+	<package name="system" namespace="/page/system" extends="application-struts-default">
+	</package>
+	
+	<!-- -->
+	<include file="struts/struts-validatecode.xml"></include>
+	<include file="struts/struts-login.xml"></include>
+	
+	 
+</struts>
