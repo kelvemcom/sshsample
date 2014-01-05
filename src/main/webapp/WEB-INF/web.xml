@@ -35,7 +35,19 @@
 	</filter-mapping>
 
 	<!--=================================================-<
-		定义Spring字符编码过滤器
+		UrlVisitLog过滤器
+	<-==================================================-->
+	<filter>
+		<filter-name>UrlVisitLog</filter-name>
+		<filter-class>com.kelvem.common.filter.UrlVisitLogFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>UrlVisitLog</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!--=================================================-<
+		AuthCreater过滤器
 	<-==================================================-->
 	<filter>
 		<filter-name>AuthCreater</filter-name>
