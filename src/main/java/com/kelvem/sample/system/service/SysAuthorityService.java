@@ -88,12 +88,12 @@ public class SysAuthorityService {
 	 * <p>保存系统权限表</p>
 	 * 
 	 * @param sysAuthority 系统权限表
-	 * @return void
+	 * @return Integer	系统权限表唯一ID
 	 * @see
 	 */
-	public void saveSysAuthority(SysAuthorityModel sysAuthority){
+	public Integer saveSysAuthority(SysAuthorityModel sysAuthority){
 		
-		this.getSysAuthorityDao().saveSysAuthority(sysAuthority);
+		return this.getSysAuthorityDao().saveSysAuthority(sysAuthority);
 	}
 	
 	/**

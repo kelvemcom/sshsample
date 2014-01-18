@@ -129,6 +129,32 @@ public class SysRoleService {
 
 		this.getSysRoleDao().deleteSysRole(sysRole);
 	}
+	
+	/**
+	 * <p>查询系统角色</p>
+	 * 
+	 * @param sysRole 系统角色
+	 * @return void
+	 * @see
+	 */
+	public List<SysRoleModel> querySysRole(Integer sysAuthorityId){
+		
+		return this.getSysRoleDao().querySysRole(sysAuthorityId);
+	}
+	
+	/**
+	 * <p>查询系统菜单表</p>
+	 * 
+	 * @param id	菜单Id
+	 * @param name	菜单名称
+	 * @param url	菜单地址
+	 * @return List<SysRoleModel> 系统菜单表
+	 * @see
+	 */
+	public List<SysRoleModel> querySysRole(Integer id, String name, String url) {
+		
+		return this.getSysRoleDao().querySysRole(id, name, url);
+	}
 
 	public SysRoleDao getSysRoleDao() {
 		return sysRoleDao;

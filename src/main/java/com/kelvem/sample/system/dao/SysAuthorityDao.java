@@ -104,11 +104,11 @@ public class SysAuthorityDao extends Hibernate4DaoBase<SysAuthorityModel, Intege
 	 * <p>保存系统权限表</p>
 	 * 
 	 * @param sysAuthority 系统权限表
-	 * @return void
+	 * @return Integer	系统权限表唯一ID
 	 * @see
 	 */
-	public void saveSysAuthority(SysAuthorityModel sysAuthority) {
-		super.save(sysAuthority);
+	public Integer saveSysAuthority(SysAuthorityModel sysAuthority) {
+		return (Integer)super.save(sysAuthority);
 	}
 	
 	/**

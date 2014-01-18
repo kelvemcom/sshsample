@@ -17,7 +17,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.kelvem.common.utils.ObjectUtil;
+import com.kelvem.common.utils.RequestUtil;
 import com.kelvem.common.utils.WebUtil;
 import com.kelvem.sample.system.model.UserVisitLogModel;
 import com.kelvem.sample.system.service.UserVisitLogService;
@@ -51,19 +51,19 @@ public class UrlVisitLogFilter implements Filter {
 			//			query_string, 
 			//			user_principal
 			
-			log.info(ObjectUtil.getObjectInfo(servletRequest));
-			log.info("UrlVisitLogFilter : " + request.getServletPath());
-			log.info("UrlVisitLogFilter : " + request.getContextPath());
-			log.info("UrlVisitLogFilter : " + request.getServerName());
-			log.info("UrlVisitLogFilter : " + request.getLocalPort());
-			log.info("UrlVisitLogFilter : " + request.getMethod());
-			log.info("UrlVisitLogFilter : " + request.getProtocol());
-			log.info("UrlVisitLogFilter : " + request.getContentLength());
-			log.info("UrlVisitLogFilter : " + request.getCookies());
-			log.info("UrlVisitLogFilter : " + request.getRequestedSessionId());
-			log.info("UrlVisitLogFilter : " + request.getServletPath());
-			log.info("UrlVisitLogFilter : " + request.getQueryString());
-			log.info("UrlVisitLogFilter : " + request.getCharacterEncoding());
+//			log.info(ObjectUtil.getObjectInfo(servletRequest));
+//			log.info("UrlVisitLogFilter : " + request.getServletPath());
+//			log.info("UrlVisitLogFilter : " + request.getContextPath());
+//			log.info("UrlVisitLogFilter : " + request.getServerName());
+//			log.info("UrlVisitLogFilter : " + request.getLocalPort());
+//			log.info("UrlVisitLogFilter : " + request.getMethod());
+//			log.info("UrlVisitLogFilter : " + request.getProtocol());
+//			log.info("UrlVisitLogFilter : " + request.getContentLength());
+//			log.info("UrlVisitLogFilter : " + request.getCookies());
+//			log.info("UrlVisitLogFilter : " + request.getRequestedSessionId());
+//			log.info("UrlVisitLogFilter : " + request.getServletPath());
+//			log.info("UrlVisitLogFilter : " + request.getQueryString());
+//			log.info("UrlVisitLogFilter : " + request.getCharacterEncoding());
 
 			userVisitLogService = WebUtil.getBean(UserVisitLogService.class);
 			
@@ -87,8 +87,8 @@ public class UrlVisitLogFilter implements Filter {
 			model.setUserIp("###$$$");
 			model.setUserPrincipal("###$$$");
 			StringBuilder sb = new StringBuilder();
-			for (Cookie cookie : request.getCookies()) {
-				log.info(cookie.getName() + "#" + cookie.getValue() + "#" + cookie.getPath() + "#" + cookie.getDomain() + "#" + cookie.getComment() + "#" + cookie.getMaxAge() + "#" + cookie.getSecure());
+			for (Cookie cookie : RequestUtil.getCookies(request)) {
+				// log.info(cookie.getName() + "#" + cookie.getValue() + "#" + cookie.getPath() + "#" + cookie.getDomain() + "#" + cookie.getComment() + "#" + cookie.getMaxAge() + "#" + cookie.getSecure());
 				sb.append("{" + cookie.getName() + "=" + cookie.getValue() + "}");
 			}
 			model.setCookie(sb.toString());

@@ -285,7 +285,6 @@ public class ActionBase extends ActionSupport implements SessionAware, RequestAw
 	}
 
 	public String getShowMsg() {
-		log.info("getShowMsg#" + showMsg);
 		return this.showMsg;
 	}
 
@@ -494,7 +493,6 @@ public class ActionBase extends ActionSupport implements SessionAware, RequestAw
 		String referer = req.getHeader("referer");
 		this.putSession("referer", referer);
 		
-		System.out.println("uri : " + req.getRequestURI());
 		String url = req.getRequestURL().toString();
 		
 		if (this.session.get("list_breadcrumb") != null) {
@@ -549,7 +547,7 @@ public class ActionBase extends ActionSupport implements SessionAware, RequestAw
 		}
 		breadcrumb += "</ol>";
 		
-		System.out.println("###########" + breadcrumb);
+		log.debug("breadcrumb = " + breadcrumb);
 		return breadcrumb;
 	}
 }

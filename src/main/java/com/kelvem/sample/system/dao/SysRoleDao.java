@@ -14,11 +14,15 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 
 import com.kelvem.common.base.Hibernate4DaoBase;
 import com.kelvem.common.model.PageResults;
+import com.kelvem.sample.system.SystemsException;
+import com.kelvem.sample.system.model.SysAuthorityModel;
 import com.kelvem.sample.system.model.SysRoleModel;
 import com.kelvem.sample.system.queryvo.SysRoleInVO;
 
@@ -136,5 +140,54 @@ public class SysRoleDao extends Hibernate4DaoBase<SysRoleModel, Integer> {
 	 */
 	public void deleteSysRole(SysRoleModel sysRole){
 		super.delete(sysRole);
+	}
+	
+	/**
+	 * <p>查询系统角色</p>
+	 * 
+	 * @param sysRole 系统角色
+	 * @return void
+	 * @see
+	 */
+	public List<SysRoleModel> querySysRole(Integer sysAuthorityId){
+
+		if (sysAuthorityId == null) {
+			return null;
+		}
+		
+		SysRoleModel model = new SysRoleModel();
+		model.setSysAuthorityId(sysAuthorityId);
+		
+		return this.findByExample(model);
+	}
+
+	/**
+	 * <p>查询系统菜单表</p>
+	 * 
+	 * @param id	菜单Id
+	 * @param name	菜单名称
+	 * @param url	菜单地址
+	 * @return List<SysRoleModel> 系统菜单表
+	 * @see
+	 */
+	public List<SysRoleModel> querySysRole(Integer id, String name, String url) {
+
+		if (id == null && name == null && url == null) {
+			throw new SystemsException("params is null");
+		}
+		
+		Criteria criteria = this.getSession().createCriteria(SysRoleModel.class);
+		if (id != null && id > 0) {
+			criteria.add(Restrictions.eq("sysRoleId", id));
+		}
+		if (name != null) {
+			criteria.add(Restrictions.eq("sysRoleName", name));
+		}
+		if (url != null) {
+			criteria.add(Restrictions.eq("menuUrl", url));
+		}
+		
+		criteria.setCacheable(true);
+		return (List<SysRoleModel>)criteria.list();
 	}
 }

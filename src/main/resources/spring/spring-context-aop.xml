@@ -49,7 +49,7 @@
 	<!-- aop detail method log -->
 	<aop:config proxy-target-class="true">
 		<aop:aspect ref="logAdvice">
-			<aop:around method="writeLog" pointcut="execution(* com.kelvem..*.*Action.*(..))" />
+			<aop:around method="writeLog" pointcut="execution(* com.kelvem..*.*ActionXXXXXXXXXXX.*(..))" />
 		</aop:aspect>
 	</aop:config>
 

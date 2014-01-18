@@ -9,7 +9,7 @@
 					<div class="panel-heading">
 						 <a class="panel-title" href="#panel-element-1" data-toggle="collapse" data-parent="#panel-1">ActionResultType</a>
 					</div>
-					<div id="panel-element-1" class="panel-collapse in">
+					<div id="panel-element-1" class="panel-collapse collapse">
 						<div class="panel-body">
 							ctx = ${ctx}<br>
 							<a href='${ctx}/anno.action'>anno.action</a><br>
@@ -53,7 +53,7 @@
 					<div class="panel-heading">
 						 <a class="panel-title collapsed" href="#panel-element-4" data-toggle="collapse" data-parent="#panel-1">SysUser</a>
 					</div>
-					<div id="panel-element-4" class="panel-collapse collapse">
+					<div id="panel-element-4" class="panel-collapse in">
 						<div class="panel-body">
 							${ctx}<br>
 							<a href='${ctx}/page/system/sysUser_sysUserList.action'>sys_user_list</a><br>

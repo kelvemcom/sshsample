@@ -12,6 +12,7 @@ package com.kelvem.common.interceptor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
@@ -48,6 +50,13 @@ public class SampleInterceptor extends AbstractInterceptor {
 	public String intercept(ActionInvocation invocation) throws Exception {
 		try {
 			ServletActionContext.getRequest().setAttribute("user_name", "kelvem");
+			
+			ActionContext ctx = ActionContext.getContext();
+			Map<String, Object> request = (Map<String, Object>) ctx.get("request");
+			
+			HttpServletRequest req = ServletActionContext.getRequest();
+			
+			log.debug("SampleInterceptor拦截url : " + req.getRequestURI());
 		} catch (Exception e) {
 			log.error("SampleInterceptor处理失败" + ServletActionContext.getRequest().getRequestURI(), e);
 		}

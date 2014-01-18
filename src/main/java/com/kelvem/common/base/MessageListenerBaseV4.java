@@ -43,22 +43,22 @@ public abstract class MessageListenerBaseV4 implements MessageListener {
 	protected void initialize() throws JMSException, Exception {
 
 		try {
-			connectionFactory = jmsTemplate.getConnectionFactory();
-			connection = connectionFactory.createConnection();
-			connection.start();
-
-			sessionProducer = connection.createSession(sessionTransacted, Session.AUTO_ACKNOWLEDGE);
-			sessionConsumer = connection.createSession(sessionTransacted, Session.AUTO_ACKNOWLEDGE);
-
-			destinationProducer = sessionProducer.createQueue(destinationName);
-			destinationConsumer = sessionConsumer.createQueue(destinationName);
-
-			jmsTemplate.setDefaultDestination(destinationProducer);
-
-			log.info("Queue Start Listening..." + this.destinationName);
-			// 开始监听
-			consumer = sessionConsumer.createConsumer(destinationConsumer);
-			consumer.setMessageListener(this);
+//			connectionFactory = jmsTemplate.getConnectionFactory();
+//			connection = connectionFactory.createConnection();
+//			connection.start();
+//
+//			sessionProducer = connection.createSession(sessionTransacted, Session.AUTO_ACKNOWLEDGE);
+//			sessionConsumer = connection.createSession(sessionTransacted, Session.AUTO_ACKNOWLEDGE);
+//
+//			destinationProducer = sessionProducer.createQueue(destinationName);
+//			destinationConsumer = sessionConsumer.createQueue(destinationName);
+//
+//			jmsTemplate.setDefaultDestination(destinationProducer);
+//
+//			log.info("Queue Start Listening..." + this.destinationName);
+//			// 开始监听
+//			consumer = sessionConsumer.createConsumer(destinationConsumer);
+//			consumer.setMessageListener(this);
 
 		} catch (Exception e) {
 			log.error("Queue Connection Fail : " + this.destinationName, e);

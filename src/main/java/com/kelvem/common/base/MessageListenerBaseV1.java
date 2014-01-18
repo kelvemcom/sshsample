@@ -70,7 +70,7 @@ public abstract class MessageListenerBaseV1 implements MessageListener {
 				producer.setTimeToLive(timeToLive);
 			}
 			
-			connection.start();
+			//connection.start();
 			
 			log.info("Queue Start Listening..." + connectionFactory.getBrokerURL() + "/" + this.destinationName);
 			// 开始监听   

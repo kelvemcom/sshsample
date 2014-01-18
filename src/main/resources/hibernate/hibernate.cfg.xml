@@ -11,7 +11,7 @@
 		<property name="cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</property>
 		-->
 		<!-- <class-cache class="com.kelvem.sample.system.model.SysAuthorityModel" region="Simple" usage="read-write"/> -->
-		<class-cache class="com.kelvem.sample.system.model.SysAuthorityModel" usage="read-only"/>
+		<!-- <class-cache class="com.kelvem.sample.system.model.SysAuthorityModel" usage="read-only"/> -->
 	</session-factory>
 	
 </hibernate-configuration>
