@@ -10,6 +10,7 @@
 package com.kelvem.sample.system.model;
 
 import java.util.Date;
+import java.util.Set;
 
 
 /**
@@ -39,6 +40,7 @@ public class SysRoleModel implements java.io.Serializable {
 	private String menuLevel3;
 	private String menuLevel4;
 	private Integer sysAuthorityId;
+	private String menuUrl;
 	private String menuParams;
 	private Integer menuSort;
 	private Integer statusCode;
@@ -49,6 +51,7 @@ public class SysRoleModel implements java.io.Serializable {
 	private Date updateTime;
 
 	private SysAuthorityModel sysAuthorityModel;
+	private Set<SysAuthorityModel> sysAuthoritySet;
 
 	/** default constructor */
 	public SysRoleModel() {
@@ -111,6 +114,13 @@ public class SysRoleModel implements java.io.Serializable {
 	public void setSysAuthorityId(Integer sysAuthorityId) {
 		this.sysAuthorityId = sysAuthorityId;
 	}
+
+	public String getMenuUrl() {
+		return menuUrl;
+	}
+	public void setMenuUrl(String menuUrl) {
+		this.menuUrl = menuUrl;
+	}
 	
 	public String getMenuParams() {
 		return this.menuParams;
@@ -168,14 +178,18 @@ public class SysRoleModel implements java.io.Serializable {
 		this.updateTime = updateTime;
 	}
 
-
 	public SysAuthorityModel getSysAuthorityModel() {
 		return sysAuthorityModel;
 	}
-
-
 	public void setSysAuthorityModel(SysAuthorityModel sysAuthorityModel) {
 		this.sysAuthorityModel = sysAuthorityModel;
+	}
+
+	public Set<SysAuthorityModel> getSysAuthoritySet() {
+		return sysAuthoritySet;
+	}
+	public void setSysAuthoritySet(Set<SysAuthorityModel> sysAuthoritySet) {
+		this.sysAuthoritySet = sysAuthoritySet;
 	}
 	
 

@@ -34,10 +34,13 @@
 		</property>  
 		<property name="sysAuthorityId" type="java.lang.Integer"> 
 			<column name="SYS_AUTHORITY_ID" precision="22" scale="0" />  
-		</property>  
+		</property>
+		<property name="menuUrl" type="java.lang.String"> 
+			<column name="MENU_URL" length="200" />  
+		</property>
 		<property name="menuParams" type="java.lang.String"> 
 			<column name="MENU_PARAMS" length="1000" />  
-		</property>  
+		</property>
 		<property name="menuSort" type="java.lang.Integer"> 
 			<column name="MENU_SORT" precision="22" scale="0" />  
 		</property>  
@@ -63,5 +66,19 @@
 		<many-to-one not-null="false" insert="false" update="false" fetch="select" name="sysAuthorityModel" class="com.kelvem.sample.system.model.SysAuthorityModel">
 			<column name="sys_authority_id"/>
 		</many-to-one>
+		
+		<!-- 
+		<set lazy="false" cascade="all" outer-join="false" name="sysAuthoritySet" table="sys_role_authority_mapping">
+			<key column="sys_role_id"/>
+			<many-to-many class="com.kelvem.sample.system.model.SysAuthorityModel" column="sys_authority_id"/>
+		</set>
+		-->
+		
+		<set name="sysAuthoritySet" lazy="false" outer-join="false" table="sys_role_authority_mapping">
+			<key column="sys_role_id"/>
+			<many-to-many column="sys_authority_id" class="com.kelvem.sample.system.model.SysAuthorityModel"/>
+		</set>
+		
+		
 	</class>
 </hibernate-mapping>
