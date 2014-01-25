@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 	<link href="bootstrap/ext/dataTables.bootstra.css" rel="stylesheet">
-	
+
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
 		<script src="bootstrap/js/html5shiv.js"></script>
@@ -62,16 +62,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
 <body>
   
-    <s:include value="navbar.jsp"></s:include> 
+    <s:include value="/page/navbar.jsp"></s:include> 
 	<br>
-	<p>success error warning info</p>
-	<form id="query" action="/SSH2Sample/page/user_listUser.action" method="get">
-		<button class="btn btn-info" type="button" onclick="submit();">Large button</button>
-	</form>
-	
+
 	<div class="container">
 		<div class="row clearfix">
-			<div class="col-md-8 column">
+			<div class="col-xs-12 col-md-9 column">
+				
 				<table id='list' class="table table-bordered table-hover table-striped datatable">
 					<thead class='info'>
 						<tr class='info'>
@@ -112,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</table>
 			</div>
 			
-			<s:include value="menu.jsp"></s:include>
+			<s:include value="/page/menu.jsp"></s:include>
 		</div>
 	</div>
 </body>

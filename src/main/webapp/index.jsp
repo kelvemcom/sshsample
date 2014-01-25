@@ -80,79 +80,77 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	
   	<br>
   	
-<div class="container-fluid">
-	
-	
-	<div class="row-fluid">
-		<div class="span9">
-			<div id="tabs-940234" class="tabbable">
-				<ul class="nav nav-tabs">
-					<li class="active">
-						<a href="#panel-200997" data-toggle="tab">第一部分</a>
-					</li>
-					<li>
-						<a href="#panel-814575" data-toggle="tab">第二部分</a>
-					</li>
-				</ul>
-				<div class="tab-content">
-					<div id="panel-200997" class="tab-pane active">
-						<p>
-							第一部分内容.
-						</p>
-					</div>
-					<div id="panel-814575" class="tab-pane">
-						<p>
-							第二部分内容.
-						</p>
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-xs-12 col-md-9 column">
+				<div id="tabs-940234" class="tabbable">
+					<ul class="nav nav-tabs">
+						<li class="active">
+							<a href="#panel-200997" data-toggle="tab">第一部分</a>
+						</li>
+						<li>
+							<a href="#panel-814575" data-toggle="tab">第二部分</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div id="panel-200997" class="tab-pane active">
+							<p>
+								第一部分内容.
+							</p>
+						</div>
+						<div id="panel-814575" class="tab-pane">
+							<p>
+								第二部分内容.
+							</p>
+						</div>
 					</div>
 				</div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>编号</th>
+							<th>产品</th>
+							<th>交付时间</th>
+							<th>状态</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>TB - Monthly</td>
+							<td>01/04/2012</td>
+							<td>Default</td>
+						</tr>
+						<tr class="success">
+							<td>1</td>
+							<td>TB - Monthly</td>
+							<td>01/04/2012</td>
+							<td>Approved</td>
+						</tr>
+						<tr class="error">
+							<td>2</td>
+							<td>TB - Monthly</td>
+							<td>02/04/2012</td>
+							<td>Declined</td>
+						</tr>
+						<tr class="warning">
+							<td>3</td>
+							<td>TB - Monthly</td>
+							<td>03/04/2012</td>
+							<td>Pending</td>
+						</tr>
+						<tr class="info">
+							<td>4</td>
+							<td>TB - Monthly</td>
+							<td>04/04/2012</td>
+							<td>Call in to confirm</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>编号</th>
-						<th>产品</th>
-						<th>交付时间</th>
-						<th>状态</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>1</td>
-						<td>TB - Monthly</td>
-						<td>01/04/2012</td>
-						<td>Default</td>
-					</tr>
-					<tr class="success">
-						<td>1</td>
-						<td>TB - Monthly</td>
-						<td>01/04/2012</td>
-						<td>Approved</td>
-					</tr>
-					<tr class="error">
-						<td>2</td>
-						<td>TB - Monthly</td>
-						<td>02/04/2012</td>
-						<td>Declined</td>
-					</tr>
-					<tr class="warning">
-						<td>3</td>
-						<td>TB - Monthly</td>
-						<td>03/04/2012</td>
-						<td>Pending</td>
-					</tr>
-					<tr class="info">
-						<td>4</td>
-						<td>TB - Monthly</td>
-						<td>04/04/2012</td>
-						<td>Call in to confirm</td>
-					</tr>
-				</tbody>
-			</table>
+			
+			<s:include value="/page/menu.jsp"></s:include>
 		</div>
-		
-		<s:include value="page/menu.jsp"></s:include>
-		 
 	</div>
 	<div class="row-fluid">
 		<div class="span12">

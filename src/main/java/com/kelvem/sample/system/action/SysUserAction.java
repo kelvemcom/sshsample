@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 import com.kelvem.common.base.ActionBase;
 import com.kelvem.common.model.PageResults;
 import com.kelvem.sample.system.cache.MenuCache;
-import com.kelvem.sample.system.cache.MenuCache.MenuTree;
+import com.kelvem.sample.system.model.MenuTree;
 import com.kelvem.sample.system.model.SysUserModel;
 import com.kelvem.sample.system.queryvo.SysUserInVO;
 import com.kelvem.sample.system.service.SysUserService;
@@ -65,8 +65,6 @@ public class SysUserAction extends ActionBase {
 	public String sysUserList() throws Exception {
 
 		queryPageResult();
-		MenuTree tree = menuCache.getMenuTree();
-//		System.out.println(tree.toJson());
 		return SUCCESS;
 	}
 

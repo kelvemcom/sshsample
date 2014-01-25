@@ -12,7 +12,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.kelvem.sample.system.cache.MenuCache;
-import com.kelvem.sample.system.cache.MenuCache.MenuTree;
+import com.kelvem.sample.system.model.MenuTree;
+import com.kelvem.sample.system.model.SysRoleModel;
 
 @RunWith(SpringJUnit4ClassRunner.class) //指定测试用例的运行器 这里是指定了Junit4
 @ContextConfiguration({"classpath*:spring/**/spring-context-*.xml"})
@@ -40,10 +41,21 @@ public class MenuCacheTest {
 	@Test
 	@Transactional  //使用该注释会使用事务，而且在测试完成之后会回滚事务，也就是说在该方法中做出的一切操作都不会对数据库中的数据产生任何影响
 	@Rollback(true) //这里设置为false，就让事务不回滚
-	public void testMenuCache() {
+	public void test_MenuCache_getMenuTree() {
+		System.out.println("### test_MenuCache_getMenuTree");
 		MenuTree tree = menuCache.getMenuTree();
-		System.out.println("###");
 		System.out.println(tree.toJson());
+		System.out.println("###");
+	}
+
+	@Test
+	@Transactional  //使用该注释会使用事务，而且在测试完成之后会回滚事务，也就是说在该方法中做出的一切操作都不会对数据库中的数据产生任何影响
+	@Rollback(true) //这里设置为false，就让事务不回滚
+	public void test_MenuCache_getCurrMenu() {
+		System.out.println("### test_MenuCache_getCurrMenu");
+		String url = "/page/system/sysUser_sysUserList.action";
+		SysRoleModel menu = menuCache.getCurrMenu(url);
+		System.out.println(menu);
 		System.out.println("###");
 	}
 
