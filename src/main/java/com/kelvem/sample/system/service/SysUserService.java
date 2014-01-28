@@ -84,6 +84,19 @@ public class SysUserService {
 	}
 	
 	/**
+	 * <p>查询用户表</p>
+	 * 
+	 * @param name 登陆名
+	 * @return SysUserModel 用户表
+	 * @see
+	 */
+	public SysUserModel getSysUserByName(String userName){
+		
+		SysUserModel result = this.getSysUserDao().getSysUserByName(userName);
+		return result;
+	}
+	
+	/**
 	 * <p>保存用户表</p>
 	 * 
 	 * @param sysUser 用户表

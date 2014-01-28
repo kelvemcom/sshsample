@@ -52,6 +52,10 @@ public class MenuAuthLogFilter implements Filter {
 			String url = RequestUtil.getUrl(request);
 			log.debug("MenuAuthLogFilter : " + url);
 
+			// 记录url的auth
+			SysAuthorityModel sysAuthority = recordAuth(url);
+			
+			// 记录菜单与auth的关系
 			HttpSession session = request.getSession(true);
 			SysRoleModel sysMenu = sysMenuService.getSysMenu(url);
 			SysRoleModel currSysMenu = (SysRoleModel)session.getAttribute("currMenuUrl");
@@ -61,7 +65,7 @@ public class MenuAuthLogFilter implements Filter {
 				// 从菜单访问, 把当前菜单记录到session中
 				session.setAttribute("currMenuUrl", sysMenu);
 				// 记录菜单与权限的关系
-				recordMenuWithAuthMapping(sysMenu, url);
+				recordMenuWithAuthMapping(sysMenu, sysAuthority);
 			} else if (referer == null) {
 				// 从地址栏直接访问
 				session.setAttribute("currMenuUrl", null);
@@ -69,11 +73,11 @@ public class MenuAuthLogFilter implements Filter {
 				// 未点击菜单，则什么都不做
 			} else {
 				// 已经点击过菜单, 则记录菜单与权限的关系
-				recordMenuWithAuthMapping(currSysMenu, url);
+				recordMenuWithAuthMapping(currSysMenu, sysAuthority);
 			}
 			
 //			log.info("===================  doFilter  end   ======================");
-		} catch (BeansException e) {
+		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 		}
 		
@@ -81,7 +85,7 @@ public class MenuAuthLogFilter implements Filter {
 
 	}
 	
-	private void recordMenuWithAuthMapping(SysRoleModel currSysMenu, String url){
+	private SysAuthorityModel recordAuth(String url){
 
 		List<SysAuthorityModel> list = sysAuthorityService.querySysAuthority(null, null, url);
 
@@ -90,9 +94,15 @@ public class MenuAuthLogFilter implements Filter {
 		if (list == null || list.size() <= 0) {
 			sysAuthority = AuthUtil.createSysAuthorityModel(url);
 			sysAuthorityService.saveSysAuthority(sysAuthority);
+			log.info("record Auth '" + sysAuthority.getSysAuthorityUrl() + "', id=" + sysAuthority.getSysAuthorityId());
 		} else {
 			sysAuthority = list.get(0);
 		}
+		
+		return sysAuthority;
+	}
+	
+	private void recordMenuWithAuthMapping(SysRoleModel currSysMenu, SysAuthorityModel sysAuthority){
 		
 		// Save relationship
 		Set<SysAuthorityModel> sysAuthoritySet = currSysMenu.getSysAuthoritySet();
@@ -114,7 +124,7 @@ public class MenuAuthLogFilter implements Filter {
 		
 		currSysMenu.setSysAuthoritySet(buf);
 		sysRoleService.updateSysRole(currSysMenu);
-		log.info("记录菜单与权限的关系 SysRole(" + currSysMenu.getMenuUrl() + ")与SysAuthority(" + url + ")");
+		log.info("记录菜单与权限的关系 SysRole(" + currSysMenu.getMenuUrl() + ")与SysAuthority(" + sysAuthority.getSysAuthorityUrl() + ")");
 	}
 
 	public void init(FilterConfig arg0) throws ServletException {

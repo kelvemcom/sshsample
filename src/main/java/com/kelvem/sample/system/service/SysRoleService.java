@@ -145,15 +145,15 @@ public class SysRoleService {
 	/**
 	 * <p>查询系统菜单表</p>
 	 * 
-	 * @param id	菜单Id
-	 * @param name	菜单名称
-	 * @param url	菜单地址
+	 * @param menuId	菜单Id
+	 * @param menuName	菜单名称
+	 * @param menuUrl	菜单地址
 	 * @return List<SysRoleModel> 系统菜单表
 	 * @see
 	 */
-	public List<SysRoleModel> querySysRole(Integer id, String name, String url) {
+	public List<SysRoleModel> querySysRole(Integer menuId, String menuName, String menuUrl) {
 		
-		return this.getSysRoleDao().querySysRole(id, name, url);
+		return this.getSysRoleDao().querySysRole(menuId, menuName, menuUrl);
 	}
 
 	public SysRoleDao getSysRoleDao() {

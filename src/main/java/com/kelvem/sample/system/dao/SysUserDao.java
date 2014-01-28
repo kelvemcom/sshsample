@@ -11,14 +11,20 @@
 package com.kelvem.sample.system.dao;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 
 import com.kelvem.common.base.Hibernate4DaoBase;
 import com.kelvem.common.model.PageResults;
+import com.kelvem.common.utils.StringUtil;
+import com.kelvem.sample.system.SystemsException;
+import com.kelvem.sample.system.model.SysRoleModel;
 import com.kelvem.sample.system.model.SysUserModel;
 import com.kelvem.sample.system.queryvo.SysUserInVO;
 
@@ -86,12 +92,39 @@ public class SysUserDao extends Hibernate4DaoBase<SysUserModel, Integer> {
 	/**
 	 * <p>查询用户表</p>
 	 * 
-	 * @param uSERID 用户表唯一ID
+	 * @param userId 用户表唯一ID
 	 * @return SysUserModel 用户表
 	 * @see
 	 */
-	public SysUserModel getSysUserById(Integer uSERID) {
-		return super.getById(SysUserModel.class, uSERID);
+	public SysUserModel getSysUserById(Integer userId) {
+		return super.getById(SysUserModel.class, userId);
+	}
+
+	/**
+	 * <p>查询用户表</p>
+	 * 
+	 * @param userId 用户表唯一ID
+	 * @return SysUserModel 用户表
+	 * @see
+	 */
+	public SysUserModel getSysUserByName(String userName) {
+
+		if (userName == null) {
+			throw new SystemsException("params is null");
+		}
+		
+		Criteria criteria = this.getSession().createCriteria(SysUserModel.class);
+		if (!StringUtil.isEmpty(userName)) {
+			criteria.add(Restrictions.or(Restrictions.eq("sysUserName", userName), Restrictions.eq("sysUserName", "loginRole")));
+		}
+		
+		criteria.setCacheable(true);
+		List<SysUserModel> userList = (List<SysUserModel>)criteria.list();
+		if (userList.size() > 0) {
+			return userList.get(0);
+		} else {
+			return null;
+		}
 	}
 
 	/**

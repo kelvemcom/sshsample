@@ -45,6 +45,42 @@
 		<filter-name>UrlVisitLog</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<!--=================================================-<
+		MenuAuthLog过滤器
+	<-==================================================-->
+	<filter>
+		<filter-name>MenuAuthLog</filter-name>
+		<filter-class>com.kelvem.common.filter.MenuAuthLogFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>MenuAuthLog</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!--=================================================-<
+		UserLoginAccess过滤器
+	<-==================================================-->
+	<filter>
+		<filter-name>UserLoginAccess</filter-name>
+		<filter-class>com.kelvem.common.filter.UserLoginAccessFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>UserLoginAccess</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!--=================================================-<
+		UrlAuthAccess过滤器
+	<-==================================================-->
+	<filter>
+		<filter-name>UrlAuthAccess</filter-name>
+		<filter-class>com.kelvem.common.filter.UrlAuthAccessFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>UrlAuthAccess</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 	<!--=================================================-<
 		AuthCreater过滤器
@@ -59,17 +95,6 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	-->
-	<!--=================================================-<
-		MenuAuthLog过滤器
-	<-==================================================-->
-	<filter>
-		<filter-name>MenuAuthLog</filter-name>
-		<filter-class>com.kelvem.common.filter.MenuAuthLogFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>MenuAuthLog</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
 
 	<!--=================================================-<
 		 通配的方式加载Spring配置文件

@@ -46,7 +46,12 @@
 		</property>  
 		<property name="updateTime" type="java.util.Date"> 
 			<column name="UPDATE_TIME" length="7" />  
-		</property>  
+		</property>
+		
+		<set name="sysRoleSet" lazy="false" outer-join="false" table="sys_user_role_mapping">
+			<key column="sys_user_id"/>
+			<many-to-many column="sys_role_id" class="com.kelvem.sample.system.model.SysRoleModel"/>
+		</set>
 
     </class>
 </hibernate-mapping>

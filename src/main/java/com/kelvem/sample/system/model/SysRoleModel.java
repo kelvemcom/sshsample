@@ -192,5 +192,17 @@ public class SysRoleModel implements java.io.Serializable {
 		this.sysAuthoritySet = sysAuthoritySet;
 	}
 	
-
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof SysRoleModel) {
+			return this.getSysRoleId().equals(((SysRoleModel)obj).getSysRoleId());
+		} else {
+			return super.equals(obj);
+		}
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.getSysRoleId();
+	}
 }

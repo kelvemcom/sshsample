@@ -10,6 +10,7 @@
 package com.kelvem.sample.system.model;
 
 import java.util.Date;
+import java.util.Set;
 
 
 /**
@@ -44,6 +45,8 @@ public class SysUserModel implements java.io.Serializable {
 	private Date delTime;
 	private Date createTime;
 	private Date updateTime;
+	
+	private Set<SysRoleModel> sysRoleSet;
 
 
 	/** default constructor */
@@ -141,6 +144,13 @@ public class SysUserModel implements java.io.Serializable {
 	}
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
+	}
+
+	public Set<SysRoleModel> getSysRoleSet() {
+		return sysRoleSet;
+	}
+	public void setSysRoleSet(Set<SysRoleModel> sysRoleSet) {
+		this.sysRoleSet = sysRoleSet;
 	}
 	
 
