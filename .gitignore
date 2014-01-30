@@ -4,3 +4,19 @@
 *.jar
 *.war
 *.ear
+
+
+# OS generated files #
+######################
+.DS_Store
+ehthumbs.db
+Icon?
+Thumbs.db
+*.swp
+
+build/
+target/
+!.gitignore
+bin
+.classpath
+.settings
