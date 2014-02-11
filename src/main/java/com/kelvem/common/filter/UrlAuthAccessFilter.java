@@ -79,6 +79,16 @@ public class UrlAuthAccessFilter implements Filter {
 			}
 		}
 		
+		if (url.trim().endsWith(".jsp") 
+				|| url.trim().endsWith(".html") 
+				|| url.trim().endsWith(".htm") 
+				|| url.trim().endsWith(".do") 
+				|| url.trim().endsWith(".action")) {
+			// do nothing
+		} else {
+			access = true;
+		}
+		
 		if (access == false && !url.startsWith("/403.jsp")) {
 			String contextPath = RequestUtil.getContextPath(request);
 			response.sendRedirect(contextPath + "/403.jsp");
