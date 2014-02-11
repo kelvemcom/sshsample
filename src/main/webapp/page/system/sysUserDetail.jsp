@@ -33,107 +33,150 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			background-color: #f5f5f5;
 		}
 	</style>
-	<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-	<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-	<link href="bootstrap/ext/dataTables.bootstra.css" rel="stylesheet">
+	
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css">
+	<link rel="stylesheet" href="bootstrap/ext/dataTables.bootstra.css">
     
 	<script type="text/javascript" src="jquery/jquery-2.0.2.js"></script>
 	<script type="text/javascript" src="jquery/plugin/jquery.pagination.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
-	
+
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
 		<script src="bootstrap/js/html5shiv.js"></script>
 	<![endif]-->
-   
+	
+	<script type="text/javascript">
+
+		function submit_form(button_id) {
+			//alert(button_id);
+			if (button_id == 'back') {
+				document.getElementById("form").action = "${ctx}/page/system/sysUser_sysUserList.action";
+				document.getElementById("form").submit();
+			} else if (button_id == 'update') {
+				document.getElementById("form").action = "${ctx}/page/system/sysUser_sysUserUpdate.action";
+				document.getElementById("form").submit();
+			}
+		};
+	</script>
 </head>
   
 <body>
   
-    <s:include value="/page/navbar.jsp"></s:include> 
-	<br>
-	<form id="back" action="page/system/sysUser_sysUserList.action" method="get">
-		<button class="btn btn-info" type="button" onclick="submit();">返回</button>
-	</form>
-	<form id="update" action="page/system/sysUser_sysUserUpdate.action?sysUser.sysUserId=${sysUser.sysUserId}" method="get">
-		<input type="hidden" name="sysUser.sysUserId" value="${sysUser.sysUserId}"/>
-		<button class="btn btn-info" type="button" onclick="submit();">编辑</button>
-	</form>
-
-<form class="form-horizontal" role="form">
-
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-6 control-label">用户显示名</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="inputEmail3" placeholder="Email" value="${sysUserName}">
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-6 control-label">用户登录名</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="inputEmail3" placeholder="Email" value="${userLogonName}">
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-6 control-label">密码</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="inputEmail3" placeholder="Email" value="${userPassword}">
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-6 control-label">用户类型</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="inputEmail3" placeholder="Email" value="${userTypeCode}">
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-6 control-label">人个信息ID</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="inputEmail3" placeholder="Email" value="${personInfoId}">
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-6 control-label">描述</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="inputEmail3" placeholder="Email" value="${userDescs}">
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-6 control-label">状态标志</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="inputEmail3" placeholder="Email" value="${statusCode}">
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-6 control-label">状态修改时间</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="inputEmail3" placeholder="Email" value="${statusChangeTime}">
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-6 control-label">删除标志</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="inputEmail3" placeholder="Email" value="${delFlag}">
-    </div>
-  </div>
-
-  
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Sign in</button>
-    </div>
-  </div>
-  
-</form>
+    <s:include value="/page/navbar.jsp"></s:include>
 	
+	<!-- 
+	<div class="row">
+		<div class="col-sm-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">750px/12</div>
+		<div class="col-sm-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">2</div>
+		<div class="col-sm-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">3</div>
+		<div class="col-sm-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">4</div>
+		<div class="col-sm-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">5</div>
+		<div class="col-sm-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">6</div>
+		<div class="col-sm-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">7</div>
+		<div class="col-sm-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">8</div>
+		<div class="col-sm-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">9</div>
+		<div class="col-sm-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">10</div>
+		<div class="col-sm-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">11</div>
+		<div class="col-sm-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">12</div>
+	</div>
+	-->
+	<div class="col-md-9 column">
+	
+		<form class="form-horizontal" role="form" id="form">
+  
+			<c:if test="${empty sysUser}">
+			<h3>未查到相关数据&nbsp&nbsp&nbsp&nbsp<a href="javascript:submit_form('back');" class="btn btn-info"><i class="glyphicon glyphicon-circle-arrow-left"></i> 返回</a></h3>
+			</c:if>
+		
+			<c:if test="${!empty sysUser}">
+			<br>
+	
+			<div class="form-group">
+				<div class="col-sm-offset-3 col-sm-5">
+					<a href="javascript:submit_form('back');" class="btn btn-info"><i class="glyphicon glyphicon-circle-arrow-left"></i> 返回</a>
+					<a href="javascript:submit_form('update');" class="btn btn-info"><span class="glyphicon glyphicon-edit"></span> 编辑</a>
+				</div>
+			</div>
+
+			<input type="hidden" name="sysUser.sysUserId" value="${sysUser.sysUserId}" />
+	
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-3 control-label">用户显示名</label>
+				<div class="col-sm-8 col-md-6">
+					<input type="text" class="form-control" id="inputEmail3" placeholder="Email" value="${sysUser.userLogonName}">
+				</div>
+			</div>
+	
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-3 control-label">用户登录名</label>
+				<div class="col-sm-8 col-md-6">
+					<input type="text" class="form-control" id="inputEmail3" placeholder="Email" value="${sysUser.userLogonName}">
+				</div>
+			</div>
+			
+			<div class="form-group">
+			    <label for="inputPassword3" class="col-sm-3 control-label">密码</label>
+			    <div class="col-sm-8 col-md-6">
+			      <input type="password" class="form-control" id="inputPassword3" placeholder="Password" value="${sysUser.userPassword}">
+			    </div>
+	  		</div>
+	
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-3 control-label">用户类型</label>
+				<div class="col-sm-8 col-md-6">
+					<input type="text" class="form-control" id="inputEmail3" placeholder="Email" value="${sysUser.userTypeCode}">
+				</div>
+			</div>
+	
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-3 control-label">人个信息ID</label>
+				<div class="col-sm-8 col-md-6">
+					<input type="text" class="form-control" id="inputEmail3" placeholder="Email" value="${sysUser.personInfoId}">
+				</div>
+			</div>
+	
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-3 control-label">描述</label>
+				<div class="col-sm-8 col-md-6">
+					<input type="text" class="form-control" id="inputEmail3" placeholder="Email" value="${sysUser.userDescs}">
+				</div>
+			</div>
+	
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-3 control-label">状态标志</label>
+				<div class="col-sm-8 col-md-6">
+					<input type="text" class="form-control" id="inputEmail3" placeholder="Email" value="${sysUser.statusCode}">
+				</div>
+			</div>
+	
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-3 control-label">状态修改时间</label>
+				<div class="col-sm-8 col-md-6">
+					<input type="text" class="form-control" id="inputEmail3" placeholder="Email" value="${sysUser.statusChangeTime}">
+				</div>
+			</div>
+	
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-3 control-label">删除标志</label>
+				<div class="col-sm-8 col-md-6">
+					<input type="text" class="form-control" id="inputEmail3" placeholder="Email" value="${sysUser.delFlag}">
+				</div>
+			</div>
+	
+			<div class="form-group">
+				<div class="col-sm-offset-3 col-sm-5">
+					<a href="javascript:submit_form('back');" class="btn btn-info"><i class="glyphicon glyphicon-circle-arrow-left"></i> 返回</a>
+					<a href="javascript:submit_form('update');" class="btn btn-info"><span class="glyphicon glyphicon-edit"></span> 编辑</a>
+				</div>
+			</div>
+			</c:if>
+		</form>
+		
+	</div>
+	
+	<s:include value="/page/menu.jsp"></s:include>
 	
 </body>
 

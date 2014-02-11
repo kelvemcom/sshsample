@@ -57,18 +57,16 @@ public class SysUserAction extends ActionBase {
 	
 	public SysUserAction(){
 		super();
-		System.out.println("sysUser = " + sysUser);
-		System.out.println("queryVo = " + queryVo);
 	}
 	
-	// http://kelvem-pc2:8080/SSH2Sample/page/system/sysUser_sysUserList.action
+	// http://localhost:8080/sshsample/page/system/sysUser_sysUserList.action
 	public String sysUserList() throws Exception {
 
 		queryPageResult();
 		return SUCCESS;
 	}
 
-	// http://kelvem-pc2:8080/SSH2Sample/page/system/sysUser_sysUserDetail.action?sysUser.sysUserId=1
+	// http://localhost:8080/SSH2Sample/page/system/sysUser_sysUserDetail.action?sysUser.sysUserId=1
 	public String sysUserDetail() throws Exception {
 
 		Integer sysUserId = sysUser.getSysUserId();
@@ -77,7 +75,7 @@ public class SysUserAction extends ActionBase {
 		return SUCCESS;
 	}
 
-	// http://kelvem-pc2:8080/SSH2Sample/page/system/sysUser_sysUserUpdate.action?sysUser.sysUserId=1
+	// http://localhost:8080/SSH2Sample/page/system/sysUser_sysUserUpdate.action?sysUser.sysUserId=1
 	public String sysUserUpdate() throws Exception {
 
 		Integer sysUserId = sysUser.getSysUserId();
@@ -86,7 +84,7 @@ public class SysUserAction extends ActionBase {
 		return SUCCESS;
 	}
 
-	// http://kelvem-pc2:8080/SSH2Sample/page/system/sysUser_sysUserUpdateDone.action?sysUser.sysUserId=1
+	// http://localhost:8080/SSH2Sample/page/system/sysUser_sysUserUpdateDone.action?sysUser.sysUserId=1
 	public String sysUserUpdateDone() throws Exception {
 
 		try {
@@ -106,13 +104,13 @@ public class SysUserAction extends ActionBase {
 		return LIST;
 	}
 
-	// http://kelvem-pc2:8080/SSH2Sample/page/system/sysUser_sysUserAdd.action
+	// http://localhost:8080/SSH2Sample/page/system/sysUser_sysUserAdd.action
 	public String sysUserAdd() throws Exception {
 		
 		return SUCCESS;
 	}
 
-	// http://kelvem-pc2:8080/SSH2Sample/page/system/sysUser_sysUserAddDone.action
+	// http://localhost:8080/SSH2Sample/page/system/sysUser_sysUserAddDone.action
 	public String sysUserAddDone() throws Exception {
 
 		try {
@@ -132,7 +130,7 @@ public class SysUserAction extends ActionBase {
 		return LIST;
 	}
 
-	// http://kelvem-pc2:8080/SSH2Sample/page/system/sysUser_sysUserDel.action?sysUser.sysUserId=4
+	// http://localhost:8080/SSH2Sample/page/system/sysUser_sysUserDel.action?sysUser.sysUserId=4
 	public String sysUserDel() throws Exception {
 
 		try {
@@ -157,7 +155,7 @@ public class SysUserAction extends ActionBase {
 		pageResult = sysUserService.querySysUser(super.getPageNo(), 10, queryVo);
 	}
 
-	//http://kelvem-pc2:8080/SSH2Sample/page/sysUser_listSysUserJson.action
+	//http://localhost:8080/SSH2Sample/page/sysUser_listSysUserJson.action
 	public String listSysUserJson() throws Exception {
 		
 		pageResult = sysUserService.querySysUser(super.getPageNo(), 10, null);

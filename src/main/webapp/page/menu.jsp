@@ -3,7 +3,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
 		<br>
-		<div class="col-xs-12 col-md-3 column">
+		<div class="col-md-3">
 			<div id="menu_level2" class="panel-group">
 			</div>
 		</div>

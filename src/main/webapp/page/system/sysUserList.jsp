@@ -33,110 +33,100 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			background-color: #f5f5f5;
 		}
 	</style>
-
-	<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
-	<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
-	<!--script src="js/less-1.3.3.min.js"></script-->
-	<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
 	
-	<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-	<link href="bootstrap/ext/dataTables.bootstra.css" rel="stylesheet">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css">
+	<link rel="stylesheet" href="bootstrap/ext/dataTables.bootstra.css">
+    
+	<script type="text/javascript" src="jquery/jquery-2.0.2.js"></script>
+	<script type="text/javascript" src="jquery/plugin/jquery.pagination.js"></script>
+	<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
 		<script src="bootstrap/js/html5shiv.js"></script>
 	<![endif]-->
-
-	<!-- Fav and touch icons -->
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="bootstrap/img/apple-touch-icon-144-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="bootstrap/img/apple-touch-icon-114-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="bootstrap/img/apple-touch-icon-72-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" href="bootstrap/img/apple-touch-icon-57-precomposed.png">
-	<link rel="shortcut icon" href="bootstrap/img/favicon.png">
-    
-	<script type="text/javascript" src="jquery/jquery-2.0.2.js"></script>
-	<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
-	<script type="text/javascript" src="jquery/plugin/jquery.pagination.js"></script>
    
 </head>
   
 <body>
 
-    <s:include value="/page/navbar.jsp"></s:include> 
-	<br>
+    <s:include value="/page/navbar.jsp"></s:include>
+	
+	<!-- 
+	<div class="row">
+		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">970px/12</div>
+		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">2</div>
+		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">3</div>
+		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">4</div>
+		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">5</div>
+		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">6</div>
+		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">7</div>
+		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">8</div>
+		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">9</div>
+		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">10</div>
+		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">11</div>
+		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">12</div>
+	</div>
+	-->
+	<div class="col-md-9 column">
+			
+		<form id="add_form" action="page/system/sysUser_sysUserAdd.action" method="get" class="form-horizontal" role="form">
+			<button class="btn btn-info" type="button" onclick="submit();">增加</button>
+		</form>
+		
+		<table id='list' class="table table-bordered table-hover table-striped datatable" style="word-break:break-all;">
+			<thead class='info'>
+				<tr class='info'>
+					<th>用户ID</th>
+					<th>用户显示名</th>
+					<th>用户登录名</th>
+					<th>用户类型</th>
+					<th>状态标志</th>
+					<th>创建时间</th>
+					<th>更新时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:if test="${!empty pageResult.results}">
+				<c:forEach items="${pageResult.results}" var="row" varStatus="sta">
+				<tr id="id_${row.sysUserId}">
+					<td>${row.sysUserId}</td>
+					<td>${row.sysUserName}</td>
+					<td>${row.userLogonName}</td>
+					<td>${row.userTypeCode}</td>
+					<td>${row.statusCode}</td>
+					<td>${row.createTime}</td>
+					<td>${row.updateTime}</td>
+					<td style="min-width: 60px">
+						<a href="${ctx}/page/system/sysUser_sysUserDetail.action?sysUser.sysUserId=${row.sysUserId}">[详情]</a>
+						<a href="${ctx}/page/system/sysUser_sysUserUpdate.action?sysUser.sysUserId=${row.sysUserId}">[修改]</a> 
+						<a href="${ctx}/page/system/sysUser_sysUserDel.action?sysUser.sysUserId=${row.sysUserId}">[删除]</a>
+					</td>
+				</tr>
+				</c:forEach>
+				</c:if>
+			</tbody>
+		</table>
 
-	<div class="container">
-		<div class="row clearfix">
-			<div class="col-xs-12 col-md-9 column">
-			
-				<form id="query" action="page/system/sysUser_sysUserAdd.action" method="get">
-					<button class="btn btn-info" type="button" onclick="submit();">增加</button>
-				</form>
-				
-				<table id='list' class="table table-bordered table-hover table-striped datatable">
-					<thead class='info'>
-						<tr class='info'>
-							<th>用户ID</th>
-							<th>用户显示名</th>
-							<th>用户登录名</th>
-							<th>密码</th>
-							<th>用户类型</th>
-							<th>人个信息ID</th>
-							<th>描述</th>
-							<th>状态标志</th>
-							<th>状态修改时间</th>
-							<th>删除标志</th>
-							<th>删除时间</th>
-							<th>创建时间</th>
-							<th>更新时间</th>
-							<th>操作</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:if test="${!empty pageResult.results}">
-							<c:forEach items="${pageResult.results}" var="row" varStatus="sta">
-						<tr id="id_${row.sysUserId}">
-							<td>${row.sysUserId}</td>
-							<td>${row.sysUserName}</td>
-							<td>${row.userLogonName}</td>
-							<td>${row.userPassword}</td>
-							<td>${row.userTypeCode}</td>
-							<td>${row.personInfoId}</td>
-							<td>${row.userDescs}</td>
-							<td>${row.statusCode}</td>
-							<td>${row.statusChangeTime}</td>
-							<td>${row.delFlag}</td>
-							<td>${row.delTime}</td>
-							<td>${row.createTime}</td>
-							<td>${row.updateTime}</td>
-							<td>
-								<a href="${ctx}/page/system/sysUser_sysUserDetail.action?sysUser.sysUserId=${row.sysUserId}">[详情]</a>
-								<a href="${ctx}/page/system/sysUser_sysUserUpdate.action?sysUser.sysUserId=${row.sysUserId}">[修改]</a>
-								<a href="${ctx}/page/system/sysUser_sysUserDel.action?sysUser.sysUserId=${row.sysUserId}">[删除]</a>
-							</td>
-						</tr>
-							</c:forEach>
-						</c:if>
-					</tbody>
-				</table>
-			</div>
-			
-			<s:include value="/page/menu.jsp"></s:include>
-		</div>
-		<div class="row clearfix">
+		<div class="col-md-3 col-md-offset-1">
 			<br>
 			PageResults.totalCount = ${pageResult.totalCount}<br>
 			PageResults.pageSize = ${pageResult.pageSize}<br>
 			PageResults.currentPage = ${pageResult.currentPage}<br>
 			param.formName = ${param.formName}<br>
 		</div>
-		<div class="row clearfix">
+		<div class="col-md-3 col-md-offset-1">
 			<br>
 			ctx=${ctx}<br>
 			basePath=${basePath}<br>
 			path=${path}<br>
 		</div>
+		
 	</div>
+	
+	<s:include value="/page/menu.jsp"></s:include>
 
 </body>
 
@@ -152,17 +142,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	
     	//alert("submit");
     	
-    	$("#query").bind("submit",
+    	$("#add_form").bind("submit",
 		    function()
 		    {
-		   	   $("#query").append("<input type='hidden' id='pageNo' name='pageNo'  value='" + page_index + "'/>");
-		   	   $("#query").append("<input type='hidden' id='pageSize' name='pageSize' value='${pageSize}'/>");
+		   	   $("#add_form").append("<input type='hidden' id='pageNo' name='pageNo'  value='" + page_index + "'/>");
+		   	   $("#add_form").append("<input type='hidden' id='pageSize' name='pageSize' value='${pageSize}'/>");
 
-		   	   var form=document.forms["query"];
+		   	   var form=document.forms["add_form"];
 		   	   form.submit();
 		    }
 		);
-		$("#query").submit();
+		$("#add_form").submit();
     	return false;
     }
     
