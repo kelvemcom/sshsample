@@ -25,15 +25,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="description" content="">
 	<meta name="author" content="">
 	
-	<!-- Le styles -->
-	<style type="text/css">
-		body {
-			padding-top: 40px;
-			padding-bottom: 40px;
-			background-color: #f5f5f5;
-		}
-	</style>
-	
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css">
 	<link rel="stylesheet" href="bootstrap/ext/dataTables.bootstra.css">
@@ -46,13 +37,55 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--[if lt IE 9]>
 		<script src="bootstrap/js/html5shiv.js"></script>
 	<![endif]-->
+	
+	<!-- Le styles -->
+	<style type="text/css">
+		
+		@media (min-width: 1350px) {
+			.container {
+				width: 1320px;
+			}
+		}
+		@media (min-width: 1550px) {
+			.container {
+				width: 1520px;
+			}
+		}
+		
+		body {
+			position: relative; /* For scrollyspy */
+			padding-top: 60px; /* Account for fixed navbar */
+			background-color: #f5f5f5;
+		}
+		.input-group {
+			padding: 5px 15px 5px 15px
+		}
+		.input-group-addon {
+			text-align: right;
+		}
+		
+		#main {
+			height: 100%;
+			background-color: #ffffff;
+		}
+	</style>
    
 </head>
   
 <body>
 
+	<div class="container1">
     <s:include value="/page/navbar.jsp"></s:include>
+    
 	
+		<!--   <s:include value="/page/menu.jsp"></s:include> -->
+		
+		<div class="col-md-2">
+			<div id="menu_level2" class="panel-group">
+			</div>
+		</div>
+		
+		
 	<!-- 
 	<div class="row">
 		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">970px/12</div>
@@ -69,13 +102,54 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">12</div>
 	</div>
 	-->
-	<div class="col-md-9 column">
-			
-		<form id="add_form" action="page/system/sysUser_sysUserAdd.action" method="get" class="form-horizontal" role="form">
-			<button class="btn btn-info" type="button" onclick="submit();">增加</button>
+	<div id="main" class="col-md-9 column">
+		
+		${breadcrumb}
+		
+		<form id="query_form" action="page/system/sysUser_sysUserList.action" method="get" class="form-horizontal" role="form">
+			<div class="row">
+				<div class="input-group col-sm-4 col-lg-3 column">
+					<span class="input-group-addon">用户ID</span>
+					<input type="text" class="form-control" placeholder="sysUserId" name="queryVo.sysUserId" value="${queryVo.sysUserId}">
+				</div>
+				<div class="input-group col-sm-4 col-lg-3 column">
+					<span class="input-group-addon">登录名</span>
+					<input type="text" class="form-control" placeholder="sysUserName" name="queryVo.sysUserName" value="${queryVo.sysUserName}" title="模糊查询">
+				</div>
+				<div class="input-group col-sm-4 col-lg-3 column">
+					<span class="input-group-addon">显示名</span>
+					<input type="text" class="form-control" placeholder="userLogonName" name="queryVo.userLogonName" value="${queryVo.userLogonName}" title="模糊查询">
+				</div>
+				<div class="input-group col-sm-4 col-lg-3 column">
+					<span class="input-group-addon">用户类型</span>
+					<input type="text" class="form-control" placeholder="userTypeCode" name="queryVo.userTypeCode" value="${queryVo.userTypeCode}">
+				</div>
+				<div class="input-group col-sm-4 col-lg-3 column">
+					<span class="input-group-addon">状态标志</span>
+					<input type="text" class="form-control" placeholder="statusCode" name="queryVo.statusCode" value="${queryVo.statusCode}">
+				</div>
+				<div class="input-group col-sm-4 col-lg-3 column">
+					<span class="input-group-addon">创建时间</span>
+					<input type="text" class="form-control" placeholder="createTime" name="queryVo.createTime" value="${queryVo.createTime}">
+				</div>
+				
+				<div class="input-group col-sm-4 col-lg-3 column pull-right">
+					<button class="btn btn-info" type="button" onclick="submit();"><i class="glyphicon glyphicon-search"></i> 查询</button>&nbsp;
+					<button class="btn btn-info" type="button" onclick="clear();"><i class="glyphicon glyphicon-remove-circle"></i> 清空</button>
+				</div>
+			</div>
 		</form>
 		
-		<table id='list' class="table table-bordered table-hover table-striped datatable" style="word-break:break-all;">
+			<br>
+		
+		<div class="row" style="border-top-style: solid; border-top-color: #888888; padding-top: 10px">
+			<form id="add_form" action="page/system/sysUser_sysUserAdd.action" method="get" class="form-horizontal col-sm-4 col-lg-3 column" role="form">
+				<button class="btn btn-info" type="button" onclick="submit();"><i class="glyphicon glyphicon-plus-sign"></i> 增加</button>
+			</form>
+		</div>
+		<br>
+		
+		<table id='list' class="table table-hover table-striped datatable" style="word-break:break-all;">
 			<thead class='info'>
 				<tr class='info'>
 					<th>用户ID</th>
@@ -126,7 +200,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 	</div>
 	
-	<s:include value="/page/menu.jsp"></s:include>
+	</div>
 
 </body>
 
@@ -154,6 +228,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		);
 		$("#add_form").submit();
     	return false;
+    }
+    
+    function clear_input(jquery_selector){
+    	$(jquery_selector + " :input").val("");
+    }
+    
+    function clear(){
+    	clear_input("#query_form");
     }
     
 	$(document).ready(function(){

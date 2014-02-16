@@ -103,9 +103,10 @@
 			//alert(menu_level3_name);
 			$(("#menu_level3_" + menu_level3_name).replace(".", "\\.")).css('color', '#4488cc');
 		};
+		
 	</script>
-    
-    <div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+  
+    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
      <div class="navbar-header">
        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
          <span class="sr-only">Toggle navigation</span>
@@ -115,43 +116,41 @@
        </button>
        <a class="navbar-brand" href="#">SSH2Sample</a>
      </div>
-     <div class="navbar-collapse collapse">
+     <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
 		<ul class="nav navbar-nav" id="menu_level1">
 			<!-- 
 			<li class="active"><a href="#">Home</a></li>
 			<li><a href="#about">About</a></li>
 			<li><a href="#contact">Contact</a></li>
             -->
-			<li class="dropdown"><a class="dropdown-toggle" href="#"
-				data-toggle="dropdown">下拉菜单<strong class="caret"></strong></a>
-				<ul class="dropdown-menu">
-					<li><a href="http://getbootstrap.com/">bootstrap</a></li>
-					<li><a href="http://www.layoutit.com/build">layoutit</a></li>
-					<li><a href="#">其他</a></li>
-					<li class="divider"></li>
-					<li class="nav-header">标签</li>
-					<li><a href="#">链接1</a></li>
-					<li><a href="#">链接2</a></li>
-				</ul>
-			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#">右边链接</a></li>
-			<li class="divider-vertical"></li>
+			<!-- BEGIN NOTIFICATION DROPDOWN -->	
 			<li class="dropdown">
-				<a class="dropdown-toggle" href="#" data-toggle="dropdown">下拉菜单<strong class="caret"></strong></a>
-				<ul class="dropdown-menu">
-					<li><a href="#">下拉导航1</a></li>
-					<li><a href="#">下拉导航2</a></li>
-					<li><a href="#">其他</a></li>
+				<a class="dropdown-toggle" href="#"  data-toggle="dropdown"><i class="glyphicon glyphicon-info-sign"></i><span class="badge"> 6</span></a>
+				<ul class="dropdown-menu extended notification">
+					<li><p>You have 14 new notifications</p></li>
+					<li><a href="#"><span class="label label-success"><i class="glyphicon glyphicon-plus"></i></span>New user registered.<span class="time">Just now</span></a></li>
+					<li><a href="#"><span class="label label-important"><i class="glyphicon glyphicon-remove-sign"></i></span>Server #12 overloaded.<span class="time">15 mins</span></a></li>
+					<li class="external"><a href="#">See all notifications <i class="m-icon-swapright"></i></a></li>
 				</ul>
 			</li>
+			<!-- END NOTIFICATION DROPDOWN -->
+			<li class="dropdown">
+				<a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> UserName<strong class="caret"></strong></a>
+				<ul class="dropdown-menu">
+					<li><a href="#"><i class="icon-user"></i> 我的信息</a></li>
+					<li><a href="#"><i class="icon-tasks"></i> 我的任务</a></li>
+					<li class="divider"></li>
+					<li><a href="#"><i class="icon-key"></i> 修改密码</a></li>
+					<li><a href="#">退出</a></li>
+				</ul>
+			</li>
+			<li class="divider-vertical"></li>
+			<li><a href="#"><i class="glyphicon glyphicon-off"></i> 退出</a></li>
 		</ul>
-     </div><!--/.nav-collapse -->
-   </div>
-   
-   <br>
-	${breadcrumb}
+     </nav><!--/.nav-collapse -->
+   </header>
 	
 	<!-- <a href="#showMsg" role="button" class="btn" data-toggle="modal">查看演示案例</a> -->
 	

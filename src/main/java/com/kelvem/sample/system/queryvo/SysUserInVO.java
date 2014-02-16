@@ -33,11 +33,11 @@ public class SysUserInVO implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -1L;
+	
+	// Fields
+	private Integer sysUserId;
 
-	// Constructors
-		private Integer userId;
-
-		private String userNickName;
+	private String sysUserName;
 	private String userLogonName;
 	private String userPassword;
 	private Integer userTypeCode;
@@ -54,107 +54,95 @@ public class SysUserInVO implements java.io.Serializable {
 	public SysUserInVO() {
 	}
 
-		public Integer getUserId() {
-		return this.userId;
+	
+	public Integer getSysUserId() {
+		return this.sysUserId;
 	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setSysUserId(Integer sysUserId) {
+		this.sysUserId = sysUserId;
 	}
-
-
-		public String getUserNickName() {
-		return this.userNickName;
+	
+	
+	public String getSysUserName() {
+		return this.sysUserName;
 	}
-
-	public void setUserNickName(String userNickName) {
-		this.userNickName = userNickName;
+	public void setSysUserName(String sysUserName) {
+		this.sysUserName = sysUserName;
 	}
-
+	
 	public String getUserLogonName() {
 		return this.userLogonName;
 	}
-
 	public void setUserLogonName(String userLogonName) {
 		this.userLogonName = userLogonName;
 	}
-
+	
 	public String getUserPassword() {
 		return this.userPassword;
 	}
-
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
-
+	
 	public Integer getUserTypeCode() {
 		return this.userTypeCode;
 	}
-
 	public void setUserTypeCode(Integer userTypeCode) {
 		this.userTypeCode = userTypeCode;
 	}
-
+	
 	public Integer getPersonInfoId() {
 		return this.personInfoId;
 	}
-
 	public void setPersonInfoId(Integer personInfoId) {
 		this.personInfoId = personInfoId;
 	}
-
+	
 	public String getUserDescs() {
 		return this.userDescs;
 	}
-
 	public void setUserDescs(String userDescs) {
 		this.userDescs = userDescs;
 	}
-
+	
 	public Integer getStatusCode() {
 		return this.statusCode;
 	}
-
 	public void setStatusCode(Integer statusCode) {
 		this.statusCode = statusCode;
 	}
-
+	
 	public Date getStatusChangeTime() {
 		return this.statusChangeTime;
 	}
-
 	public void setStatusChangeTime(Date statusChangeTime) {
 		this.statusChangeTime = statusChangeTime;
 	}
-
+	
 	public Integer getDelFlag() {
 		return this.delFlag;
 	}
-
 	public void setDelFlag(Integer delFlag) {
 		this.delFlag = delFlag;
 	}
-
+	
 	public Date getDelTime() {
 		return this.delTime;
 	}
-
 	public void setDelTime(Date delTime) {
 		this.delTime = delTime;
 	}
-
+	
 	public Date getCreateTime() {
 		return this.createTime;
 	}
-
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-
+	
 	public Date getUpdateTime() {
 		return this.updateTime;
 	}
-
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}

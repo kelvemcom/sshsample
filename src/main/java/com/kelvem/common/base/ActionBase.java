@@ -541,7 +541,7 @@ public class ActionBase extends ActionSupport implements SessionAware, RequestAw
 //"  <li class='active'>Data</li>" +
 //"</ol>";
 		
-		breadcrumb = "<ol class='breadcrumb'>";
+		breadcrumb = "<ol class='breadcrumb'  style='background-color: #dddddd;'>";
 		for (String[] vals : listBreadcrumb) {
 			breadcrumb += "<li><a href='" + vals[1] + "'>" + vals[0] + "</a></li>";
 		}

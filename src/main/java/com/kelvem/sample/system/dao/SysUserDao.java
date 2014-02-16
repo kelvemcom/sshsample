@@ -11,6 +11,7 @@
 package com.kelvem.sample.system.dao;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -24,7 +25,6 @@ import com.kelvem.common.base.Hibernate4DaoBase;
 import com.kelvem.common.model.PageResults;
 import com.kelvem.common.utils.StringUtil;
 import com.kelvem.sample.system.SystemsException;
-import com.kelvem.sample.system.model.SysRoleModel;
 import com.kelvem.sample.system.model.SysUserModel;
 import com.kelvem.sample.system.queryvo.SysUserInVO;
 
@@ -60,28 +60,37 @@ public class SysUserDao extends Hibernate4DaoBase<SysUserModel, Integer> {
 		
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(SysUserModel.class);
 		if (sysUserInVO != null) {
-//			
-//			Integer riskTypeCode = sysUserInVO.getRiskTypeCode();
-//			if (riskTypeCode != null && riskTypeCode > 0) {
-//				detachedCriteria.add(Restrictions.eq("riskTypeCode", riskTypeCode));
-//			}
-//			
-//			Integer riskStatusCode = sysUserInVO.getRiskStatusCode();
-//			if (riskStatusCode != null && riskStatusCode > 0) {
-//				detachedCriteria.add(Restrictions.eq("riskStatusCode", riskStatusCode));
-//			}
-//			
-//			Date startDate = sysUserInVO.getStartDate();
-//			Date endDate = sysUserInVO.getEndDate();
-//			if(this.isNotEmpty(startDate) && this.isNotEmpty(endDate))
-//			{
-//				detachedCriteria.add(Restrictions.between("occurTime", startDate,endDate));
-//			}
-//			else if (this.isNotEmpty(startDate)) {
-//				detachedCriteria.add(Restrictions.ge("occurTime", startDate));
-//			} else if (this.isNotEmpty(endDate)) {
-//				detachedCriteria.add(Restrictions.le("occurTime", endDate));
-//			}
+			
+			Integer sysUserId = sysUserInVO.getSysUserId();
+			if (this.isNotEmpty(sysUserId)) {
+				detachedCriteria.add(Restrictions.eq("sysUserId", sysUserId));
+			}
+			
+			String sysUserName = sysUserInVO.getSysUserName();
+			if (this.isNotEmpty(sysUserName)) {
+				detachedCriteria.add(Restrictions.like("sysUserName", "%" + sysUserName + "%"));
+			}
+			
+			String userLogonName = sysUserInVO.getUserLogonName();
+			if (this.isNotEmpty(userLogonName)) {
+				detachedCriteria.add(Restrictions.like("userLogonName", "%" + userLogonName + "%"));
+			}
+			
+			Integer userTypeCode = sysUserInVO.getUserTypeCode();
+			if (this.isNotEmpty(userTypeCode)) {
+				detachedCriteria.add(Restrictions.eq("userTypeCode", userTypeCode));
+			}
+			
+			Integer statusCode = sysUserInVO.getStatusCode();
+			if (this.isNotEmpty(statusCode)) {
+				detachedCriteria.add(Restrictions.eq("statusCode", statusCode));
+			}
+			
+			Date createTime = sysUserInVO.getCreateTime();
+			if(this.isNotEmpty(createTime))
+			{
+				detachedCriteria.add(Restrictions.gt("createTime", createTime));
+			}
 		}
 		
 //		detachedCriteria.add(Restrictions.eq("userTypeCode", 10));

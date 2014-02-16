@@ -105,14 +105,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-3 control-label">用户显示名</label>
 				<div class="col-sm-8 col-md-6">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="Email" value="${sysUser.userLogonName}">
+					<input type="text" readonly="readonly" class="form-control" id="inputEmail3" placeholder="Email" value="${sysUser.userLogonName}">
 				</div>
 			</div>
 	
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-3 control-label">用户登录名</label>
 				<div class="col-sm-8 col-md-6">
-					<input type="text" class="form-control" id="inputEmail3" placeholder="Email" value="${sysUser.userLogonName}">
+					<input type="text" readonly="readonly" class="form-control" id="inputEmail3" placeholder="Email" value="${sysUser.userLogonName}">
 				</div>
 			</div>
 			
