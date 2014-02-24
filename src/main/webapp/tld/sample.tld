@@ -11,36 +11,6 @@
    <!-- Every TLD needs at least one 'tag' element.  We happily oblige. -->
    
   <tag>
-    <name>sample</name>
-    <tag-class>com.kelvem.common.views.ui.tag.SampleTag</tag-class>
-    <body-content>empty</body-content>
-    <description><![CDATA[
-    	包括的属性：	<br>
-    	1 id	<br>
-    	2 name	<br>
-    	 ]]>
-    </description>
-    <attribute>
-    	<name>domainType</name>
-    	<required>false</required>
-    	<rtexprvalue>true</rtexprvalue>
-    	<type>String</type>
-    	<description>这个是数据库表b_domain列dom_type_code的值，字符串类型。
-    		你将要选取的值赋予该属性，那么可以取出dom_type_code="?"的所有列。</description>
-    </attribute>
-    <attribute>
-    	<name>name</name>
-    	<required>false</required>
-    	<rtexprvalue>true</rtexprvalue>
-    	<type>String</type>
-    	<description><![CDATA[
-	    	控件的名称
-	    	 ]]>
-		</description>
-    </attribute>
-  </tag>
-  
-  <tag>
     <name>dateformat</name>
     <tag-class>com.kelvem.common.views.ui.tag.DateFormatTag</tag-class>
     <body-content>empty</body-content>

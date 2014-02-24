@@ -108,9 +108,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		${breadcrumb}
 		
-		
-		<sa:dateformat name="now" value="2014-02-22" format="yyyy-MM-dd HH:mm:ss"/>
-		
 		<form id="query_form" action="page/system/sysUser_sysUserList.action" method="get" class="form-horizontal" role="form">
 			<div class="row">
 				<div class="input-group col-sm-4 col-lg-3 column">
@@ -132,9 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						domainType="userTypeCode" emptyItem=""/>
 				</div>
 				<div class="input-group col-sm-4 col-lg-3 column">
-					<span class="input-group-addon">
-						状态标志
-					</span>
+					<span class="input-group-addon">状态标志</span>
 					<!-- <input type="text" class="form-control" placeholder="" name="queryVo.statusCode" value="${queryVo.statusCode}"> -->
 					<k:domain type="select" name="queryVo.statusCode" value="${queryVo.statusCode}" cssClass="form-control" cssStyle="width: 70%;" 
 						domainType="statusCode" emptyItem=""/>
