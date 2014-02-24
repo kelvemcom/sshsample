@@ -35,6 +35,21 @@
 	</filter-mapping>
 
 	<!--=================================================-<
+		自定义标签
+	<-==================================================-->
+
+	<jsp-config>
+		<taglib>
+			<taglib-uri>/sampleTag</taglib-uri>
+			<taglib-location>/tld/sample.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/kelvemTag</taglib-uri>
+			<taglib-location>/tld/kelvem.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+
+	<!--=================================================-<
 		UrlVisitLog过滤器
 	<-==================================================-->
 	<filter>

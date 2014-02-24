@@ -7,6 +7,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sa" uri="/sampleTag"%>
+<%@ taglib prefix="k" uri="/kelvemTag"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -106,31 +108,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		${breadcrumb}
 		
+		
+		<sa:dateformat name="now" value="2014-02-22" format="yyyy-MM-dd HH:mm:ss"/>
+		
 		<form id="query_form" action="page/system/sysUser_sysUserList.action" method="get" class="form-horizontal" role="form">
 			<div class="row">
 				<div class="input-group col-sm-4 col-lg-3 column">
 					<span class="input-group-addon">用户ID</span>
-					<input type="text" class="form-control" placeholder="sysUserId" name="queryVo.sysUserId" value="${queryVo.sysUserId}">
+					<input type="text" class="form-control" placeholder="" name="queryVo.sysUserId" value="${queryVo.sysUserId}">
 				</div>
 				<div class="input-group col-sm-4 col-lg-3 column">
 					<span class="input-group-addon">登录名</span>
-					<input type="text" class="form-control" placeholder="sysUserName" name="queryVo.sysUserName" value="${queryVo.sysUserName}" title="模糊查询">
+					<input type="text" class="form-control" placeholder="" name="queryVo.sysUserName" value="${queryVo.sysUserName}" title="模糊查询">
 				</div>
 				<div class="input-group col-sm-4 col-lg-3 column">
 					<span class="input-group-addon">显示名</span>
-					<input type="text" class="form-control" placeholder="userLogonName" name="queryVo.userLogonName" value="${queryVo.userLogonName}" title="模糊查询">
+					<input type="text" class="form-control" placeholder="" name="queryVo.userLogonName" value="${queryVo.userLogonName}" title="模糊查询">
 				</div>
 				<div class="input-group col-sm-4 col-lg-3 column">
 					<span class="input-group-addon">用户类型</span>
-					<input type="text" class="form-control" placeholder="userTypeCode" name="queryVo.userTypeCode" value="${queryVo.userTypeCode}">
+					<!-- <input type="text" class="form-control" placeholder="" name="queryVo.userTypeCode" value="${queryVo.userTypeCode}"> -->
+					<k:domain type="select" name="queryVo.userTypeCode" value="${queryVo.userTypeCode}" cssClass="form-control" cssStyle="width: 70%;" 
+						domainType="userTypeCode" emptyItem=""/>
 				</div>
 				<div class="input-group col-sm-4 col-lg-3 column">
-					<span class="input-group-addon">状态标志</span>
-					<input type="text" class="form-control" placeholder="statusCode" name="queryVo.statusCode" value="${queryVo.statusCode}">
+					<span class="input-group-addon">
+						状态标志
+					</span>
+					<!-- <input type="text" class="form-control" placeholder="" name="queryVo.statusCode" value="${queryVo.statusCode}"> -->
+					<k:domain type="select" name="queryVo.statusCode" value="${queryVo.statusCode}" cssClass="form-control" cssStyle="width: 70%;" 
+						domainType="statusCode" emptyItem=""/>
 				</div>
 				<div class="input-group col-sm-4 col-lg-3 column">
 					<span class="input-group-addon">创建时间</span>
-					<input type="text" class="form-control" placeholder="createTime" name="queryVo.createTime" value="${queryVo.createTime}">
+					<input type="text" class="form-control" placeholder="" name="queryVo.createTime" value="${queryVo.createTime}">
 				</div>
 				
 				<div class="input-group col-sm-4 col-lg-3 column pull-right">
@@ -140,50 +151,55 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</form>
 		
-			<br>
-		
-		<div class="row" style="border-top-style: solid; border-top-color: #888888; padding-top: 10px">
-			<form id="add_form" action="page/system/sysUser_sysUserAdd.action" method="get" class="form-horizontal col-sm-4 col-lg-3 column" role="form">
-				<button class="btn btn-info" type="button" onclick="submit();"><i class="glyphicon glyphicon-plus-sign"></i> 增加</button>
-			</form>
-		</div>
 		<br>
 		
-		<table id='list' class="table table-hover table-striped datatable" style="word-break:break-all;">
-			<thead class='info'>
-				<tr class='info'>
-					<th>用户ID</th>
-					<th>用户显示名</th>
-					<th>用户登录名</th>
-					<th>用户类型</th>
-					<th>状态标志</th>
-					<th>创建时间</th>
-					<th>更新时间</th>
-					<th>操作</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:if test="${!empty pageResult.results}">
-				<c:forEach items="${pageResult.results}" var="row" varStatus="sta">
-				<tr id="id_${row.sysUserId}">
-					<td>${row.sysUserId}</td>
-					<td>${row.sysUserName}</td>
-					<td>${row.userLogonName}</td>
-					<td>${row.userTypeCode}</td>
-					<td>${row.statusCode}</td>
-					<td>${row.createTime}</td>
-					<td>${row.updateTime}</td>
-					<td style="min-width: 60px">
-						<a href="${ctx}/page/system/sysUser_sysUserDetail.action?sysUser.sysUserId=${row.sysUserId}">[详情]</a>
-						<a href="${ctx}/page/system/sysUser_sysUserUpdate.action?sysUser.sysUserId=${row.sysUserId}">[修改]</a> 
-						<a href="${ctx}/page/system/sysUser_sysUserDel.action?sysUser.sysUserId=${row.sysUserId}">[删除]</a>
-					</td>
-				</tr>
-				</c:forEach>
-				</c:if>
-			</tbody>
-		</table>
-
+		<div class="row" style="border-top-style: solid; border-top-color: #888888; padding-top: 10px;">
+		<form id="add_form" action="page/system/sysUser_sysUserAdd.action" method="get" class="form-horizontal" role="form">
+			<button class="btn btn-info" type="button" onclick="submit();"><i class="glyphicon glyphicon-plus-sign"></i> 增加</button>
+			
+			<br>
+			<div class="table-responsive">
+		
+			<table id='list' class="table table-hover table-striped datatable" style="word-break:break-all;">
+				<thead class='info'>
+					<tr class='info'>
+						<th><input type="checkbox" id="select_all" onclick="onchange_checkbox();"></th>
+						<th>用户ID</th>
+						<th>用户显示名</th>
+						<th>用户登录名</th>
+						<th>用户类型</th>
+						<th>状态标志</th>
+						<th>创建时间</th>
+						<th>更新时间</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:if test="${!empty pageResult.results}">
+					<c:forEach items="${pageResult.results}" var="row" varStatus="sta">
+					<tr id="id_${row.sysUserId}">
+						<td><input type="checkbox" id="ckb" name="ckb" value="${row.sysUserId}"></td>
+						<td>${row.sysUserId}</td>
+						<td>${row.sysUserName}</td>
+						<td>${row.userLogonName}</td>
+						<td><k:domain type="label" domainType="userTypeCode" value="${row.userTypeCode}"/></td>
+						<td><k:domain type="label" domainType="statusCode" value="${row.statusCode}"/></td>
+						<td>${row.createTime}</td>
+						<td>${row.updateTime}</td>
+						<td style="min-width: 60px">
+							<a href="${ctx}/page/system/sysUser_sysUserDetail.action?sysUser.sysUserId=${row.sysUserId}">[详情]</a>
+							<a href="${ctx}/page/system/sysUser_sysUserUpdate.action?sysUser.sysUserId=${row.sysUserId}">[修改]</a> 
+							<a href="${ctx}/page/system/sysUser_sysUserDel.action?sysUser.sysUserId=${row.sysUserId}">[删除]</a>
+						</td>
+					</tr>
+					</c:forEach>
+					</c:if>
+				</tbody>
+			</table>
+			</div>
+		</form>
+		</div>
+		
 		<div class="col-md-3 col-md-offset-1">
 			<br>
 			PageResults.totalCount = ${pageResult.totalCount}<br>
@@ -234,8 +250,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	$(jquery_selector + " :input").val("");
     }
     
+    
     function clear(){
     	clear_input("#query_form");
+    }
+    
+    $("#check1").click(function(){
+    	//alert($(this).attr("checked"));
+    	//alert(document.getElementById("check1").checked);
+    	alert($('#check1:checked'));
+    	
+    })
+    
+    function onchange_checkbox(){
+    	var flag = document.getElementById("select_all").checked;
+	    
+	    var ckbs = document.all['ckb'];
+	    for(var i=0;i<ckbs.length;i++) 
+	    { 
+	    	ckbs[i].checked = flag; 
+	    }
     }
     
 	$(document).ready(function(){

@@ -7,7 +7,6 @@
 <hibernate-mapping>
 	<class name="com.kelvem.sample.system.model.SysRoleModel" table="sys_role">
 		<!-- <cache usage="read-write" /> -->
-		
 		<id name="sysRoleId" type="java.lang.Integer">
 			<column name="SYS_ROLE_ID" precision="22" scale="0" not-null="true" />
 			<!-- <generator class="increment"/> -->

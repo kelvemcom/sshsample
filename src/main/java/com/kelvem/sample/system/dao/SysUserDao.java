@@ -77,12 +77,12 @@ public class SysUserDao extends Hibernate4DaoBase<SysUserModel, Integer> {
 			}
 			
 			Integer userTypeCode = sysUserInVO.getUserTypeCode();
-			if (this.isNotEmpty(userTypeCode)) {
+			if (this.isNotEmpty(userTypeCode) && userTypeCode > 0) {
 				detachedCriteria.add(Restrictions.eq("userTypeCode", userTypeCode));
 			}
 			
 			Integer statusCode = sysUserInVO.getStatusCode();
-			if (this.isNotEmpty(statusCode)) {
+			if (this.isNotEmpty(statusCode) && statusCode > 0) {
 				detachedCriteria.add(Restrictions.eq("statusCode", statusCode));
 			}
 			

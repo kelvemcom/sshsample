@@ -10,6 +10,8 @@
  package com.kelvem.sample.system.action;
 
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,6 @@ import org.springframework.stereotype.Component;
 import com.kelvem.common.base.ActionBase;
 import com.kelvem.common.model.PageResults;
 import com.kelvem.sample.system.cache.MenuCache;
-import com.kelvem.sample.system.model.MenuTree;
 import com.kelvem.sample.system.model.SysUserModel;
 import com.kelvem.sample.system.queryvo.SysUserInVO;
 import com.kelvem.sample.system.service.SysUserService;
@@ -54,6 +55,7 @@ public class SysUserAction extends ActionBase {
 	private PageResults<SysUserModel> pageResult;
 	private SysUserInVO queryVo;
 	private SysUserModel sysUser;
+	private List<Integer> selected;
 	
 	public SysUserAction(){
 		super();
@@ -187,6 +189,14 @@ public class SysUserAction extends ActionBase {
 
 	public void setSysUser(SysUserModel sysUser) {
 		this.sysUser = sysUser;
+	}
+
+	public List<Integer> getSelected() {
+		return selected;
+	}
+
+	public void setSelected(List<Integer> selected) {
+		this.selected = selected;
 	}
 
 }

@@ -2,8 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 
-		<br>
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<div id="menu_level2" class="panel-group">
 			</div>
 		</div>
