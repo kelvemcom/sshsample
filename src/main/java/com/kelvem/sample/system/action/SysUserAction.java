@@ -10,6 +10,7 @@
  package com.kelvem.sample.system.action;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -145,6 +146,80 @@ public class SysUserAction extends ActionBase {
 			String errMsg = "删除用户失败 (Id:" + sysUser.getSysUserId() + ")";
 			log.info(errMsg, e);
 			this.showMsg(errMsg);
+		}
+		
+		queryPageResult();
+		
+		return LIST;
+	}
+
+	// http://localhost:8080/SSH2Sample/page/system/sysUser_sysUserEnable.action?selected=3&selected=5&selected=6
+	public String sysUserEnable() throws Exception {
+
+		log.info("Enable SysUser id = " + selected);
+		
+		if (selected == null || selected.size() <= 0) {
+			this.showMsg("请勾选待启用的用户行");
+		} else {
+			List<Integer> success = new ArrayList<Integer>();
+			List<Integer> fail = new ArrayList<Integer>();
+			
+			for (Integer sysUserId : selected) {
+				try {
+					sysUserService.enableSysUser(sysUserId, true);
+					success.add(sysUserId);
+				} catch (Exception e) {
+					log.error("启用用户失败", e);
+					fail.add(sysUserId);
+				}
+			}
+			
+			String msg = "";
+			if (success.size() > 0) {
+				msg += " 启用用户成功 SysUserId=" + success;
+			}
+			if (fail.size() > 0) {
+				msg += " 启用用户失败 SysUserId=" + fail;
+			}
+			this.showMsg(msg);
+			log.info(msg);
+		}
+		
+		queryPageResult();
+		
+		return LIST;
+	}
+
+	// http://localhost:8080/SSH2Sample/page/system/sysUser_sysUserDisenable.action?selected=3&selected=5&selected=6
+	public String sysUserDisenable() throws Exception {
+
+		log.info("Disenable SysUser id = " + selected);
+		
+		if (selected == null || selected.size() <= 0) {
+			this.showMsg("请勾选待停用的用户行");
+		} else {
+			List<Integer> success = new ArrayList<Integer>();
+			List<Integer> fail = new ArrayList<Integer>();
+			
+			for (Integer sysUserId : selected) {
+				try {
+					sysUserService.enableSysUser(sysUserId, false);
+					success.add(sysUserId);
+				} catch (Exception e) {
+					log.error("停用用户失败", e);
+					fail.add(sysUserId);
+				}
+			}
+			
+			String msg = "";
+			if (success.size() > 0) {
+				msg += "停用用户成功 SysUserId=" + success + "<br>";
+			}
+			if (fail.size() > 0) {
+				msg += "停用用户失败 SysUserId=" + fail + "<br>";
+			}
+			this.showMsg(msg);
+			log.info(msg);
 		}
 		
 		queryPageResult();

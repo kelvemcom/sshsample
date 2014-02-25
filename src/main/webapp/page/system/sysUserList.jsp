@@ -40,6 +40,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script src="bootstrap/js/html5shiv.js"></script>
 	<![endif]-->
 	
+	<script type="text/javascript">
+
+		function submit_form(button_id) {
+			//alert(button_id);
+			if (button_id == 'add') {
+				document.getElementById("table_form").action = "${ctx}/page/system/sysUser_sysUserAdd.action";
+				document.getElementById("table_form").submit();
+			} else if (button_id == 'enable') {
+				document.getElementById("table_form").action = "${ctx}/page/system/sysUser_sysUserEnable.action";
+				document.getElementById("table_form").submit();
+			} else if (button_id == 'disenable') {
+				document.getElementById("table_form").action = "${ctx}/page/system/sysUser_sysUserDisenable.action";
+				document.getElementById("table_form").submit();
+			}
+		};
+	</script>
+	
 	<!-- Le styles -->
 	<style type="text/css">
 		
@@ -149,9 +166,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<br>
 		
 		<div class="row" style="border-top-style: solid; border-top-color: #888888; padding-top: 10px;">
-		<form id="add_form" action="page/system/sysUser_sysUserAdd.action" method="get" class="form-horizontal" role="form">
-			<button class="btn btn-info" type="button" onclick="submit();"><i class="glyphicon glyphicon-plus-sign"></i> 增加</button>
-			
+		<form id="table_form" action="" method="get" class="form-horizontal" role="form">
+			<button class="btn btn-info" type="button" onclick="submit_form('add');" id="add"><i class="glyphicon glyphicon-plus-sign"></i> 增加</button>
+			<button class="btn btn-info" type="button" onclick="submit_form('enable');" id="enable"><i class="glyphicon glyphicon-ok-sign"></i> 启用</button>
+			<button class="btn btn-info" type="button" onclick="submit_form('disenable');" id="disenable"><i class="glyphicon glyphicon-remove-sign"></i> 停用</button>
 			<br>
 			<div class="table-responsive">
 		
@@ -173,7 +191,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<c:if test="${!empty pageResult.results}">
 					<c:forEach items="${pageResult.results}" var="row" varStatus="sta">
 					<tr id="id_${row.sysUserId}">
-						<td><input type="checkbox" id="ckb" name="ckb" value="${row.sysUserId}"></td>
+						<td><input type="checkbox" id="selected" name="selected" value="${row.sysUserId}"></td>
 						<td>${row.sysUserId}</td>
 						<td>${row.sysUserName}</td>
 						<td>${row.userLogonName}</td>
@@ -260,7 +278,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     function onchange_checkbox(){
     	var flag = document.getElementById("select_all").checked;
 	    
-	    var ckbs = document.all['ckb'];
+	    var ckbs = document.all['selected'];
 	    for(var i=0;i<ckbs.length;i++) 
 	    { 
 	    	ckbs[i].checked = flag; 

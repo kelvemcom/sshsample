@@ -9,14 +9,12 @@
  * ============================================================*/
 package com.kelvem.sample.system.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.kelvem.common.DomainConstant.STATUS_CODE;
 import com.kelvem.common.model.PageResults;
 import com.kelvem.sample.system.dao.SysUserDao;
 import com.kelvem.sample.system.model.SysUserModel;
@@ -53,19 +51,10 @@ public class SysUserService {
 	 */
 	public PageResults<SysUserModel> querySysUser(int pageNo, int pageSize, SysUserInVO sysUserInVO){ 
 		
-		PageResults<SysUserModel> pr = this.sysUserDao.querySysUser(pageNo, pageSize, sysUserInVO);
-				
-//		List<SysUserModel> list = new ArrayList<SysUserModel>(pr.getResults().size());
-//		
-//		for (SysUserModel obj : pr.getResults()) {
-//			
-////			obj.setStrOccurTime(DateUtils.getDateTimeString(obj.getOccurTime()));
-////			obj.setStrDealTime(DateUtils.getDateTimeString(obj.getDealTime()));
-//			
-//			list.add(obj);
+//		if (sysUserInVO == null || sysUserInVO.isEmpty()) {
+//			throw new RuntimeException("参数为空");
 //		}
-//		
-//		pr.setResults(list);
+		PageResults<SysUserModel> pr = this.sysUserDao.querySysUser(pageNo, pageSize, sysUserInVO);
 		
 		return pr;
 	}
@@ -77,9 +66,9 @@ public class SysUserService {
 	 * @return SysUserModel 用户表
 	 * @see
 	 */
-	public SysUserModel getSysUserById(Integer id){
+	public SysUserModel getSysUserById(Integer sysUserId){
 		
-		SysUserModel result = this.getSysUserDao().getSysUserById(id);
+		SysUserModel result = this.getSysUserDao().getSysUserById(sysUserId);
 		return result;
 	}
 	
@@ -118,6 +107,24 @@ public class SysUserService {
 	public void updateSysUser(SysUserModel sysUser){
 				
 		this.getSysUserDao().updateSysUser(sysUser);
+	}
+
+	
+	/**
+	 * <p>启用用户</p>
+	 * 
+	 * @param sysUserId 用户Id
+	 * @param statusCode 状态值域
+	 * @return void
+	 * @see
+	 */
+	public void enableSysUser(Integer sysUserId, boolean enable) {
+		
+		if (enable == true) {
+			this.getSysUserDao().enableSysUser(sysUserId, STATUS_CODE.ENABLE.getValue());
+		} else {
+			this.getSysUserDao().enableSysUser(sysUserId, STATUS_CODE.DISENABLE.getValue());
+		}
 	}
 	
 	/**

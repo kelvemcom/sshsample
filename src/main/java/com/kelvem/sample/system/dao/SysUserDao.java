@@ -55,8 +55,7 @@ public class SysUserDao extends Hibernate4DaoBase<SysUserModel, Integer> {
 	 * @return PageResults<SysUserModel> 用户表列表
 	 * @see
 	 */
-	public PageResults<SysUserModel> querySysUser(int pageNo,
-			int pageSize, SysUserInVO sysUserInVO) {
+	public PageResults<SysUserModel> querySysUser(int pageNo, int pageSize, SysUserInVO sysUserInVO) {
 		
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(SysUserModel.class);
 		if (sysUserInVO != null) {
@@ -160,7 +159,36 @@ public class SysUserDao extends Hibernate4DaoBase<SysUserModel, Integer> {
 	}
 	
 	/**
-	 * <p>删除用户表</p>
+	 * <p>启用用户</p>
+	 * 
+	 * @param sysUserId 用户Id
+	 * @param statusCode 状态值域
+	 * @return void
+	 * @see
+	 */
+	public void enableSysUser(Integer sysUserId, Integer statusCode) {
+		SysUserModel sysUser = this.getSysUserById(sysUserId);
+		sysUser.setStatusCode(statusCode);
+		sysUser.setStatusChangeTime(new Date());
+		super.update(sysUser);
+	}
+	
+	/**
+	 * <p>逻辑删除用户</p>
+	 * 
+	 * @param sysUserId 用户Id
+	 * @param statusCode 状态值域
+	 * @return void
+	 * @see
+	 */
+	public void deleteSysUserFlag(SysUserModel sysUser){
+		sysUser.setDelFlag(1);
+		sysUser.setDelTime(new Date());
+		super.update(sysUser);
+	}
+	
+	/**
+	 * <p>删除用户</p>
 	 * 
 	 * @param sysUser 用户表
 	 * @return void
