@@ -30,10 +30,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css">
 	<link rel="stylesheet" href="bootstrap/ext/dataTables.bootstra.css">
+	<link rel="stylesheet" href="bootstrap/ext/bootstrap-datetimepicker.css">
     
 	<script type="text/javascript" src="jquery/jquery-2.0.2.js"></script>
 	<script type="text/javascript" src="jquery/plugin/jquery.pagination.js"></script>
 	<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="bootstrap/ext/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript" src="bootstrap/ext/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
@@ -125,6 +128,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		${breadcrumb}
 		
+		
+					
 		<form id="query_form" action="page/system/sysUser_sysUserList.action" method="get" class="form-horizontal" role="form">
 			<div class="row">
 				<div class="input-group col-sm-4 col-lg-3 column">
@@ -155,6 +160,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<span class="input-group-addon">创建时间</span>
 					<input type="text" class="form-control" placeholder="" name="queryVo.createTime" value="${queryVo.createTime}">
 				</div>
+				
+                <div class="input-group date form_datetime col-sm-4 col-lg-3 column" data-date="1979-09-16T05:25:07Z" data-date-format="yyyy-mm-dd HH:ii p" data-link-field="dtp_input1">
+	                <span class="input-group-addon">创建时间</span>
+                    <input class="form-control" size="16" type="text" value="1979-09-16 05:25" readonly>
+                    <!--<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>-->
+					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+					<input type="hidden" id="dtp_input1" value=""/><br/>
+                </div>
 				
 				<div class="input-group col-sm-4 col-lg-3 column pull-right">
 					<button class="btn btn-info" type="button" onclick="submit();"><i class="glyphicon glyphicon-search"></i> 查询</button>&nbsp;
@@ -287,6 +300,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
 	$(document).ready(function(){
 	
+		$('.form_datetime').datetimepicker({
+	        language:  'zh-CN',
+	        weekStart: 1,
+	        todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			forceParse: 0,
+	        showMeridian: 1
+	    });
+		
 		$("tbody tr:even").addClass("info");
 		//$("tbody tr:odd").addClass("success");
 		

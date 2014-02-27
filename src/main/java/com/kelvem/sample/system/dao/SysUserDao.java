@@ -21,6 +21,7 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 
+import com.kelvem.common.DomainConstant;
 import com.kelvem.common.base.Hibernate4DaoBase;
 import com.kelvem.common.model.PageResults;
 import com.kelvem.common.utils.StringUtil;
@@ -92,7 +93,7 @@ public class SysUserDao extends Hibernate4DaoBase<SysUserModel, Integer> {
 			}
 		}
 		
-//		detachedCriteria.add(Restrictions.eq("userTypeCode", 10));
+		detachedCriteria.add(Restrictions.eq("delFlag", DomainConstant.FLAG_DEL_FALSE));
 		
 		return super.findPageByCriteria(detachedCriteria, pageSize, pageNo);
 	}
