@@ -39,16 +39,11 @@ public class SysUserInVO implements java.io.Serializable {
 
 	private String sysUserName;
 	private String userLogonName;
-	private String userPassword;
 	private Integer userTypeCode;
-	private Integer personInfoId;
 	private String userDescs;
 	private Integer statusCode;
-	private Date statusChangeTime;
 	private Integer delFlag;
-	private Date delTime;
 	private Date createTime;
-	private Date updateTime;
 
 	/** default constructor */
 	public SysUserInVO() {
@@ -77,25 +72,11 @@ public class SysUserInVO implements java.io.Serializable {
 		this.userLogonName = userLogonName;
 	}
 	
-	public String getUserPassword() {
-		return this.userPassword;
-	}
-	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
-	}
-	
 	public Integer getUserTypeCode() {
 		return this.userTypeCode;
 	}
 	public void setUserTypeCode(Integer userTypeCode) {
 		this.userTypeCode = userTypeCode;
-	}
-	
-	public Integer getPersonInfoId() {
-		return this.personInfoId;
-	}
-	public void setPersonInfoId(Integer personInfoId) {
-		this.personInfoId = personInfoId;
 	}
 	
 	public String getUserDescs() {
@@ -112,25 +93,11 @@ public class SysUserInVO implements java.io.Serializable {
 		this.statusCode = statusCode;
 	}
 	
-	public Date getStatusChangeTime() {
-		return this.statusChangeTime;
-	}
-	public void setStatusChangeTime(Date statusChangeTime) {
-		this.statusChangeTime = statusChangeTime;
-	}
-	
 	public Integer getDelFlag() {
 		return this.delFlag;
 	}
 	public void setDelFlag(Integer delFlag) {
 		this.delFlag = delFlag;
-	}
-	
-	public Date getDelTime() {
-		return this.delTime;
-	}
-	public void setDelTime(Date delTime) {
-		this.delTime = delTime;
 	}
 	
 	public Date getCreateTime() {
@@ -139,13 +106,4 @@ public class SysUserInVO implements java.io.Serializable {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-	
-	public Date getUpdateTime() {
-		return this.updateTime;
-	}
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
-
-
 }

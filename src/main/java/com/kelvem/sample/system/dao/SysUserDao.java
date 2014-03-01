@@ -93,7 +93,7 @@ public class SysUserDao extends Hibernate4DaoBase<SysUserModel, Integer> {
 			}
 		}
 		
-		detachedCriteria.add(Restrictions.eq("delFlag", DomainConstant.FLAG_DEL_FALSE));
+		detachedCriteria.add(Restrictions.or(Restrictions.ne("delFlag", DomainConstant.FLAG_DEL_TRUE), Restrictions.isNull("delFlag")));
 		
 		return super.findPageByCriteria(detachedCriteria, pageSize, pageNo);
 	}

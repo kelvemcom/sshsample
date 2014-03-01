@@ -213,10 +213,10 @@ public class SysUserAction extends ActionBase {
 			
 			String msg = "";
 			if (success.size() > 0) {
-				msg += "停用用户成功 SysUserId=" + success + "<br>";
+				msg += " 停用用户成功 SysUserId=" + success;
 			}
 			if (fail.size() > 0) {
-				msg += "停用用户失败 SysUserId=" + fail + "<br>";
+				msg += " 停用用户失败 SysUserId=" + fail;
 			}
 			this.showMsg(msg);
 			log.info(msg);
@@ -245,7 +245,6 @@ public class SysUserAction extends ActionBase {
 	public PageResults<SysUserModel> getPageResult() {
 		return pageResult;
 	}
-
 	public void setPageResult(PageResults<SysUserModel> pageResult) {
 		this.pageResult = pageResult;
 	}
@@ -253,7 +252,6 @@ public class SysUserAction extends ActionBase {
 	public SysUserInVO getQueryVo() {
 		return queryVo;
 	}
-
 	public void setQueryVo(SysUserInVO queryVo) {
 		this.queryVo = queryVo;
 	}
@@ -261,7 +259,6 @@ public class SysUserAction extends ActionBase {
 	public SysUserModel getSysUser() {
 		return sysUser;
 	}
-
 	public void setSysUser(SysUserModel sysUser) {
 		this.sysUser = sysUser;
 	}
@@ -269,7 +266,6 @@ public class SysUserAction extends ActionBase {
 	public List<Integer> getSelected() {
 		return selected;
 	}
-
 	public void setSelected(List<Integer> selected) {
 		this.selected = selected;
 	}

@@ -45,9 +45,13 @@ public abstract class DateUtils {
 		return df.format(date);
 	}
 
-	public static Date parseDate(String date) throws ParseException {
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		return df.parse(date);
+	public static Date parseDate(String date) {
+		try {
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			return df.parse(date);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	public static Date parseDate(String date, String format)
@@ -56,9 +60,13 @@ public abstract class DateUtils {
 		return df.parse(date);
 	}
 
-	public static Date parseDateTime(String date) throws ParseException {
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		return df.parse(date);
+	public static Date parseDateTime(String date) {
+		try {
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			return df.parse(date);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	public static Date parseDateTime(String date, String format)
