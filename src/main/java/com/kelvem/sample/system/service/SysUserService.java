@@ -136,7 +136,8 @@ public class SysUserService {
 	 */
 	public void deleteSysUser(SysUserModel sysUser){
 
-		this.getSysUserDao().deleteSysUser(sysUser);
+//		this.getSysUserDao().deleteSysUser(sysUser);
+		this.getSysUserDao().deleteSysUserFlag(sysUser);;
 	}
 
 	public SysUserDao getSysUserDao() {
