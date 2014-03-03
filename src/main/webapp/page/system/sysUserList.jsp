@@ -93,15 +93,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 
 <div class="container1">
+
     <s:include value="/page/navbar.jsp"></s:include>
-    
 	
-	<!--   <s:include value="/page/menu.jsp"></s:include> -->
-	
-	<div class="col-md-2">
-		<div id="menu_level2" class="panel-group">
-		</div>
-	</div>
+	<s:include value="/page/menu.jsp"></s:include>
 		
 	<!-- 
 	<div class="row">
@@ -247,6 +242,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			ctx=${ctx}<br>
 			basePath=${basePath}<br>
 			path=${path}<br>
+		</div>
+		<div class="row"></div>
+		<div class="col-md-12">
+			<%=session.getAttribute("json_menu_tree")%><br>
+			<%=session.getAttribute("json_curr_menu")%><br>
 		</div>
 		
 	</div>
