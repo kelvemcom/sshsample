@@ -98,12 +98,12 @@
 	</filter-mapping>
 
 	<!--=================================================-<
-		AuthCreater过滤器
+		AuthRecord过滤器
 	<-==================================================-->
 	<!-- 
 	<filter>
 		<filter-name>AuthCreater</filter-name>
-		<filter-class>com.kelvem.common.filter.AuthCreaterFilter</filter-class>
+		<filter-class>com.kelvem.common.filter.AuthRecordFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>AuthCreater</filter-name>

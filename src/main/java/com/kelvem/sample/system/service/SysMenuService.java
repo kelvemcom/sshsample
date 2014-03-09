@@ -9,7 +9,6 @@
  * ============================================================*/
 package com.kelvem.sample.system.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -17,12 +16,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.kelvem.common.model.PageResults;
-import com.kelvem.common.utils.AuthUtil;
-import com.kelvem.sample.system.dao.SysRoleDao;
-import com.kelvem.sample.system.model.SysAuthorityModel;
 import com.kelvem.sample.system.model.SysRoleModel;
-import com.kelvem.sample.system.queryvo.SysRoleInVO;
 
 /**
  * <p>SysMenuService</p>

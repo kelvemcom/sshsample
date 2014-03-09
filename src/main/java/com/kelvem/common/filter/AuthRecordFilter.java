@@ -17,14 +17,13 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.kelvem.common.utils.AuthUtil;
 import com.kelvem.common.utils.WebUtil;
 import com.kelvem.sample.system.model.SysAuthorityModel;
 import com.kelvem.sample.system.service.SysAuthorityService;
 
-public class AuthCreaterFilter implements Filter {
+public class AuthRecordFilter implements Filter {
 	
-	private static Log log = LogFactory.getLog(AuthCreaterFilter.class);
+	private static Log log = LogFactory.getLog(AuthRecordFilter.class);
 
 	@Autowired SysAuthorityService sysAuthorityService;
 
@@ -45,7 +44,7 @@ public class AuthCreaterFilter implements Filter {
 			List<SysAuthorityModel> list = sysAuthorityService.querySysAuthority(null, null, url);
 			
 			if (list != null && list.size() <= 0) {
-				SysAuthorityModel model = AuthUtil.createSysAuthorityModel(url);
+				SysAuthorityModel model = sysAuthorityService.createSysAuthority(url);
 				sysAuthorityService.saveSysAuthority(model);
 			}
 			
