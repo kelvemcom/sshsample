@@ -41,26 +41,26 @@
 		<property name="warningExecuteTime" value="100" />
 		<property name="logLevel" value="info" />
 	</bean>
-	
+	-->
 	<bean id="simpleLogAdvice" class="com.kelvem.common.aop.SimpleLogAdvice">
 	</bean>
-	-->
 	
-	<!-- aop detail method log -->
+	
+	<!-- aop detail method log 
 	<aop:config proxy-target-class="true">
 		<aop:aspect ref="logAdvice">
 			<aop:around method="writeLog" pointcut="execution(* com.kelvem..*.*ActionXXXXXXXXXXX.*(..))" />
 		</aop:aspect>
 	</aop:config>
+	-->
 
-
-	<!-- aop simple method log 
+	<!-- aop simple method log -->
 	<aop:config proxy-target-class="true">
 		<aop:aspect ref="simpleLogAdvice">
-			<aop:around method="writeLog" pointcut="execution(* com.kelvem..*.*(..))" />
+			<aop:around method="writeLog" pointcut="execution(* com.kelvem..*.*Action.*(..))" />
 		</aop:aspect>
 	</aop:config>
-	-->
+	
 	
 	<!-- annotation log 
 	<aop:config proxy-target-class="true">

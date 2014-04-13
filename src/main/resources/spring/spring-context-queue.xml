@@ -16,7 +16,7 @@
     <bean id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory" destroy-method="stop">
         <property name="connectionFactory">
             <bean class="org.apache.activemq.ActiveMQConnectionFactory">
-                <property name="brokerURL" value="tcp://localhost:61616" />
+                <property name="brokerURL" value="tcp://Kelvem-PC2:61616" />
             </bean>
         </property>
         <property name="maxConnections" value="100"></property>
@@ -25,7 +25,7 @@
     <bean id="cachingConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
 		<property name="targetConnectionFactory">
 			<bean class="org.apache.activemq.ActiveMQConnectionFactory">
-				<property name="brokerURL" value="tcp://localhost:61616" />
+				<property name="brokerURL" value="tcp://Kelvem-PC2:61616" />
 			</bean>
 		</property>
     </bean>
@@ -33,7 +33,7 @@
      
     <!-- 连接工厂 -->
     <bean id="activeMQConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-        <property name="brokerURL" value="tcp://localhost:61616" />
+        <property name="brokerURL" value="tcp://Kelvem-PC2:61616" />
     </bean>
  
     <!-- 消息模板 -->
