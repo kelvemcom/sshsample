@@ -66,6 +66,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
     <s:include value="/page/navbar.jsp"></s:include>
 	
+	<s:include value="/page/menu.jsp"></s:include>
+	
 	<!-- 
 	<div class="row">
 		<div class="col-sm-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">750px/12</div>
@@ -175,8 +177,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</form>
 		
 	</div>
-	
-	<s:include value="/page/menu.jsp"></s:include>
 	
 </body>
 

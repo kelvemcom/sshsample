@@ -92,13 +92,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
 <body>
 
-<div class="container1">
-
-    <s:include value="/page/navbar.jsp"></s:include>
-	
-	<s:include value="/page/menu.jsp"></s:include>
+<!-- <div class="container"> -->
+<div>
 		
-	<!-- 
+	<!-- -->
 	<div class="row">
 		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">970px/12</div>
 		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">2</div>
@@ -113,7 +110,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">11</div>
 		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">12</div>
 	</div>
-	-->
+
+    <s:include value="/page/navbar.jsp"></s:include>
+	
+	<s:include value="/page/menu.jsp"></s:include>
+	
 	<div id="main" class="col-md-9 column">
 		
 		${breadcrumb}
