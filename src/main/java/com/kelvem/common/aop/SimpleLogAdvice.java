@@ -32,19 +32,19 @@ public class SimpleLogAdvice {
 		}
 		
 		String methodName = joinPoint.getSignature().toLongString();
-
-		/*
-		 * 输出方法运行时信息
-		 */
-		logger.info(methodName);
 		
-//		long beginTime = System.currentTimeMillis();
+		long beginTime = System.currentTimeMillis();
 
 		// 运行方法
 		Object result = joinPoint.proceed();
 
-//		long endTime = System.currentTimeMillis();
-//		long execTime = endTime - beginTime;
+		long endTime = System.currentTimeMillis();
+		long execTime = endTime - beginTime;
+
+		/*
+		 * 输出方法运行时信息
+		 */
+		logger.info(methodName + " " + execTime + "ms");
 		
 		return result;
 	}
