@@ -2,7 +2,6 @@ package com.kelvem.common.filter;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -38,12 +37,6 @@ public class UrlAuthAccessFilter implements Filter {
 
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
-
-		try {
-			menuCache = WebUtil.getBean(MenuCache.class);
-		} catch (BeansException e) {
-			log.error(e.getMessage(), e);
-		}
 		
 //		log.info("===================  doFilter start ======================");
 		HttpSession session = request.getSession(true);
@@ -89,12 +82,12 @@ public class UrlAuthAccessFilter implements Filter {
 			access = true;
 		}
 		
-		if (access == false && !url.startsWith("/403.jsp")) {
-			String contextPath = RequestUtil.getContextPath(request);
-			response.sendRedirect(contextPath + "/403.jsp");
-		} else {
+//		if (access == false && !url.startsWith("/403.jsp")) {
+//			String contextPath = RequestUtil.getContextPath(request);
+//			response.sendRedirect(contextPath + "/403.jsp");
+//		} else {
 			chain.doFilter(request, response);
-		}
+//		}
 		
 //		log.info("===================  doFilter  end   ======================");
 		
@@ -102,11 +95,18 @@ public class UrlAuthAccessFilter implements Filter {
 	}
 
 	public void init(FilterConfig arg0) throws ServletException {
-		
+
+		log.info("com.kelvem.common.filter.UrlAuthAccessFilter init");
+
+		try {
+			menuCache = WebUtil.getBean(MenuCache.class);
+		} catch (BeansException e) {
+			log.error(e.getMessage(), e);
+		}
 	}
 	
 	public void destroy() {
-		
+		log.info("com.kelvem.common.filter.UrlAuthAccessFilter destroy");
 	}
 
 	
