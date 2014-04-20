@@ -14,7 +14,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.kelvem.sample.queue.Sample4QueueService;
+import com.kelvem.sample.queue.Sample6QueueService;
 
 
 /**
@@ -44,11 +44,11 @@ public class TestService {
 		log.info("什么也不做");
 	}
 
-	@Autowired private Sample4QueueService sample4QueueService;
+	@Autowired private Sample6QueueService sampleQueueService;
 	
 	public void sendMsg(String msg) throws Exception {
 
-		sample4QueueService.sendMessage(msg);
+		sampleQueueService.sendMessage(msg);
 //		throw new RuntimeException("MQ Err");
 	}
 

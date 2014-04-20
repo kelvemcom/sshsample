@@ -133,9 +133,13 @@ public abstract class MessageListenerBaseV6 implements MessageListener  {
 				log.info("[" + this.destinationName + "][" + message.getClass() + "]Skip: " + message);
 			}
 		} catch (JMSException e) {
-			log.error("[" + this.destinationName + "]Received Fail: " + message, e);
+			String errMsg = "[" + this.destinationName + "]Received Fail: " + message; 
+			log.error(errMsg, e);
+			throw new RuntimeException(errMsg, e);
 		} catch (Exception e) {
-			log.error("[" + this.destinationName + "]Received Fail: " + message, e);
+			String errMsg = "[" + this.destinationName + "]Received Fail: " + message; 
+			log.error(errMsg, e);
+			throw new RuntimeException(errMsg, e);
 		}
 	}
 

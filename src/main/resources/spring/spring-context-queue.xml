@@ -113,6 +113,13 @@
     	<property name="sendEnable" value="${jms.send.enable.sample6_queue}"/>
     	<property name="recieveEnable" value="${jms.recieve.enable.sample6_queue}"/>
 	</bean>
+	
+    <bean id="sample6QueueService" class="com.kelvem.sample.queue.Sample6QueueService" init-method="initialize" destroy-method="close">
+    	<property name="destinationName" value="sample6_queue"/>
+    	<property name="jmsEnable" value="${jms.enable}"/>
+    	<property name="sendEnable" value="${jms.send.enable.sample6_queue}"/>
+    	<property name="recieveEnable" value="${jms.recieve.enable.sample6_queue}"/>
+	</bean>
 
  
 </beans>

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kelvem.common.base.ActionBase;
 import com.kelvem.sample.queue.Sample6Queue;
+import com.kelvem.sample.system.service.TestService;
 
 
 //常用的注解如下：
@@ -33,6 +34,7 @@ public class TestQueueAction extends ActionBase {
 	 * Queue
 	 */
 	@Autowired private Sample6Queue sampleQueue;
+	@Autowired private TestService testService;
 	
 	private String msg = "msg";
 
@@ -43,16 +45,20 @@ public class TestQueueAction extends ActionBase {
 		return "json";
 	}
 	
+	// http://kelvem-pc2:8080/sshsample/page/testQueue_sendMsgService.action?msg=abc
 //	@Transactional
-	public String sendMsg2() throws Exception {
-		sampleQueue.sendMessage(msg);
+	public String sendMsgService() throws Exception {
+		testService.sendMsg(msg);
 		return "json";
 	}
 	
-//	@Transactional
-	public String sendMsg3() throws Exception {
-		sampleQueue.sendMessage(msg);
-		throw new RuntimeException("MQ Err");
+	// http://kelvem-pc2:8080/sshsample/page/testQueue_sendMsgGroup.action
+	public String sendMsgGroup() throws Exception {
+		sampleQueue.sendMessage("abc");
+		sampleQueue.sendMessage("abc");
+		sampleQueue.sendMessage("123");
+		sampleQueue.sendMessage("abc");
+		return "json";
 	}
 	@Transactional
 	public String sendMsg4() throws Exception {
