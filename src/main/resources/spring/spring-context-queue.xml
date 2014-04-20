@@ -12,7 +12,7 @@
 	    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	
 
-    <!-- 连接池  -->
+    <!-- 连接池  
     <bean id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory" destroy-method="stop">
         <property name="connectionFactory">
             <bean class="org.apache.activemq.ActiveMQConnectionFactory">
@@ -21,19 +21,22 @@
         </property>
         <property name="maxConnections" value="100"></property>
     </bean>
-    <!-- 
+    -->
+
+	<!-- 连接池
     <bean id="cachingConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
 		<property name="targetConnectionFactory">
 			<bean class="org.apache.activemq.ActiveMQConnectionFactory">
-				<property name="brokerURL" value="tcp://Kelvem-PC2:61616" />
+				<property name="brokerURL" value="tcp://${jms.ip}:${jms.port}" />
 			</bean>
 		</property>
     </bean>
-     -->
+    -->
+
      
     <!-- 连接工厂 -->
     <bean id="activeMQConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-        <property name="brokerURL" value="tcp://Kelvem-PC2:61616" />
+        <property name="brokerURL" value="tcp://${jms.ip}:${jms.port}" />
     </bean>
  
     <!-- 消息模板 -->
@@ -41,38 +44,75 @@
         <property name="connectionFactory" ref="activeMQConnectionFactory" />
         <!-- <property name="defaultDestination" ref="destination" /> -->
     	<!-- <property name="destination" ref="destination" /> -->
-        <property name="sessionTransacted" value="true" />
-        <property name="sessionAcknowledgeMode" value="1" /> <!-- AUTO_ACKNOWLEDGE=1, CLIENT_ACKNOWLEDGE=2, DUPS_OK_ACKNOWLEDGE=3, SESSION_TRANSACTED=0 -->
-        <property name="timeToLive" value="0" />
-        <property name="deliveryMode" value="2" /><!-- NON_PERSISTENT=1, PERSISTENT=2 -->
+        <property name="sessionTransacted" value="${jms.sessionTransacted}" />
+        <property name="sessionAcknowledgeMode" value="${jms.sessionAcknowledgeMode}" /> <!-- AUTO_ACKNOWLEDGE=1, CLIENT_ACKNOWLEDGE=2, DUPS_OK_ACKNOWLEDGE=3, SESSION_TRANSACTED=0 -->
+        <property name="timeToLive" value="${jms.timeToLive}" />
+        <property name="deliveryMode" value="${jms.deliveryMode}" /><!-- NON_PERSISTENT=1, PERSISTENT=2 -->
         <property name="messageConverter">
-            <bean class="org.springframework.jms.support.converter.SimpleMessageConverter" />
+            <bean class="${jms.messageConverter}" />
         </property>
     </bean>
 
-    <bean id="sampleQueue" class="com.kelvem.sample.queue.SampleQueue" init-method="initialize" destroy-method="close">
-    	<property name="destinationName" value="sample_queue"/>
-	</bean>
-	
+<!--	
     <bean id="sample1Queue" class="com.kelvem.sample.queue.Sample1Queue" init-method="initialize" destroy-method="close">
+    	<property name="brokerURL" value="tcp://Kelvem-PC2:61616"/>
     	<property name="destinationName" value="sample1_queue"/>
+    	<property name="persistent" value="true"/>
+    	<property name="timeToLive" value="0"/>
+    	<property name="sessionTransacted" value="false"/>
 	</bean>
-	
+ -->
+
+<!--
     <bean id="sample2Queue" class="com.kelvem.sample.queue.Sample2Queue" init-method="initialize" destroy-method="close">
     	<property name="destinationName" value="sample2_queue"/>
+    	<property name="persistent" value="true"/>
+    	<property name="timeToLive" value="0"/>
+    	<property name="sessionTransacted" value="false"/>
 	</bean>
-	
-    <bean id="Sample4QueueService" class="com.kelvem.sample.queue.Sample4QueueService" init-method="initialize" destroy-method="close">
-    	<!-- 
+ -->
+
+<!--
+    <bean id="sample3Queue" class="com.kelvem.sample.queue.Sample3Queue" init-method="initialize" destroy-method="close">
+    	<property name="destinationName" value="sample3_queue"/>
+	</bean>
+ -->
+
+<!--
+    <bean id="sample4Queue" class="com.kelvem.sample.queue.Sample4Queue" init-method="initialize" destroy-method="close">
+    	<!- 
     	<property name="destination">
     		<bean class="org.apache.activemq.command.ActiveMQQueue">
 	        	<constructor-arg index="0" value="sample4_queue" />
 	        </bean>
     	</property>
     	<property name="destination" ref="destination"/>
-    	 -->
+    	 ->
     	<property name="destinationName" value="sample4_queue"/>
 	</bean>
-	
-    
+ -->
+
+ <!--   
+    <bean id="sample5Queue" class="com.kelvem.sample.queue.Sample5Queue" init-method="initialize" destroy-method="close">
+        <property name="connectionFactory" ref="activeMQConnectionFactory" />
+        <property name="sessionTransacted" value="true" />
+        <property name="sessionAcknowledgeMode" value="1" /> <!- AUTO_ACKNOWLEDGE=1, CLIENT_ACKNOWLEDGE=2, DUPS_OK_ACKNOWLEDGE=3, SESSION_TRANSACTED=0 ->
+        <property name="timeToLive" value="0" />
+        <property name="deliveryMode" value="2" /><!- NON_PERSISTENT=1, PERSISTENT=2 ->
+        <property name="messageConverter">
+            <bean class="org.springframework.jms.support.converter.SimpleMessageConverter" />
+        </property>
+    	<property name="destinationName" value="sample5_queue"/>
+    </bean>
+ -->
+
+<!-- -->
+    <bean id="sample6Queue" class="com.kelvem.sample.queue.Sample6Queue" init-method="initialize" destroy-method="close">
+    	<property name="destinationName" value="sample6_queue"/>
+    	<property name="jmsEnable" value="${jms.enable}"/>
+    	<property name="sendEnable" value="${jms.send.enable.sample6_queue}"/>
+    	<property name="recieveEnable" value="${jms.recieve.enable.sample6_queue}"/>
+	</bean>
+
+ 
 </beans>

@@ -6,12 +6,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.kelvem.common.base.ActionBase;
-import com.kelvem.sample.queue.Sample1Queue;
-import com.kelvem.sample.queue.Sample2Queue;
-import com.kelvem.sample.queue.SampleQueue;
 import com.kelvem.sample.system.service.TestService;
 
 
@@ -56,63 +52,6 @@ public class TestAction extends ActionBase {
 		return "json";
 	}
 	
-	/**
-	 * Queue
-	 */
-	@Autowired private SampleQueue sampleQueue;
-	@Autowired private Sample1Queue sample2Queue;
-	@Autowired private Sample2Queue sample3Queue;
-	
-	private String msg = "msg";
-	public String getMsg() {return msg;}
-	public void setMsg(String msg) {this.msg = msg;}
-
-//	@Transactional
-	public String sendMsg() throws Exception {
-
-		sampleQueue.sendMessage(msg);
-		this.showMsg(msg);
-		return "index";
-	}
-//	@Transactional
-	public String sendMsg2() throws Exception {
-
-		sample2Queue.sendMessage(msg);
-		this.showMsg(msg);
-		return "index";
-	}
-//	@Transactional
-	public String sendMsg3() throws Exception {
-
-		sample3Queue.sendMessage(msg);
-		this.showMsg(msg);
-		return "index";
-//		throw new RuntimeException("MQ Err");
-	}
-	@Transactional
-	public String sendMsg4() throws Exception {
-
-		testService.sendMsg(msg);
-		this.showMsg(msg);
-		return "index";
-	}
-	
-	public String sendMsg10000() throws Exception {
-
-		for (int i = 0; i < 10000; i++) {
-			sample2Queue.sendMessage(String.valueOf(i));
-		}
-		return "json";
-	}
-	
-	@Transactional
-	public String sendMsgWithErr() throws Exception {
-
-		for (int i = 0; i < 1; i++) {
-			sample2Queue.sendMessage(String.valueOf(i));
-		}
-		throw new Exception("sendMsgWithErr");
-	}
 
 	
 }

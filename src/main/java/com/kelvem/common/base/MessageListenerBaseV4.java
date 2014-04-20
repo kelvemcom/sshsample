@@ -14,9 +14,27 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.jms.core.MessageCreator;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * <p>MessageListenerBaseV3</p>
+ * <p>http://127.0.0.1:8161/admin/</p>
+ * <p>default   admin:admin</p>
+ * http://127.0.0.1:8161/admin/queues.jsp
+ * 
+ * <p>使用基础类实现JMS, 不使用Spring等其他增强</p>
+ * connectionFactory注入
+ * 使用JmsTemplate
+ * 里程碑
+ * 
+ * <p>Copyright: 版权所有 (c) 2010 - 2014</p>
+ * <p>Company: kelvem</p>
+ * 
+ * @ClassName MessageListenerBaseV3
+ * @author kelvem
+ * @version 1.0
+ * 
+ */
 public abstract class MessageListenerBaseV4 implements MessageListener {
 
 	private static Log log = LogFactory.getLog(MessageListenerBase.class);
@@ -43,22 +61,22 @@ public abstract class MessageListenerBaseV4 implements MessageListener {
 	protected void initialize() throws JMSException, Exception {
 
 		try {
-//			connectionFactory = jmsTemplate.getConnectionFactory();
-//			connection = connectionFactory.createConnection();
-//			connection.start();
-//
-//			sessionProducer = connection.createSession(sessionTransacted, Session.AUTO_ACKNOWLEDGE);
-//			sessionConsumer = connection.createSession(sessionTransacted, Session.AUTO_ACKNOWLEDGE);
-//
-//			destinationProducer = sessionProducer.createQueue(destinationName);
-//			destinationConsumer = sessionConsumer.createQueue(destinationName);
-//
-//			jmsTemplate.setDefaultDestination(destinationProducer);
-//
-//			log.info("Queue Start Listening..." + this.destinationName);
-//			// 开始监听
-//			consumer = sessionConsumer.createConsumer(destinationConsumer);
-//			consumer.setMessageListener(this);
+			connectionFactory = jmsTemplate.getConnectionFactory();
+			connection = connectionFactory.createConnection();
+			connection.start();
+
+			sessionProducer = connection.createSession(sessionTransacted, Session.AUTO_ACKNOWLEDGE);
+			sessionConsumer = connection.createSession(sessionTransacted, Session.AUTO_ACKNOWLEDGE);
+
+			destinationProducer = sessionProducer.createQueue(destinationName);
+			destinationConsumer = sessionConsumer.createQueue(destinationName);
+
+			jmsTemplate.setDefaultDestination(destinationProducer);
+
+			log.info("Queue Start Listening..." + this.destinationName);
+			// 开始监听
+			consumer = sessionConsumer.createConsumer(destinationConsumer);
+			consumer.setMessageListener(this);
 
 		} catch (Exception e) {
 			log.error("Queue Connection Fail : " + this.destinationName, e);
@@ -105,13 +123,17 @@ public abstract class MessageListenerBaseV4 implements MessageListener {
 
 	@Transactional
 	public void sendMessage(final String msg) {
-		jmsTemplate.send(this.destinationProducer, new MessageCreator() {
-			public Message createMessage(Session session) throws JMSException {
-				TextMessage message = session.createTextMessage();
-				message.setText(msg);
-				return message;
-			}
-		});
+
+		log.info("[" + destinationName + "]Send: " + msg);
+		jmsTemplate.convertAndSend(this.destinationProducer, msg);
+		
+//		jmsTemplate.send(this.destinationProducer, new MessageCreator() {
+//	        public Message createMessage(Session session) throws JMSException {
+//	        	TextMessage message = session.createTextMessage(msg);
+//    			log.info("[" + destinationName + "]Send: " + msg);
+//	    		return message;
+//	        }
+//	    });
 	}
 
 	// 消息处理文本方法
