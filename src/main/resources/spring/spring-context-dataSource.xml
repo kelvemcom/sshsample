@@ -27,6 +27,7 @@
 		<property name="maxStatements" value="${hibernate.c3p0.maxStatements}"/>
 		<property name="testConnectionOnCheckout" value="true"/>
 		<property name="maxStatementsPerConnection" value="${hibernate.c3p0.maxStatementsPerConnection}"/>
+		<property name="checkoutTimeout" value="${hibernate.c3p0.checkoutTimeout}"/>
 	</bean>
 
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" scope="singleton">

@@ -1,13 +1,9 @@
 /**============================================================
- * 版权：kelvem 版权所有 (c) 2010 - 2012
- * 文件：com.kelvem.common.base.HibernateDaoBase.java
- * 所含类: HibernateDaoBase.java
  * 修改记录：
  * 日期                           	作者                            内容
  * =============================================================
  * 2012-06-16     zhaobai       创建文件，实现基本功能
  * ============================================================*/
-
 package com.kelvem.common.base;
 
 import java.io.Serializable;
@@ -35,17 +31,14 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.kelvem.common.model.PageResults;
 
 /**
- * <p>HibernateDaoBase</p>
- * 
  * <p>所有Dao的基类</p>
  * 
- * <p>Copyright: 版权所有 (c) 2010 - 2012</p>
+ * <p>Copyright: 版权所有 (c) 2012 - 2014</p>
  * <p>Company: kelvem</p>
  * 
  * @ClassName HibernateDaoBase
  * @author kelvem
  * @version 1.0
- * 
  */
 public class Hibernate3DaoBase<T extends Serializable,PK extends Serializable> extends HibernateDaoSupport {
 	/**
