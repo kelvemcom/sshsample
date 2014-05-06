@@ -260,7 +260,7 @@
 		</dependency>
 		<!-- end for activemq -->
 
-		<!-- begin for activemq -->
+		<!-- begin for springsecurity -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
@@ -296,7 +296,27 @@
 			<artifactId>spring-security-cas-client</artifactId>
 			<version>${springsecurity.version}</version>
 		</dependency>
-		<!-- end for activemq -->
+		<!-- end for springsecurity -->
+
+		<!-- begin for quartz -->
+		<dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz</artifactId>
+		    <version>2.2.1</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz-jobs</artifactId>
+		    <version>2.2.1</version>
+		</dependency>
+        <!--
+        <dependency>
+            <groupId>opensymphony</groupId>
+            <artifactId>quartz</artifactId>
+            <version>1.6.1</version>
+        </dependency>-->
+        
+		<!-- end for quartz -->
 
 		<dependency>
 			<groupId>net.sf.ezmorph</groupId>
