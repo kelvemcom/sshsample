@@ -35,9 +35,22 @@
 	</filter-mapping>
 
 	<!--=================================================-<
+		Quartz Servlet
+	<-==================================================-->
+	<servlet>
+		<description>QuartzServlet</description>
+		<display-name>QuartzServlet</display-name>
+		<servlet-name>JobProcessServlet</servlet-name>
+		<servlet-class>com.kelvem.common.quartzmonitor.servlet.JobProcessServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>JobProcessServlet</servlet-name>
+		<url-pattern>/JobProcessServlet</url-pattern>
+	</servlet-mapping>
+  
+	<!--=================================================-<
 		自定义标签
 	<-==================================================-->
-
 	<jsp-config>
 		<taglib>
 			<taglib-uri>/sampleTag</taglib-uri>
