@@ -35,6 +35,18 @@
 	</filter-mapping>
 
 	<!--=================================================-<
+		Profile日志过滤器
+	<-==================================================-->
+	<filter>
+		<filter-name>Profile</filter-name>
+		<filter-class>com.kelvem.common.profile.ProfileFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Profile</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!--=================================================-<
 		Quartz Servlet
 	<-==================================================-->
 	<servlet>
@@ -61,18 +73,6 @@
 			<taglib-location>/tld/kelvem.tld</taglib-location>
 		</taglib>
 	</jsp-config>
-
-	<!--=================================================-<
-		Profile日志过滤器
-	<-==================================================-->
-	<filter>
-		<filter-name>Profile</filter-name>
-		<filter-class>com.kelvem.common.profile.ProfileFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>Profile</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
 
 	<!--=================================================-<
 		UrlVisitLog过滤器

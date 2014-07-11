@@ -19,19 +19,20 @@ public class ProfileItem {
 	private Date startDate = null;
 	private Date endDate = null;
 	
-	public ProfileItem(){
+	public ProfileItem(String content){
+		this.content = content;
 	}
 	
 	public String toString(){
 	
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < level - 1; i++) {
+		sb.append("\r\n");
+		for (int i = 0; i < level; i++) {
 			sb.append(TAB);
 		}
 		sb.append(this.getContent());
-		sb.append("[" + this.getCost() + "ms] ");
+		sb.append(" [" + this.getCost() + "ms] ");
 		sb.append(this.getLevel());
-		sb.append("\r\n");
 		for (ProfileItem item : this.getChildren()) {
 			sb.append(item);
 		}

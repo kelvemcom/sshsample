@@ -11,7 +11,7 @@ import org.aopalliance.intercept.MethodInvocation;
  * @author kelvem
  * 
  */
-public class ProfileSpringInterceptor implements MethodInterceptor {
+public class ProfileSpringAop implements MethodInterceptor {
 
     
 	public Object invoke(MethodInvocation invocation) throws Throwable {
