@@ -16,6 +16,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.kelvem.common.profile.ProfileContext;
 import com.kelvem.common.utils.RequestUtil;
 import com.kelvem.common.utils.WebUtil;
 import com.kelvem.sample.system.model.SysRoleModel;
@@ -34,12 +35,15 @@ public class MenuAuthLogFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-		this.doFilter(request, response);
+		ProfileContext.push("MenuAuthLogFilter");
+		this.invoke(request, response);
+		ProfileContext.pop();
 		
 		chain.doFilter(request, response);
+		
 	}
 	
-	public void doFilter(HttpServletRequest request, HttpServletResponse response) {
+	public void invoke(HttpServletRequest request, HttpServletResponse response) {
 		
 		try {
 //			log.info("===================  doFilter start ======================");

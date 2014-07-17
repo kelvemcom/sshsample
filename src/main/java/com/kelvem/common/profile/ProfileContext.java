@@ -45,7 +45,7 @@ public class ProfileContext {
 		context.set(parent);
 		
 		if (item.getParent() == null) {
-			if (item.getContent().endsWith(".css") || item.getContent().endsWith(".js") || item.getContent().endsWith(".eot")) {
+			if (item.getContent().contains(".js#refer=") || item.getContent().contains(".css#refer=") || item.getContent().contains(".eot#refer=")) {
 				// donothing
 			} else {
 				// 输出profile

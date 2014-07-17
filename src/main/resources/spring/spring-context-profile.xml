@@ -13,14 +13,53 @@
 	
 	<!-- 
     <bean id="profileSpringAop" class="com.kelvem.common.profile.ProfileSpringAop"></bean>
+     -->
+     
+    <!--
     <aop:config>
         <aop:advisor pointcut="execution(* com.kelvem..*(..))" advice-ref="profileSpringAop" />
     </aop:config>
 	 -->
-	  
-    <bean id="profileSpringAop" class="com.kelvem.common.profile.ProfileSpringAop"></bean>
-    <aop:config>
-        <aop:advisor pointcut="execution(* com.kelvem..*(..))" advice-ref="profileSpringAop" />
-    </aop:config>
+    <!--   
+	@Pointcut("execution(* com.test.spring.aop.pointcutexp..JoinPointObjP2.*(..))")
+	@Pointcut("within(com.test.spring.aop.pointcutexp..*)")
+	@Pointcut("this(com.test.spring.aop.pointcutexp.Intf)") 
+	@Pointcut("target(com.test.spring.aop.pointcutexp.Intf)")
+	@Pointcut("@within(org.springframework.transaction.annotation.Transactional)")
+	@Pointcut("@annotation(org.springframework.transaction.annotation.Transactional)")
+   	 -->
     
+    <!--  -->
+	<aop:config proxy-target-class="true">
+		<aop:aspect ref="profileSpringAop">
+			<aop:around method="profile" pointcut="
+			(execution(* com.kelvem..*(..)) 
+				or execution(* com.kelvem..*MenuAuthLogFilter.*(..))
+				or execution(* org.springframework.web.context.ContextLoaderListener.*(..))
+				or execution(* org.springframework.web.util.IntrospectorCleanupListener.*(..))
+				or execution(* org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.*(..))
+			) and (
+			 	not execution(* com.opensymphony.xwork2.interceptor.AbstractInterceptor.*(..))
+			)
+			" />
+		</aop:aspect>
+	</aop:config>
+	
+	<!-- 
+	<aop:config proxy-target-class="true">
+	<aop:aspect ref="profileSpringAop">
+		<aop:around method="profile" pointcut="
+			(execution(* com.kelvem..*(..)) 
+				or execution(* com.kelvem..*MenuAuthLogFilter.*(..))
+				or execution(* org.springframework.web.context.ContextLoaderListener.*(..))
+				or execution(* org.springframework.web.util.IntrospectorCleanupListener.*(..))
+				or execution(* org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter.*(..))
+				or execution(* com.opensymphony.xwork2.interceptor.AbstractInterceptor.*(..))
+			)
+			" />
+		</aop:aspect>
+	</aop:config>
+	 -->
+	 
+	 
 </beans>

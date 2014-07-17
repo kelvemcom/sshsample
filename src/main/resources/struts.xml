@@ -44,10 +44,12 @@
 
 			<interceptor name="exception" class="com.kelvem.common.interceptor.ExceptionInterceptor" />
 			<interceptor name="sample" class="com.kelvem.common.interceptor.SampleInterceptor" />
+			<interceptor name="profile" class="com.kelvem.common.profile.ProfileStrutsInterceptor" />
 
 			<interceptor-stack name="applicationStack">
 				<!-- <interceptor-ref name="tokenSession"></interceptor-ref> -->
 				<interceptor-ref name="json"></interceptor-ref>
+				<interceptor-ref name="profile"></interceptor-ref>
 				<interceptor-ref name="sample"></interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 				<interceptor-ref name="exception">

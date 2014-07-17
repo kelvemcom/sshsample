@@ -28,7 +28,7 @@ public class ProfileFilter implements Filter {
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
 		
-		ProfileContext.push(RequestUtil.getUrl(request));
+		ProfileContext.push(RequestUtil.getUrl(request) + "#refer=" + RequestUtil.getReferer(request));
 		chain.doFilter(request, response);
 		ProfileContext.pop();
 	}

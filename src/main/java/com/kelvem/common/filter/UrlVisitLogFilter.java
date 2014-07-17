@@ -17,6 +17,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.kelvem.common.profile.ProfileContext;
 import com.kelvem.common.utils.RequestUtil;
 import com.kelvem.common.utils.WebUtil;
 import com.kelvem.sample.system.model.UserVisitLogModel;
@@ -32,6 +33,16 @@ public class UrlVisitLogFilter implements Filter {
 
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
+
+		ProfileContext.push("UrlVisitLogFilter");
+		this.invoke(request, response);
+		ProfileContext.pop();
+		
+		chain.doFilter(request, response);
+		
+	}
+	
+	public void invoke(HttpServletRequest request, HttpServletResponse response) {
 
 		try {
 			
@@ -101,8 +112,6 @@ public class UrlVisitLogFilter implements Filter {
 			log.error(e.getMessage(), e);
 		}
 		
-		chain.doFilter(request, response);
-
 	}
 
 	public void init(FilterConfig arg0) throws ServletException {

@@ -58,6 +58,7 @@
 	<logger name="com.kelvem.common.profile" additivity="false">
 		<level value="INFO"></level>
 		<appender-ref ref="profile" />
+		<appender-ref ref="stdout" />
 	</logger>
  
 	<root>

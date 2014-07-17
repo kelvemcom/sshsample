@@ -20,6 +20,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.kelvem.common.profile.ProfileContext;
 import com.kelvem.common.utils.RequestUtil;
 import com.kelvem.common.utils.WebUtil;
 import com.kelvem.sample.system.cache.MenuCache;
@@ -37,6 +38,23 @@ public class UrlAuthAccessFilter implements Filter {
 
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
+
+		ProfileContext.push("UrlAuthAccessFilter");
+		boolean access = this.checkAccess(request, response);
+		ProfileContext.pop();
+		
+
+		
+//		if (access == false) {
+//			String contextPath = RequestUtil.getContextPath(request);
+//			response.sendRedirect(contextPath + "/403.jsp");
+//		} else {
+			chain.doFilter(request, response);
+//		}
+		
+	}
+	
+	public boolean checkAccess(HttpServletRequest request, HttpServletResponse response) {
 		
 //		log.info("===================  doFilter start ======================");
 		HttpSession session = request.getSession(true);
@@ -72,7 +90,9 @@ public class UrlAuthAccessFilter implements Filter {
 			}
 		}
 		
-		if (url.trim().endsWith(".jsp") 
+		if (url.startsWith("/403.jsp")) {
+			access = true;
+		} else if (url.trim().endsWith(".jsp") 
 				|| url.trim().endsWith(".html") 
 				|| url.trim().endsWith(".htm") 
 				|| url.trim().endsWith(".do") 
@@ -82,12 +102,7 @@ public class UrlAuthAccessFilter implements Filter {
 			access = true;
 		}
 		
-//		if (access == false && !url.startsWith("/403.jsp")) {
-//			String contextPath = RequestUtil.getContextPath(request);
-//			response.sendRedirect(contextPath + "/403.jsp");
-//		} else {
-			chain.doFilter(request, response);
-//		}
+		return access;
 		
 //		log.info("===================  doFilter  end   ======================");
 		

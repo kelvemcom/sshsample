@@ -19,6 +19,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
 
+import com.kelvem.common.profile.ProfileContext;
 import com.kelvem.common.utils.WebUtil;
 import com.kelvem.sample.system.model.SysAuthorityModel;
 import com.kelvem.sample.system.model.SysRoleModel;
@@ -36,6 +37,16 @@ public class UserLoginAccessFilter implements Filter {
 
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
+
+		ProfileContext.push("UserLoginAccessFilter");
+		this.invoke(request, response);
+		ProfileContext.pop();
+		
+		chain.doFilter(request, response);
+		
+	}
+	
+	public void invoke(HttpServletRequest request, HttpServletResponse response) {
 
 		try {
 			sysRoleService = WebUtil.getBean(SysRoleService.class);
@@ -68,8 +79,6 @@ public class UserLoginAccessFilter implements Filter {
 		}
 		
 //		log.info("===================  doFilter  end   ======================");
-		
-		chain.doFilter(request, response);
 	}
 
 	public void init(FilterConfig arg0) throws ServletException {

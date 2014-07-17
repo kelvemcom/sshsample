@@ -13,7 +13,7 @@
 	<!-- ================================================ -->
     <bean id="quartzSchedulerFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<!--必须，QuartzScheduler 延时启动60秒，应用启动后 QuartzScheduler 再启动-->
-        <property name="startupDelay" value="20"/>
+        <property name="startupDelay" value="0"/>
         <property name="JobFactory">
             <bean class="org.springframework.scheduling.quartz.SpringBeanJobFactory" />
         </property>
@@ -29,7 +29,7 @@
     <bean id="sampleJobV2Trigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> <!-- quartz-2.x的配置 -->
         <!-- <property name="cronExpression" value="0 30 0/1 * * ?" /> -->   <!-- every 1hour -->
         <!-- <property name="cronExpression" value="s m h D M W" /> -->
-        <property name="cronExpression" value="0/5 * * * * ?" />
+        <property name="cronExpression" value="0/5 * * * 1 ?" />
         <property name="jobDetail">
             <bean class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
                 <property name="targetObject" ref="sampleJobV2" />
@@ -40,7 +40,7 @@
     </bean>
     
     <bean id="sampleJobV3Trigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"> <!-- quartz-2.x的配置 -->
-        <property name="cronExpression" value="0/5 * * * * ?" />
+        <property name="cronExpression" value="0/5 * * * 1 ?" />
         <property name="jobDetail" ref="sampleJobV3" />
     </bean>
 
@@ -52,22 +52,22 @@
     	<property name="applicationContextSchedulerContextKey" value="applicationContextKey"/>
     	<property name="configLocation" value="classpath:quartz.properties"/>
 		<!--必须，QuartzScheduler 延时启动60秒，应用启动后 QuartzScheduler 再启动-->
-        <property name="startupDelay" value="30"/>
+        <property name="startupDelay" value="0"/>
         <property name="JobFactory">
             <bean class="org.springframework.scheduling.quartz.SpringBeanJobFactory" />
         </property>
         <property name="triggers">
             <list>
-				<ref bean="sampleJobV4Trigger" /> <!-- -->
+				<!-- <ref bean="sampleJobV4Trigger" /> -->
             </list>
         </property>
     </bean>
     
     <bean id="sampleJobV4Trigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">       
-        <property name="cronExpression" value="0/5 * * * * ?"/>
+        <property name="cronExpression" value="0/5 * * * 1 ?"/>
         <property name="jobDetail">
             <bean class="org.springframework.scheduling.quartz.JobDetailFactoryBean"> 
-	      		<property name="jobClass" value="com.kelvem.sample.quartz.SampleJobV4"/>
+	      		<property name="jobClass" value="com.kelvem.sample.quartz.SampleJobV4"/><!-- extends QuartzJobBean -->
 		        <property name="durability" value="true"/>
             </bean>
         </property>
