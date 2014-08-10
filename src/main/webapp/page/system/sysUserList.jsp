@@ -23,30 +23,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
 	
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-	<link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="jquery/jquery-ui.min.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/toggles.css">
+    
+    <link rel="stylesheet" href="css/style.default.css">
+    
 	<link rel="stylesheet" href="bootstrap/ext/dataTables.bootstra.css">
 	<link rel="stylesheet" href="bootstrap/ext/bootstrap-datetimepicker.css">
 	<link rel="stylesheet" href="bootstrap/ext/bootstrap-select.css">
-    
-	<!-- <script type="text/javascript" src="jquery/jquery-2.0.2.js"></script> -->
-	<script type="text/javascript" src="jquery/jquery-1.11.0.js"></script>
-	<script type="text/javascript" src="jquery/plugin/jquery.pagination.js"></script>
-	<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
-	<script type="text/javascript" src="bootstrap/ext/bootstrap-datetimepicker.js"></script>
-	<script type="text/javascript" src="bootstrap/ext/locales/bootstrap-datetimepicker.zh-CN.js"></script>
-	<script type="text/javascript" src="bootstrap/ext/bootstrap-select.js"></script>
-
-	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
-		<script src="bootstrap/js/html5shiv.js"></script>
+	
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+	  <script src="js/html5shiv.js"></script>
+	  <script src="js/respond.min.js"></script>
 	<![endif]-->
 	
-	<!-- Le styles -->
+	<!-- Le styles
 	<style type="text/css">
 		
 		@media (min-width: 1350px) {
@@ -87,39 +85,175 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			padding-bottom: 10px;
 		}
 	</style>
-   
+    -->
 </head>
   
 <body>
 
-<!-- <div class="container"> -->
-<div>
-		
-	<!-- -->
-	<div class="row">
-		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">970px/12</div>
-		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">2</div>
-		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">3</div>
-		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">4</div>
-		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">5</div>
-		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">6</div>
-		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">7</div>
-		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">8</div>
-		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">9</div>
-		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">10</div>
-		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">11</div>
-		<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">12</div>
-	</div>
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status">
+        <i class="fa fa-spinner fa-spin"></i>
+    </div>
+</div>
+    
+<section>
+  
+  <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
+  <div class="leftpanel">
+    
+    <div class="logopanel">
+        <h1><span>SSHSample</span></h1>
+    </div><!-- logopanel -->
+        
+    <div class="leftpanelinner"> 
+      
+      <h5 class="sidebartitle">Navigation</h5>
+      <ul class="nav nav-pills nav-stacked nav-bracket">
+        <li class="active"><a href="index.html"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+        <li><a href="email.html"><span class="pull-right badge badge-success">2</span><i class="fa fa-envelope-o"></i> <span>Email</span></a></li>
+        <li class="nav-parent"><a href=""><i class="fa fa-edit"></i> <span>Forms</span></a>
+          <ul class="children">
+            <li><a href="general-forms.html"><i class="fa fa-caret-right"></i> General Forms</a></li>
+            <li><a href="form-layouts.html"><i class="fa fa-caret-right"></i> Form Layouts</a></li>
+            <li><a href="form-validation.html"><i class="fa fa-caret-right"></i> Form Validation</a></li>
+            <li><a href="form-wizards.html"><i class="fa fa-caret-right"></i> Form Wizards</a></li>
+            <li><a href="wysiwyg.html"><i class="fa fa-caret-right"></i> Text Editor</a></li>
+            <li><a href="code-editor.html"><i class="fa fa-caret-right"></i> Code Editor</a></li>
+          </ul>
+        </li>
+        <li class="nav-parent"><a href=""><i class="fa fa-suitcase"></i> <span>UI Elements</span></a>
+          <ul class="children">
+            <li><a href="buttons.html"><i class="fa fa-caret-right"></i> Buttons</a></li>
+            <li><a href="icons.html"><i class="fa fa-caret-right"></i> Icons</a></li>
+            <li><a href="typography.html"><i class="fa fa-caret-right"></i> Typography</a></li>
+            <li><a href="alerts.html"><i class="fa fa-caret-right"></i> Alerts &amp; Notifications</a></li>
+            <li><a href="tabs-accordions.html"><i class="fa fa-caret-right"></i> Tabs &amp; Accordions</a></li>
+            <li><a href="sliders.html"><i class="fa fa-caret-right"></i> Sliders</a></li>
+            <li><a href="graphs.html"><i class="fa fa-caret-right"></i> Graphs &amp; Charts</a></li>
+            <li><a href="extras.html"><i class="fa fa-caret-right"></i> Extras</a></li>
+          </ul>
+        </li>
+        <li><a href="tables.html"><i class="fa fa-th-list"></i> <span>Tables</span></a></li>
+      </ul>
+      
+    </div><!-- leftpanelinner -->
+  </div><!-- leftpanel -->
+  
+  
+  <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
+  
+  <div class="rightpanel">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a href="#rp-settings" data-toggle="tab"><i class="fa fa-gear"></i></a></li>
+        <li><a href="#rp-alluser" data-toggle="tab"><i class="fa fa-users"></i></a></li>
+    </ul>
+        
+    <!-- Tab panes -->
+    <div class="tab-content">
 
-    <s:include value="/page/navbar.jsp"></s:include>
-	
-	<s:include value="/page/menu.jsp"></s:include>
-	
-	<div id="main" class="col-md-9 column">
-		
-		${breadcrumb}
-					
-		<form id="form" action="page/system/sysUser_sysUserList.action" method="get" class="form-horizontal" role="form">
+        <div class="tab-pane active" id="rp-settings">
+            <h5 class="sidebartitle">Settings</h5>
+            <div class="form-group">
+                <label class="col-xs-8 control-label">Show Offline Users</label>
+                <div class="col-xs-4 control-label">
+                    <div class="toggle toggle-success"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-8 control-label">Enable History</label>
+                <div class="col-xs-4 control-label">
+                    <div class="toggle toggle-success"></div>
+                </div>
+            </div>
+        </div><!-- tab-pane -->
+        
+        <div class="tab-pane" id="rp-alluser">
+            <h5 class="sidebartitle">Setting2</h5>
+            <div class="form-group">
+                <label class="col-xs-8 control-label">Show Offline Users</label>
+                <div class="col-xs-4 control-label">
+                    <div class="toggle toggle-success"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-xs-8 control-label">Enable History</label>
+                <div class="col-xs-4 control-label">
+                    <div class="toggle toggle-success"></div>
+                </div>
+            </div>
+        </div>
+        
+    </div><!-- tab-content -->
+  </div><!-- rightpanel -->
+  
+  <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
+  
+  
+  <div class="mainpanel">
+    
+    <div class="headerbar">
+      
+      <a class="menutoggle"><i class="fa fa-bars"></i></a>
+      
+      <div class="header-right">
+        <ul class="headermenu">
+          <li>
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                John Doe
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                <li><a href="profile.html"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Account Settings</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-question-sign"></i> Help</a></li>
+                <li><a href="signin.html"><i class="glyphicon glyphicon-log-out"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <button id="chatview" class="btn btn-default tp-icon chat-icon">
+                <i class="glyphicon glyphicon-comment"></i>
+            </button>
+          </li>
+        </ul>
+      </div><!-- header-right -->
+    </div><!-- headerbar -->
+    
+    <div class="pageheader">
+      <h2><i class="fa fa-home"></i> Dashboard <span>...</span></h2>
+      <div class="breadcrumb-wrapper">
+        <span class="label">You are here:</span>
+        <ol class="breadcrumb">
+          <li><a href="index.html">Bracket</a></li>
+          <li class="active">Dashboard</li>
+        </ol>
+      </div>
+    </div>
+    
+    <div class="contentpanel">
+      <div>
+
+<!-- 
+		<div class="row">
+			<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">970px/12</div>
+			<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">2</div>
+			<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">3</div>
+			<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">4</div>
+			<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">5</div>
+			<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">6</div>
+			<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">7</div>
+			<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">8</div>
+			<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">9</div>
+			<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">10</div>
+			<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">11</div>
+			<div class="col-md-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">12</div>
+		</div>
+ -->
+ 	
+		<form id="form" action="page/system/sysUser_sysUserList.action" method="get" class="form-horizontal">
 			<div class="row">
 				<div class="input-group col-sm-4 col-lg-3 column">
 					<span class="input-group-addon">用户ID</span>
@@ -230,33 +364,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 		</form>
-		
-		<div class="col-md-3 col-md-offset-1">
-			<br>
-			PageResults.totalCount = ${pageResult.totalCount}<br>
-			PageResults.pageSize = ${pageResult.pageSize}<br>
-			PageResults.currentPage = ${pageResult.currentPage}<br>
-			param.formName = ${param.formName}<br>
-		</div>
-		<div class="col-md-3 col-md-offset-1">
-			<br>
-			ctx=${ctx}<br>
-			basePath=${basePath}<br>
-			path=${path}<br>
-		</div>
-		<div class="row"></div>
-		<div class="col-md-12">
-			<%=session.getAttribute("json_menu_tree")%><br>
-			<%=session.getAttribute("json_curr_menu")%><br>
-		</div>
-		
-	</div>
-	
-</div>
+      </div><!-- row -->
+    </div><!-- contentpanel -->
+    
+  </div><!-- mainpanel -->
+  
+  
+  
+</section>
 
 </body>
 
-	
+
+
+    
+<!-- <script type="text/javascript" src="jquery/jquery-2.0.2.js"></script>
+<script type="text/javascript" src="jquery/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script> -->
+
+<script type="text/javascript" src="jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/toggles.min.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+
+<script type="text/javascript" src="jquery/plugin/jquery.pagination.js"></script>
+<script type="text/javascript" src="bootstrap/ext/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="bootstrap/ext/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="bootstrap/ext/bootstrap-select.js"></script>
+    	
 <script type="text/javascript">
 
 	function submit_form(button_id) {
