@@ -37,6 +37,7 @@
 		<authentication-provider>
 			<user-service>
 				<user name="1" password="1" authorities="ROLE_USER, ROLE_ADMIN" />
+				<user name="kelvem" password="kelvem" authorities="ROLE_USER, ROLE_ADMIN" />
 				<user name="bob" password="bobspassword" authorities="ROLE_USER" />
 			</user-service>
 		</authentication-provider>

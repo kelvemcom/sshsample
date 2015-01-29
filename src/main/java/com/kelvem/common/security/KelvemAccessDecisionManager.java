@@ -38,7 +38,8 @@ public class KelvemAccessDecisionManager implements AccessDecisionManager {
             throws AccessDeniedException, InsufficientAuthenticationException {
     	
     	log.info("decide params [userRoles:" + userRoles.getAuthorities() + ", needRoles:" + needRoles + "]");
-        if(needRoles == null){
+        if(needRoles == null || needRoles.size() <= 0){
+        	log.info("decide access");
             return ;
         }
         // System.out.println("UmpAccessDecisionManager:decide# " + object.toString());
@@ -57,8 +58,7 @@ public class KelvemAccessDecisionManager implements AccessDecisionManager {
         
         // 当没有访问权限时
         log.info("decide fail");
-        // ###
-        // throw new AccessDeniedException("no right");
+        throw new AccessDeniedException("no right");
     }
 	
     public boolean supports(ConfigAttribute attribute) {

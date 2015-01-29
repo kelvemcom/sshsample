@@ -7,7 +7,8 @@
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
-	<global-method-security secured-annotations="disabled"
+	<global-method-security 
+		secured-annotations="disabled"
 		jsr250-annotations="disabled">
 	</global-method-security>
 

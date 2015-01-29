@@ -39,13 +39,9 @@ public class KelvemFilterSecurityInterceptor extends AbstractSecurityInterceptor
 	}
 
 	/**
+	 * <p>为过滤器植入方法</p>
 	 * 
-	 * <p>
-	 * 为过滤器植入方法
-	 * </p>
-	 * 
-	 * @param fi
-	 *            过滤器调用对象
+	 * @param fi 过滤器调用对象
 	 * @throws IOException
 	 * @throws ServletException
 	 * @return void

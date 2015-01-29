@@ -82,14 +82,6 @@ public class UrlAuthAccessFilter implements Filter {
 		}
 
 		boolean access = false;
-		List<SysAuthorityModel> authList = (List<SysAuthorityModel>)session.getAttribute("auth_list");
-		for (SysAuthorityModel auth : authList) {
-			if (url.startsWith(auth.getSysAuthorityUrl())) {
-				access = true;
-				break;
-			}
-		}
-		
 		if (url.startsWith("/403.jsp")) {
 			access = true;
 		} else if (url.trim().endsWith(".jsp") 
@@ -97,7 +89,13 @@ public class UrlAuthAccessFilter implements Filter {
 				|| url.trim().endsWith(".htm") 
 				|| url.trim().endsWith(".do") 
 				|| url.trim().endsWith(".action")) {
-			// do nothing
+			List<SysAuthorityModel> authList = (List<SysAuthorityModel>)session.getAttribute("auth_list");
+			for (SysAuthorityModel auth : authList) {
+				if (url.startsWith(auth.getSysAuthorityUrl())) {
+					access = true;
+					break;
+				}
+			}
 		} else {
 			access = true;
 		}

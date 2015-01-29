@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     
-    <title>Sign in &middot; Twitter Bootstrap</title>
+    <title>Sign in</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -74,7 +74,7 @@
         <input name="j_username" type="text" class="input-block-level" placeholder="Email address">
         <input name="j_password" type="password" class="input-block-level" placeholder="Password">
         <span>
-        	<input name="validateCode" type="text" class="input-small" style="vertical-align:baseline;">
+        	<input name="validateCode" type="text" value="1234" class="input-small" style="vertical-align:baseline;">
         	<img id="rnd" src="common/validatecode.action" onclick="changeValidateCode(this);" class="img-polaroid">
         </span>
         <label class="checkbox">
