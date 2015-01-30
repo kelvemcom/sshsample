@@ -110,19 +110,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       
       <h5 class="sidebartitle">Navigation</h5>
       <ul class="nav nav-pills nav-stacked nav-bracket">
-        <li class="active"><a href="index.html"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-        <li><a href="email.html"><span class="pull-right badge badge-success">2</span><i class="fa fa-envelope-o"></i> <span>Email</span></a></li>
-        <li class="nav-parent"><a href=""><i class="fa fa-edit"></i> <span>Forms</span></a>
-          <ul class="children">
-            <li><a href="general-forms.html"><i class="fa fa-caret-right"></i> General Forms</a></li>
-            <li><a href="form-layouts.html"><i class="fa fa-caret-right"></i> Form Layouts</a></li>
-            <li><a href="form-validation.html"><i class="fa fa-caret-right"></i> Form Validation</a></li>
-            <li><a href="form-wizards.html"><i class="fa fa-caret-right"></i> Form Wizards</a></li>
-            <li><a href="wysiwyg.html"><i class="fa fa-caret-right"></i> Text Editor</a></li>
-            <li><a href="code-editor.html"><i class="fa fa-caret-right"></i> Code Editor</a></li>
+        <li><a href="index.html"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+        <li><a href="page/system/sysRole_sysUserRoleList.action"><span class="pull-right badge badge-success">2</span><i class="fa fa-envelope-o"></i> <span>Email</span></a></li>
+        <li class="nav-parent nav-active active"><a href="#"><span class="pull-right"><strong>+&nbsp;</strong></span><i class="fa fa-edit"></i> <span>系统管理</span></a>
+          <ul class="children" style="display: block;">
+            <li class="active"><a href="${ctx}/page/system/sysUser_sysUserList.action"><i class="fa fa-caret-right"></i> 用户管理</a></li>
+            <li><a href="form-layouts.html"><i class="fa fa-caret-right"></i> 角色管理</a></li>
+            <li><a href="form-validation.html"><i class="fa fa-caret-right"></i> 权限管理</a></li>
           </ul>
         </li>
-        <li class="nav-parent"><a href=""><i class="fa fa-suitcase"></i> <span>UI Elements</span></a>
+        <li class="nav-parent"><a href="#"><span class="pull-right"><strong>+&nbsp;</strong></span><i class="fa fa-suitcase"></i> <span>UI Elements</span></a>
           <ul class="children">
             <li><a href="buttons.html"><i class="fa fa-caret-right"></i> Buttons</a></li>
             <li><a href="icons.html"><i class="fa fa-caret-right"></i> Icons</a></li>
@@ -134,7 +131,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <li><a href="extras.html"><i class="fa fa-caret-right"></i> Extras</a></li>
           </ul>
         </li>
-        <li><a href="tables.html"><i class="fa fa-th-list"></i> <span>Tables</span></a></li>
+        <li><a href="${ctx}/tool/memory.jsp"><i class="fa fa-th-list"></i> <span>Memory</span></a></li>
+        <li><a href="${ctx}/page/self-query.html?table=sys_user"><i class="fa fa-th-list"></i> <span>self-query</span></a></li>
       </ul>
       
     </div><!-- leftpanelinner -->
@@ -177,12 +175,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="toggle toggle-success"></div>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="col-xs-8 control-label">Enable History</label>
-                <div class="col-xs-4 control-label">
-                    <div class="toggle toggle-success"></div>
-                </div>
-            </div>
         </div>
         
     </div><!-- tab-content -->
@@ -202,14 +194,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <li>
             <div class="btn-group">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                John Doe
+                ${sessionScope.login_user.sysUserName}                
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                <li><a href="profile.html"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Account Settings</a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-question-sign"></i> Help</a></li>
-                <li><a href="signin.html"><i class="glyphicon glyphicon-log-out"></i> Log Out</a></li>
+                <li><a href="profile.html"><i class="glyphicon glyphicon-user"></i> 我的信息</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-cog"></i> 设置</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-question-sign"></i> 帮助</a></li>
+                <li><a href="signin.html"><i class="glyphicon glyphicon-log-out"></i> 登出</a></li>
               </ul>
             </div>
           </li>
@@ -223,12 +215,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div><!-- headerbar -->
     
     <div class="pageheader">
-      <h2><i class="fa fa-home"></i> Dashboard <span>...</span></h2>
+      <h2><i class="fa fa-home"></i> 用户管理 <span>...</span></h2>
       <div class="breadcrumb-wrapper">
-        <span class="label">You are here:</span>
+        <span class="label">当前位置:</span>
         <ol class="breadcrumb">
-          <li><a href="index.html">Bracket</a></li>
-          <li class="active">Dashboard</li>
+          <li><a href="index.html">系统管理</a></li>
+          <li class="active">用户管理</li>
         </ol>
       </div>
     </div>

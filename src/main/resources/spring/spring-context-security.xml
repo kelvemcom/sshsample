@@ -17,6 +17,7 @@
 		<intercept-url pattern="/common/**" filters="none" />
 		<intercept-url pattern="/js/**" filters="none" />
 		<intercept-url pattern="/jquery/**" filters="none" />
+		<intercept-url pattern="/images/**" filters="none" />
 		<intercept-url pattern="/login.jsp" filters="none" />
 		<intercept-url pattern="/about.jsp" filters="none" />
 		<intercept-url pattern="/403.jsp" filters="none" />
