@@ -42,7 +42,10 @@
 		</property>
 		<property name="menuSort" type="java.lang.Integer"> 
 			<column name="MENU_SORT" precision="22" scale="0" />  
-		</property>  
+		</property>
+		<property name="menuImage" type="java.lang.String"> 
+			<column name="MENU_IMAGE" length="100" />  
+		</property>
 		<property name="statusCode" type="java.lang.Integer"> 
 			<column name="STATUS_CODE" precision="22" scale="0" />  
 		</property>  

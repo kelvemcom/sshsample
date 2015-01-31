@@ -3,6 +3,7 @@ package com.kelvem.sample.system.cache;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -14,17 +15,24 @@ import com.kelvem.common.utils.StringUtil;
 import com.kelvem.sample.system.model.MenuTree;
 import com.kelvem.sample.system.model.SysRoleModel;
 import com.kelvem.sample.system.service.SysRoleService;
+import com.kelvem.sample.system.service.SysUserService;
 
 @Component("menuCache")
 public class MenuCache {
 	
 	private static Log log = LogFactory.getLog(MenuCache.class);
 
+	@Autowired private SysUserService sysUserService; 
 	@Autowired private SysRoleService sysRoleService; 
 	
 	private static MenuTree menuTree = null;
+	
 	@Transactional
-	public MenuTree getMenuTree() {
+	public MenuTree getMenuTree(Set<SysRoleModel> roleSet) {
+		
+		if (roleSet == null) {
+			return null;
+		}
 		
 		if (menuTree != null) {
 			return menuTree;
@@ -32,8 +40,7 @@ public class MenuCache {
 		
 		menuTree = new MenuTree("");
 		
-		List<SysRoleModel> listRole = sysRoleService.queryAllSysRole();
-		for (SysRoleModel sysRoleModel : listRole) {
+		for (SysRoleModel sysRoleModel : roleSet) {
 			menuTree.addNode(sysRoleModel);
 		}
 		
@@ -53,7 +60,9 @@ public class MenuCache {
 			menuMap = new HashMap<String, SysRoleModel>();
 			List<SysRoleModel> listRole = sysRoleService.queryAllSysRole();
 			for (SysRoleModel sysRoleModel : listRole) {
-				menuMap.put(sysRoleModel.getMenuUrl(), sysRoleModel);
+				if (!menuMap.containsKey(sysRoleModel.getMenuUrl())) {
+					menuMap.put(sysRoleModel.getMenuUrl(), sysRoleModel);
+				}
 			}
 		}
 		

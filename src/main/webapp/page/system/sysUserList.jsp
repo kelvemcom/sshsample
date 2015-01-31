@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -96,123 +96,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <i class="fa fa-spinner fa-spin"></i>
     </div>
 </div>
-    
+
 <section>
   
-  <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
-  <div class="leftpanel">
-    
-    <div class="logopanel">
-        <h1><span>SSHSample</span></h1>
-    </div><!-- logopanel -->
-        
-    <div class="leftpanelinner"> 
-      
-      <h5 class="sidebartitle">Navigation</h5>
-      <ul class="nav nav-pills nav-stacked nav-bracket">
-        <li><a href="index.html"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-        <li><a href="page/system/sysRole_sysUserRoleList.action"><span class="pull-right badge badge-success">2</span><i class="fa fa-envelope-o"></i> <span>Email</span></a></li>
-        <li class="nav-parent nav-active active"><a href="#"><span class="pull-right"><strong>+&nbsp;</strong></span><i class="fa fa-edit"></i> <span>系统管理</span></a>
-          <ul class="children" style="display: block;">
-            <li class="active"><a href="${ctx}/page/system/sysUser_sysUserList.action"><i class="fa fa-caret-right"></i> 用户管理</a></li>
-            <li><a href="form-layouts.html"><i class="fa fa-caret-right"></i> 角色管理</a></li>
-            <li><a href="form-validation.html"><i class="fa fa-caret-right"></i> 权限管理</a></li>
-          </ul>
-        </li>
-        <li class="nav-parent"><a href="#"><span class="pull-right"><strong>+&nbsp;</strong></span><i class="fa fa-suitcase"></i> <span>UI Elements</span></a>
-          <ul class="children">
-            <li><a href="buttons.html"><i class="fa fa-caret-right"></i> Buttons</a></li>
-            <li><a href="icons.html"><i class="fa fa-caret-right"></i> Icons</a></li>
-            <li><a href="typography.html"><i class="fa fa-caret-right"></i> Typography</a></li>
-            <li><a href="alerts.html"><i class="fa fa-caret-right"></i> Alerts &amp; Notifications</a></li>
-            <li><a href="tabs-accordions.html"><i class="fa fa-caret-right"></i> Tabs &amp; Accordions</a></li>
-            <li><a href="sliders.html"><i class="fa fa-caret-right"></i> Sliders</a></li>
-            <li><a href="graphs.html"><i class="fa fa-caret-right"></i> Graphs &amp; Charts</a></li>
-            <li><a href="extras.html"><i class="fa fa-caret-right"></i> Extras</a></li>
-          </ul>
-        </li>
-        <li><a href="${ctx}/tool/memory.jsp"><i class="fa fa-th-list"></i> <span>Memory</span></a></li>
-        <li><a href="${ctx}/page/self-query.html?table=sys_user"><i class="fa fa-th-list"></i> <span>self-query</span></a></li>
-      </ul>
-      
-    </div><!-- leftpanelinner -->
-  </div><!-- leftpanel -->
+  <s:include value="/page/menu_left.jsp"/>
   
+  <s:include value="/page/menu_right.jsp"/>
   
   <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
-  
-  <div class="rightpanel">
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs nav-justified">
-        <li class="active"><a href="#rp-settings" data-toggle="tab"><i class="fa fa-gear"></i></a></li>
-        <li><a href="#rp-alluser" data-toggle="tab"><i class="fa fa-users"></i></a></li>
-    </ul>
-        
-    <!-- Tab panes -->
-    <div class="tab-content">
-
-        <div class="tab-pane active" id="rp-settings">
-            <h5 class="sidebartitle">Settings</h5>
-            <div class="form-group">
-                <label class="col-xs-8 control-label">Show Offline Users</label>
-                <div class="col-xs-4 control-label">
-                    <div class="toggle toggle-success"></div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-xs-8 control-label">Enable History</label>
-                <div class="col-xs-4 control-label">
-                    <div class="toggle toggle-success"></div>
-                </div>
-            </div>
-        </div><!-- tab-pane -->
-        
-        <div class="tab-pane" id="rp-alluser">
-            <h5 class="sidebartitle">Setting2</h5>
-            <div class="form-group">
-                <label class="col-xs-8 control-label">Show Offline Users</label>
-                <div class="col-xs-4 control-label">
-                    <div class="toggle toggle-success"></div>
-                </div>
-            </div>
-        </div>
-        
-    </div><!-- tab-content -->
-  </div><!-- rightpanel -->
-  
-  <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
-  
   
   <div class="mainpanel">
     
-    <div class="headerbar">
-      
-      <a class="menutoggle"><i class="fa fa-bars"></i></a>
-      
-      <div class="header-right">
-        <ul class="headermenu">
-          <li>
-            <div class="btn-group">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                ${sessionScope.login_user.sysUserName}                
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                <li><a href="profile.html"><i class="glyphicon glyphicon-user"></i> 我的信息</a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-cog"></i> 设置</a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-question-sign"></i> 帮助</a></li>
-                <li><a href="signin.html"><i class="glyphicon glyphicon-log-out"></i> 登出</a></li>
-              </ul>
-            </div>
-          </li>
-          <li>
-            <button id="chatview" class="btn btn-default tp-icon chat-icon">
-                <i class="glyphicon glyphicon-comment"></i>
-            </button>
-          </li>
-        </ul>
-      </div><!-- header-right -->
-    </div><!-- headerbar -->
+    <s:include value="/page/navbar.jsp"/>
     
     <div class="pageheader">
       <h2><i class="fa fa-home"></i> 用户管理 <span>...</span></h2>
@@ -360,8 +255,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div><!-- contentpanel -->
     
   </div><!-- mainpanel -->
-  
-  
   
 </section>
 

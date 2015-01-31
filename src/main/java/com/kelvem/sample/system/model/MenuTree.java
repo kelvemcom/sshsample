@@ -40,6 +40,7 @@ public class MenuTree implements java.io.Serializable {
 	public List<MenuTree> menuList = new ArrayList<MenuTree>();
 	public String name = null;
 	public String url = null;
+	public String image = null;
 	
 	public Map<String, MenuTree> menuMap = new HashMap<String, MenuTree>();
 	
@@ -48,9 +49,10 @@ public class MenuTree implements java.io.Serializable {
 		this.url = url;
 	}
 	
-	private MenuTree(String name, String url){
+	private MenuTree(String name, String url, String image){
 		this.name = name;
 		this.url = url;
+		this.image = image;
 	}
 	
 	public void addNode(SysRoleModel node){
@@ -65,7 +67,7 @@ public class MenuTree implements java.io.Serializable {
 			}
 			MenuTree buf = menu.menuMap.get(node.getMenuLevel1());
 			if (buf == null) {
-				buf = new MenuTree(node.getMenuLevel1(), url);
+				buf = new MenuTree(node.getMenuLevel1(), url, node.getMenuImage());
 				menu.addNode(buf);
 			}
 			menu = buf;
@@ -80,7 +82,7 @@ public class MenuTree implements java.io.Serializable {
 			}
 			MenuTree buf = menu.menuMap.get(node.getMenuLevel2());
 			if (buf == null) {
-				buf = new MenuTree(node.getMenuLevel2(), url);
+				buf = new MenuTree(node.getMenuLevel2(), url, node.getMenuImage());
 				menu.addNode(buf);
 			}
 			menu = buf;
@@ -95,7 +97,7 @@ public class MenuTree implements java.io.Serializable {
 			}
 			MenuTree buf = menu.menuMap.get(node.getMenuLevel2());
 			if (buf == null) {
-				buf = new MenuTree(node.getMenuLevel3(), url);
+				buf = new MenuTree(node.getMenuLevel3(), url, node.getMenuImage());
 				menu.addNode(buf);
 			}
 			menu = buf;
@@ -105,7 +107,7 @@ public class MenuTree implements java.io.Serializable {
 			String url = node.getMenuUrl();
 			MenuTree buf = menu.menuMap.get(node.getMenuLevel4());
 			if (buf == null) {
-				buf = new MenuTree(node.getMenuLevel4(), url);
+				buf = new MenuTree(node.getMenuLevel4(), url, node.getMenuImage());
 				menu.addNode(buf);
 			}
 		}
@@ -126,6 +128,10 @@ public class MenuTree implements java.io.Serializable {
 		
 		if (!StringUtil.isEmpty(this.url)) {
 			json.element("url", this.url);
+		}
+		
+		if (!StringUtil.isEmpty(this.image)) {
+			json.element("image", this.image);
 		}
 
 		JSONArray array = new JSONArray();

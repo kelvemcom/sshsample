@@ -12,6 +12,7 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageOutputStream;
 
+import com.kelvem.common.utils.SessionUtils;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -37,7 +38,7 @@ public class ValidateCodeAction extends ActionSupport {
 		BufferedImage image = getRandImage(rand);
 		
 		// 将认证码存入SESSION
-		ActionContext.getContext().getSession().put("rand", rand);
+		SessionUtils.setValidateCode(rand);
 
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		ImageOutputStream imageOut = ImageIO.createImageOutputStream(output);

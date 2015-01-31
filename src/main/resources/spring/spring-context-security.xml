@@ -27,7 +27,7 @@
 		<form-login login-page="/login.jsp"
 			authentication-failure-url="/login.jsp?error=true"
 			default-target-url="/index.jsp" 
-			always-use-default-target="true" />
+			always-use-default-target="false" />
 		<logout logout-success-url="/login.jsp" />
 		<http-basic />
 		<!-- 增加一个filter -->

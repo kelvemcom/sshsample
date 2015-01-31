@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -25,47 +25,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="description" content="">
 	<meta name="author" content="">
 	
-	<!-- Le styles -->
-	<style type="text/css">
-		body {
-			padding-top: 40px;
-			padding-bottom: 40px;
-			background-color: #f5f5f5;
-		}
-	</style>
-	
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-	<link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css">
-	<link rel="stylesheet" href="bootstrap/ext/dataTables.bootstra.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="jquery/jquery-ui.min.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/toggles.css">
     
-	<script type="text/javascript" src="jquery/jquery-2.0.2.js"></script>
-	<script type="text/javascript" src="jquery/plugin/jquery.pagination.js"></script>
-	<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="css/style.default.css">
+    
+	<link rel="stylesheet" href="bootstrap/ext/dataTables.bootstra.css">
+	<link rel="stylesheet" href="bootstrap/ext/bootstrap-datetimepicker.css">
+	<link rel="stylesheet" href="bootstrap/ext/bootstrap-select.css">
 	
-	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
-		<script src="bootstrap/js/html5shiv.js"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+	  <script src="js/html5shiv.js"></script>
+	  <script src="js/respond.min.js"></script>
 	<![endif]-->
-	
-	<script type="text/javascript">
-
-		function submit_form(button_id) {
-			//alert(button_id);
-			if (button_id == 'back') {
-				document.getElementById("form").action = "${ctx}/page/system/sysUser_sysUserList.action";
-				document.getElementById("form").submit();
-			} else if (button_id == 'update_done') {
-				document.getElementById("form").action = "${ctx}/page/system/sysUser_sysUserUpdateDone.action";
-				document.getElementById("form").submit();
-			}
-		};
-	</script>
    
 </head>
   
 <body>
 
-	<s:include value="/page/navbar.jsp"></s:include>
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status">
+        <i class="fa fa-spinner fa-spin"></i>
+    </div>
+</div>
+
+<section>
+  
+  <s:include value="/page/menu_left.jsp"/>
+  
+  <s:include value="/page/menu_right.jsp"/>
+  
+  <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
+  
+  <div class="mainpanel">
+    
+    <s:include value="/page/navbar.jsp"/>
+    
+    <div class="pageheader">
+      <h2><i class="fa fa-home"></i> 用户管理 <span>...</span></h2>
+      <div class="breadcrumb-wrapper">
+        <span class="label">当前位置:</span>
+        <ol class="breadcrumb">
+          <li>系统管理</li>
+          <li><a href="${ctx}/page/system/sysUser_sysUserList.action">用户管理</a></li>
+          <li class="active">用户详情</li>
+        </ol>
+      </div>
+    </div>
+    
+    <div class="contentpanel">
+      <div>
 	
 	<!-- 
 	<div class="row">
@@ -181,80 +194,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 	</div>
 	
-	<s:include value="/page/menu.jsp"></s:include>
-
-</body>
+      </div><!-- row -->
+    </div><!-- contentpanel -->
     
-<script type="text/javascript" src="jquery/jquery-2.0.2.js"></script>
+  </div><!-- mainpanel -->
+  
+</section>
+	
+</body>
+
+
+
+    
+<!-- <script type="text/javascript" src="jquery/jquery-2.0.2.js"></script>
+<script type="text/javascript" src="jquery/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script> -->
+
+<script type="text/javascript" src="jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/toggles.min.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+
 <script type="text/javascript" src="jquery/plugin/jquery.pagination.js"></script>
-<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="bootstrap/ext/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="bootstrap/ext/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="bootstrap/ext/bootstrap-select.js"></script>
+
 
 <script type="text/javascript">
-    
-    var init = false;
-    function submit(page_index, jq){
-	
-    	if (init == false) {
-			init = true;
-			return false;
+
+	function submit_form(button_id) {
+		//alert(button_id);
+		if (button_id == 'back') {
+			document.getElementById("form").action = "${ctx}/page/system/sysUser_sysUserList.action";
+			document.getElementById("form").submit();
+		} else if (button_id == 'update_done') {
+			document.getElementById("form").action = "${ctx}/page/system/sysUser_sysUserUpdateDone.action";
+			document.getElementById("form").submit();
 		}
-    	
-    	//alert("submit");
-    	
-    	$("#query").bind("submit",
-		    function()
-		    {
-		   	   $("#query").append("<input type='hidden' id='pageNo' name='pageNo'  value='" + page_index + "'/>");
-		   	   $("#query").append("<input type='hidden' id='pageSize' name='pageSize' value='${pageSize}'/>");
-
-		   	   var form=document.forms["query"];
-		   	   form.submit();
-		    }
-		);
-		$("#query").submit();
-    	return false;
-    }
-    
-	$(document).ready(function(){
-	
-		$("tbody tr:even").addClass("info");
-		//$("tbody tr:odd").addClass("success");
-		
-		//$("tr:not(:first)")
-		//$("tr:even").each(function(){   this.style.backgroundColor  =  '#ccc' })   //当然even能实现
-		
-		//alert($("#id_11 td:nth-child(1)").html());
-		
-		var edit_html = '';
-		//edit_html = edit_html + '<tr id="id_edit" class="error">';
-		edit_html = edit_html + '	<td>' + $("#id_11 td:nth-child(1)").html() + '</td>';
-		edit_html = edit_html + '	<td><input type="text" placeholder="…" value="' + $("#id_11 td:nth-child(2)").html() + '"></td>';
-		edit_html = edit_html + '	<td><input type="text" placeholder="…" value="' + $("#id_11 td:nth-child(3)").html() + '"></td>';
-		edit_html = edit_html + '	<td><input type="text" placeholder="…" value="' + $("#id_11 td:nth-child(4)").html() + '"></td>';
-		edit_html = edit_html + '	<td>';
-		edit_html = edit_html + '		<a href="${ctx}/page/sysUser_sysUserList.action?sysUserId=${row.sysUserId}">[保存]</a>';
-		edit_html = edit_html + '		<a href="${ctx}/page/sysUser_sysUserList.action?sysUserId=${row.sysUserId}">[增加]</a>';
-		edit_html = edit_html + '	</td>';
-		//edit_html = edit_html + '</tr>';
-		
-		//$("#id_11").html(edit_html);
-		$("#id_11").addClass("error");
-		
-		//alert($("#Pagination"));
-		//alert($("#Pagination").pagination());
-		//current_page:${pageResult.currentPage},
-		$("#Pagination").pagination(${pageResult.totalCount}, {
-			items_per_page:${pageResult.pageSize},
-			current_page:${pageResult.currentPage},
-			num_display_entries:8,
-			num_edge_entries:2,
-			prev_text:"上一页",
-			next_text:"下一页",
-			
-			callback:submit
-		});
-
-		
-	});		
+	};
 </script>
+
 </html>

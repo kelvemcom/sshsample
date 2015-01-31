@@ -1,43 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	isErrorPage="true" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	response.setStatus(200);
-%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-		<meta http-equiv="Cache-Control" content="no-store" />
-		<meta http-equiv="Pragma" content="no-cache" />
-		<meta http-equiv="Expires" content="0" />		
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<base href="<%=basePath%>">	
 		
-		<script type="text/javascript" src="jquery/jquery-2.0.2.js"></script>
+
+	<script type="text/javascript" src="${ctx}/jquery/jquery-1.10.2.min.js"></script>
 		
 		<title>ERROR</title>
 		
-		<script type="text/javascript">
-			String.prototype.replaceAll = function(s1,s2) { 
-			    return this.replace(new RegExp(s1,"gm"),s2); 
-			};
-												
-			$(document).ready(function(){
-				$("#stack").html($("#stack").html().replaceAll(" at ", " <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp at ")
-												.replaceAll("\\(","<font color='#111166'>(")
-												.replaceAll("Caused by: ","<br>Caused by: ")
-												.replaceAll("\\)","</font>)"));
-			});
-			
-			function showStack(){
-				$("#stack").css("display", "block");
-				$("#show").css("display", "none");
-				
-				// 拷贝到剪贴板
-				//window.clipboardData.setData('text',$("#stack").text()); 
-			}
-			
-		</script>
 	</head>
 	<body style="background-color:#F9FFF9">
 		
@@ -57,4 +40,28 @@
 		</span>
 		
 	</body>
+	
+	
+	<script type="text/javascript">
+		String.prototype.replaceAll = function(s1,s2) { 
+		    return this.replace(new RegExp(s1,"gm"),s2); 
+		};
+		
+		$(document).ready(function(){
+			$("#stack").html($("#stack").html().replaceAll("at ", " <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp at ")
+											.replaceAll("\\(","<font color='#111166'>(")
+											.replaceAll("Caused by: ","<br>Caused by: ")
+											.replaceAll("\\)","</font>)"));
+		});
+		
+		function showStack(){
+			$("#stack").css("display", "block");
+			$("#show").css("display", "none");
+			
+			// 拷贝到剪贴板
+			window.clipboardData.setData('text',$("#stack").text()); 
+		}
+		
+	</script>
+		
 </html>

@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -25,48 +25,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="description" content="">
 	<meta name="author" content="">
 	
-	<!-- Le styles -->
-	<style type="text/css">
-		body {
-			padding-top: 40px;
-			padding-bottom: 40px;
-			background-color: #f5f5f5;
-		}
-	</style>
-	
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-	<link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css">
-	<link rel="stylesheet" href="bootstrap/ext/dataTables.bootstra.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="jquery/jquery-ui.min.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/toggles.css">
     
-	<script type="text/javascript" src="jquery/jquery-2.0.2.js"></script>
-	<script type="text/javascript" src="jquery/plugin/jquery.pagination.js"></script>
-	<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
-
-	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
-		<script src="bootstrap/js/html5shiv.js"></script>
+    <link rel="stylesheet" href="css/style.default.css">
+    
+	<link rel="stylesheet" href="bootstrap/ext/dataTables.bootstra.css">
+	<link rel="stylesheet" href="bootstrap/ext/bootstrap-datetimepicker.css">
+	<link rel="stylesheet" href="bootstrap/ext/bootstrap-select.css">
+	
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+	  <script src="js/html5shiv.js"></script>
+	  <script src="js/respond.min.js"></script>
 	<![endif]-->
 	
-	<script type="text/javascript">
-
-		function submit_form(button_id) {
-			//alert(button_id);
-			if (button_id == 'back') {
-				document.getElementById("form").action = "${ctx}/page/system/sysUser_sysUserList.action";
-				document.getElementById("form").submit();
-			} else if (button_id == 'update') {
-				document.getElementById("form").action = "${ctx}/page/system/sysUser_sysUserUpdate.action";
-				document.getElementById("form").submit();
-			}
-		};
-	</script>
 </head>
   
 <body>
+
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status">
+        <i class="fa fa-spinner fa-spin"></i>
+    </div>
+</div>
+
+<section>
   
-    <s:include value="/page/navbar.jsp"></s:include>
-	
-	<s:include value="/page/menu.jsp"></s:include>
+  <s:include value="/page/menu_left.jsp"/>
+  
+  <s:include value="/page/menu_right.jsp"/>
+  
+  <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
+  
+  <div class="mainpanel">
+    
+    <s:include value="/page/navbar.jsp"/>
+    
+    <div class="pageheader">
+      <h2><i class="fa fa-home"></i> 用户管理 <span>...</span></h2>
+      <div class="breadcrumb-wrapper">
+        <span class="label">当前位置:</span>
+        <ol class="breadcrumb">
+          <li>系统管理</li>
+          <li><a href="${ctx}/page/system/sysUser_sysUserList.action">用户管理</a></li>
+          <li class="active">用户详情</li>
+        </ol>
+      </div>
+    </div>
+    
+    <div class="contentpanel">
+      <div>
 	
 	<!-- 
 	<div class="row">
@@ -84,6 +96,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="col-sm-1" style="border-width: 2px; border-color: blue; border-style: solid; min-height: 50px">12</div>
 	</div>
 	-->
+	
 	<div class="col-md-9 column">
 	
 		<form class="form-horizontal" role="form" id="form">
@@ -178,6 +191,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 	</div>
 	
+      </div><!-- row -->
+    </div><!-- contentpanel -->
+    
+  </div><!-- mainpanel -->
+  
+</section>
+	
 </body>
 
+
+
+    
+<!-- <script type="text/javascript" src="jquery/jquery-2.0.2.js"></script>
+<script type="text/javascript" src="jquery/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script> -->
+
+<script type="text/javascript" src="jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/toggles.min.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+
+<script type="text/javascript" src="jquery/plugin/jquery.pagination.js"></script>
+<script type="text/javascript" src="bootstrap/ext/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="bootstrap/ext/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="bootstrap/ext/bootstrap-select.js"></script>
+
+<script type="text/javascript">
+
+	function submit_form(button_id) {
+		//alert(button_id);
+		if (button_id == 'back') {
+			document.getElementById("form").action = "${ctx}/page/system/sysUser_sysUserList.action";
+			document.getElementById("form").submit();
+		} else if (button_id == 'update') {
+			document.getElementById("form").action = "${ctx}/page/system/sysUser_sysUserUpdate.action";
+			document.getElementById("form").submit();
+		}
+	};
+</script>
+	
 </html>

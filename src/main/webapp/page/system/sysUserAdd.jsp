@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -25,47 +25,61 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="description" content="">
 	<meta name="author" content="">
 	
-	<!-- Le styles -->
-	<style type="text/css">
-		body {
-			padding-top: 40px;
-			padding-bottom: 40px;
-			background-color: #f5f5f5;
-		}
-	</style>
-	
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-	<link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css">
-	<link rel="stylesheet" href="bootstrap/ext/dataTables.bootstra.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="jquery/jquery-ui.min.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/toggles.css">
     
-	<script type="text/javascript" src="jquery/jquery-2.0.2.js"></script>
-	<script type="text/javascript" src="jquery/plugin/jquery.pagination.js"></script>
-	<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="css/style.default.css">
+    
+	<link rel="stylesheet" href="bootstrap/ext/dataTables.bootstra.css">
+	<link rel="stylesheet" href="bootstrap/ext/bootstrap-datetimepicker.css">
+	<link rel="stylesheet" href="bootstrap/ext/bootstrap-select.css">
 	
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
 		<script src="bootstrap/js/html5shiv.js"></script>
 	<![endif]-->
-	
-	<script type="text/javascript">
-
-		function submit_form(button_id) {
-			//alert(button_id);
-			if (button_id == 'back') {
-				document.getElementById("form").action = "${ctx}/page/system/sysUser_sysUserList.action";
-				document.getElementById("form").submit();
-			} else if (button_id == 'add_done') {
-				document.getElementById("form").action = "${ctx}/page/system/sysUser_sysUserAddDone.action";
-				document.getElementById("form").submit();
-			}
-		};
-	</script>
    
 </head>
   
 <body>
   
-    <s:include value="/page/navbar.jsp"></s:include>
+
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status">
+        <i class="fa fa-spinner fa-spin"></i>
+    </div>
+</div>
+
+<section>
+  
+  <s:include value="/page/menu_left.jsp"/>
+  
+  <s:include value="/page/menu_right.jsp"/>
+  
+  <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
+  
+  
+  <div class="mainpanel">
+    
+    <s:include value="/page/navbar.jsp"/>
+    
+    <div class="pageheader">
+      <h2><i class="fa fa-home"></i> 用户管理 <span>...</span></h2>
+      <div class="breadcrumb-wrapper">
+        <span class="label">当前位置:</span>
+        <ol class="breadcrumb">
+          <li>系统管理</li>
+          <li><a href="${ctx}/page/system/sysUser_sysUserList.action">用户管理</a></li>
+          <li class="active">增加用户</li>
+        </ol>
+      </div>
+    </div>
+    
+    <div class="contentpanel">
+      <div>
 	
 	<!-- 
 	<div class="row">
@@ -98,14 +112,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-3 control-label">用户显示名</label>
 				<div class="col-sm-8 col-md-6">
-					<input type="text" class="form-control" name="sysUser.userLogonName" placeholder="Email" value="${sysUser.userLogonName}">
+					<input type="text" class="form-control" name="sysUser.userLogonName" placeholder="" value="${sysUser.userLogonName}">
 				</div>
 			</div>
 	
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-3 control-label">用户登录名</label>
 				<div class="col-sm-8 col-md-6">
-					<input type="text" class="form-control" name="sysUser.sysUserName" placeholder="Email" value="${sysUser.sysUserName}">
+					<input type="text" class="form-control" name="sysUser.sysUserName" placeholder="" value="${sysUser.sysUserName}">
 				</div>
 			</div>
 			
@@ -119,42 +133,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-3 control-label">用户类型</label>
 				<div class="col-sm-8 col-md-6">
-					<input type="text" class="form-control" name="sysUser.userTypeCode" placeholder="Email" value="${sysUser.userTypeCode}">
+					<input type="text" class="form-control" name="sysUser.userTypeCode" placeholder="普通用户" value="${sysUser.userTypeCode}">
 				</div>
 			</div>
 	
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-3 control-label">人个信息ID</label>
 				<div class="col-sm-8 col-md-6">
-					<input type="text" class="form-control" name="sysUser.personInfoId" placeholder="Email" value="${sysUser.personInfoId}">
+					<input type="text" class="form-control" name="sysUser.personInfoId" placeholder="" value="${sysUser.personInfoId}">
 				</div>
 			</div>
 	
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-3 control-label">描述</label>
 				<div class="col-sm-8 col-md-6">
-					<input type="text" class="form-control" name="sysUser.userDescs" placeholder="Email" value="${sysUser.userDescs}">
+					<input type="text" class="form-control" name="sysUser.userDescs" placeholder="" value="${sysUser.userDescs}">
 				</div>
 			</div>
 	
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-3 control-label">状态标志</label>
 				<div class="col-sm-8 col-md-6">
-					<input type="text" class="form-control" name="sysUser.statusCode" placeholder="Email" value="${sysUser.statusCode}">
+					<input type="text" class="form-control" name="sysUser.statusCode" placeholder="启用" value="${sysUser.statusCode}">
 				</div>
 			</div>
 	
 			<div class="form-group">
 				<label for="inputEmail3" class="col-sm-3 control-label">状态修改时间</label>
 				<div class="col-sm-8 col-md-6">
-					<input type="text" class="form-control" name="sysUser.statusChangeTime" placeholder="Email" value="${sysUser.statusChangeTime}">
-				</div>
-			</div>
-	
-			<div class="form-group">
-				<label for="inputEmail3" class="col-sm-3 control-label">删除标志</label>
-				<div class="col-sm-8 col-md-6">
-					<input type="text" class="form-control" name="sysUser.delFlag" placeholder="Email" value="${sysUser.delFlag}">
+					<input type="text" class="form-control" name="sysUser.statusChangeTime" placeholder="" value="${sysUser.statusChangeTime}">
 				</div>
 			</div>
 	
@@ -168,13 +175,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</form>
 	</div>
 	
-	<s:include value="/page/menu.jsp"></s:include>
+      </div><!-- row -->
+    </div><!-- contentpanel -->
+    
+  </div><!-- mainpanel -->
+  
+  
+  
+</section>
 	
 </body>
     
-<script type="text/javascript" src="jquery/jquery-2.0.2.js"></script>
+
+
+    
+<!-- <script type="text/javascript" src="jquery/jquery-2.0.2.js"></script>
+<script type="text/javascript" src="jquery/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script> -->
+
+<script type="text/javascript" src="jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/toggles.min.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+
 <script type="text/javascript" src="jquery/plugin/jquery.pagination.js"></script>
-<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="bootstrap/ext/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="bootstrap/ext/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="bootstrap/ext/bootstrap-select.js"></script>
+
+<script type="text/javascript">
+
+	function submit_form(button_id) {
+		//alert(button_id);
+		if (button_id == 'back') {
+			document.getElementById("form").action = "${ctx}/page/system/sysUser_sysUserList.action";
+			document.getElementById("form").submit();
+		} else if (button_id == 'add_done') {
+			document.getElementById("form").action = "${ctx}/page/system/sysUser_sysUserAddDone.action";
+			document.getElementById("form").submit();
+		}
+	};
+</script>
 
 <script type="text/javascript">
     

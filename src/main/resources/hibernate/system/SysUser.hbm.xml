@@ -50,7 +50,7 @@
 		
 		<set name="sysRoleSet" lazy="false" outer-join="false" table="sys_user_role_mapping">
 			<key column="sys_user_id"/>
-			<many-to-many column="sys_role_id" class="com.kelvem.sample.system.model.SysRoleModel"/>
+			<many-to-many column="sys_role_id" class="com.kelvem.sample.system.model.SysRoleModel" order-by="menuSort"/>
 		</set>
 
     </class>

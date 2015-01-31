@@ -42,7 +42,7 @@ public class KelvemUserDetailService implements UserDetailsService {
 
 		this.loginUser = sysUserService.getSysUserByName(userName);
 		
-		if ( loginUser == null || loginUser.getDelFlag() != 1 ){
+		if ( loginUser == null || loginUser.getDelFlag() == null || loginUser.getDelFlag() != 0 ){
 			loginUser = new SysUserModel();
 			loginUser.setUserLogonName(" ");
 			loginUser.setUserPassword(" ");

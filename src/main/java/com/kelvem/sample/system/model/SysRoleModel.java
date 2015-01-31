@@ -43,6 +43,7 @@ public class SysRoleModel implements java.io.Serializable {
 	private String menuUrl;
 	private String menuParams;
 	private Integer menuSort;
+	private String menuImage;
 	private Integer statusCode;
 	private Date statusChangeTime;
 	private Integer delFlag;
@@ -135,6 +136,13 @@ public class SysRoleModel implements java.io.Serializable {
 	public void setMenuSort(Integer menuSort) {
 		this.menuSort = menuSort;
 	}
+
+	public String getMenuImage() {
+		return menuImage;
+	}
+	public void setMenuImage(String menuImage) {
+		this.menuImage = menuImage;
+	}
 	
 	public Integer getStatusCode() {
 		return this.statusCode;
@@ -204,5 +212,33 @@ public class SysRoleModel implements java.io.Serializable {
 	@Override
 	public int hashCode() {
 		return this.getSysRoleId();
+	}
+	
+	@Override
+	public String toString() {
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("SysRoleModel[");
+//		sb.append("sysRoleId:" + sysRoleId + ", ");
+		sb.append("sysRoleName:" + sysRoleName + ", ");
+//		sb.append("sysRoleDesc:" + sysRoleDesc + ", ");
+		sb.append("menuLevel1:" + menuLevel1 + ", ");
+		sb.append("menuLevel2:" + menuLevel2 + ", ");
+		sb.append("menuLevel3:" + menuLevel3 + ", ");
+//		sb.append("menuLevel4:" + menuLevel4 + ", ");
+		sb.append("sysAuthorityId:" + sysAuthorityId + ", ");
+		sb.append("menuUrl:" + menuUrl + ", ");
+//		sb.append("menuParams:" + menuParams + ", ");
+//		sb.append("menuSort:" + menuSort + ", ");
+//		sb.append("menuImage:" + menuImage + ", ");
+//		sb.append("statusCode:" + statusCode + ", ");
+//		sb.append("statusChangeTime:" + statusChangeTime + ", ");
+//		sb.append("delFlag:" + delFlag + ", ");
+//		sb.append("delTime:" + delTime + ", ");
+//		sb.append("createTime:" + createTime + ", ");
+//		sb.append("updateTime:" + updateTime + ", ");
+		sb.append("]");
+		
+		return sb.toString();
 	}
 }

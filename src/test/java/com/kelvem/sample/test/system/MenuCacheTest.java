@@ -43,8 +43,8 @@ public class MenuCacheTest {
 	@Rollback(true) //这里设置为false，就让事务不回滚
 	public void test_MenuCache_getMenuTree() {
 		System.out.println("### test_MenuCache_getMenuTree");
-		MenuTree tree = menuCache.getMenuTree();
-		System.out.println(tree.toJson());
+//		MenuTree tree = menuCache.getMenuTree();
+//		System.out.println(tree.toJson());
 		System.out.println("###");
 	}
 

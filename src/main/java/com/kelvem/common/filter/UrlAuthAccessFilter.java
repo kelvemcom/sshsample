@@ -11,7 +11,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONObject;
 
@@ -22,11 +21,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.kelvem.common.profile.ProfileContext;
 import com.kelvem.common.utils.RequestUtil;
+import com.kelvem.common.utils.SessionUtils;
 import com.kelvem.common.utils.WebUtil;
 import com.kelvem.sample.system.cache.MenuCache;
 import com.kelvem.sample.system.model.MenuTree;
 import com.kelvem.sample.system.model.SysAuthorityModel;
 import com.kelvem.sample.system.model.SysRoleModel;
+import com.kelvem.sample.system.model.SysUserModel;
 
 public class UrlAuthAccessFilter implements Filter {
 	
@@ -43,8 +44,6 @@ public class UrlAuthAccessFilter implements Filter {
 		boolean access = this.checkAccess(request, response);
 		ProfileContext.pop();
 		
-
-		
 //		if (access == false) {
 //			String contextPath = RequestUtil.getContextPath(request);
 //			response.sendRedirect(contextPath + "/403.jsp");
@@ -57,28 +56,23 @@ public class UrlAuthAccessFilter implements Filter {
 	public boolean checkAccess(HttpServletRequest request, HttpServletResponse response) {
 		
 //		log.info("===================  doFilter start ======================");
-		HttpSession session = request.getSession(true);
-		
-		MenuTree menuTree = menuCache.getMenuTree();
-		session.setAttribute("json_menu_tree", menuTree.toJson());
+		SysUserModel sysUser = SessionUtils.getLoginUser(request);
+		MenuTree menuTree = menuCache.getMenuTree(sysUser.getSysRoleSet());
+		SessionUtils.setMenuTree(request, menuTree);
 		
 		String url = RequestUtil.getUrl(request);
-		if (session.getAttribute("json_curr_menu") == null) {
-			session.setAttribute("json_curr_menu", new JSONObject());
+			
+		SysRoleModel currMenu = menuCache.getCurrMenu(url);
+		if (currMenu != null) {
+			JSONObject jsonCurrMenu = new JSONObject();
+			jsonCurrMenu.put("menu_level1", currMenu.getMenuLevel1());
+			jsonCurrMenu.put("menu_level2", currMenu.getMenuLevel2());
+			jsonCurrMenu.put("menu_level3", currMenu.getMenuLevel3());
+			jsonCurrMenu.put("menu_level4", currMenu.getMenuLevel4());
+			jsonCurrMenu.put("url", url);
+			SessionUtils.setCurrMenu(request, jsonCurrMenu);
 		} else {
-			SysRoleModel currMenu = menuCache.getCurrMenu(url);
-			if (currMenu != null) {
-				JSONObject jsonCurrMenu = new JSONObject();
-				jsonCurrMenu.element("menu_level1", currMenu.getMenuLevel1());
-				jsonCurrMenu.element("menu_level2", currMenu.getMenuLevel2());
-				jsonCurrMenu.element("menu_level3", currMenu.getMenuLevel3());
-				jsonCurrMenu.element("menu_level4", currMenu.getMenuLevel4());
-				session.setAttribute("json_curr_menu", jsonCurrMenu);
-			}
-		}
-		
-		if (session.getAttribute("auth_list") == null) {
-			throw new RuntimeException("Confirm UserLoginAccessFilter. session.auth_list can't be null");
+			//SessionUtils.setCurrMenu(request, new JSONObject());
 		}
 
 		boolean access = false;
@@ -89,7 +83,11 @@ public class UrlAuthAccessFilter implements Filter {
 				|| url.trim().endsWith(".htm") 
 				|| url.trim().endsWith(".do") 
 				|| url.trim().endsWith(".action")) {
-			List<SysAuthorityModel> authList = (List<SysAuthorityModel>)session.getAttribute("auth_list");
+			
+			if (SessionUtils.getAuthList(request) == null) {
+				throw new RuntimeException("Confirm UserLoginAccessFilter. session.auth_list can't be null");
+			}
+			List<SysAuthorityModel> authList = (List<SysAuthorityModel>)SessionUtils.getAuthList(request);
 			for (SysAuthorityModel auth : authList) {
 				if (url.startsWith(auth.getSysAuthorityUrl())) {
 					access = true;

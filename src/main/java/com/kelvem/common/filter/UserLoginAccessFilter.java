@@ -13,13 +13,13 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
 
 import com.kelvem.common.profile.ProfileContext;
+import com.kelvem.common.utils.SessionUtils;
 import com.kelvem.common.utils.WebUtil;
 import com.kelvem.sample.system.model.SysAuthorityModel;
 import com.kelvem.sample.system.model.SysRoleModel;
@@ -56,17 +56,15 @@ public class UserLoginAccessFilter implements Filter {
 		
 //		log.info("===================  doFilter start ======================");
 		
-		HttpSession session = request.getSession(true);
-		
-		Object loginUser = session.getAttribute("login_user");
+		SysUserModel loginUser = SessionUtils.getLoginUser(request);
 		if (loginUser == null) {
 			SysUserService sysUserService = WebUtil.getBean(SysUserService.class);
 			loginUser = sysUserService.getSysUserByName("kelvem");
-			session.setAttribute("login_user", loginUser);
+			SessionUtils.setLoginUser(request, loginUser);
 		}
 		
-		if (session.getAttribute("auth_list") == null) {
-			Set<SysRoleModel> roleSet = ((SysUserModel)loginUser).getSysRoleSet();
+		if (SessionUtils.getAuthList(request) == null) {
+			Set<SysRoleModel> roleSet = loginUser.getSysRoleSet();
 			List<SysRoleModel> allRoleSet = sysRoleService.queryAllSysRole();
 			
 			List<SysAuthorityModel> authList = new ArrayList<SysAuthorityModel>();
@@ -75,7 +73,7 @@ public class UserLoginAccessFilter implements Filter {
 					authList.addAll(role.getSysAuthoritySet());
 				}
 			}
-			session.setAttribute("auth_list", authList);
+			SessionUtils.setAuthList(request, authList);
 		}
 		
 //		log.info("===================  doFilter  end   ======================");

@@ -56,6 +56,7 @@ public class SysUserService {
 //		}
 		PageResults<SysUserModel> pr = this.sysUserDao.querySysUser(pageNo, pageSize, sysUserInVO);
 		
+		log.info("查询用户列表.size = " + pr.getTotalCount());
 		return pr;
 	}
 	
