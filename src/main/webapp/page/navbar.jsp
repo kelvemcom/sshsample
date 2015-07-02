@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
     
-	<script type="text/javascript">
+	<script-un type="text/javascript">
     	$(document).ready(function(){
     		var msg = "${showMsg}";
     		if( msg != ''){
@@ -14,7 +14,7 @@
 				}
 			}
 		});
-	</script>
+	</script-un>
   
      <div class="headerbar">
       

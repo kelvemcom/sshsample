@@ -8,8 +8,29 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 	
+    <!--
+       	 指定使用注解方式配置,配置自动扫描的包名,
+        base-package指定自己应用中控制器所在的包目录
+        <context:component-scan/> 扫描指定的包中的类上的注解，常用的注解有： 
+        @Controller 声明Action组件
+        @Service 声明Service组件
+        @Service("myMovieLister") 
+        @Repository 声明Dao组件
+        @Component 泛指组件, 当不好归类时. 
+        @RequestMapping("/menu") 请求映射 
+        @Resource用于注入，( j2ee提供的 ) 默认按名称装配，
+        @Resource(name="beanName") 
+        @Autowired用于注入，(srping提供的) 默认按类型装配 
+        @Transactional(rollbackFor={Exception.class}) 事务管理 
+        @ResponseBody @Scope("prototype")设定bean的作用域
+    -->
 	<context:component-scan base-package="com.kelvem" />
+	
+    <!-- 默认的注解映射的支持 -->
+    <!-- JSR-303 support will be detected on classpath and enabled automatically -->
 	<context:annotation-config />
+	
+	
 <!-- 	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />   -->
 <!-- 	<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />  -->
 <!-- PersistenceAnnotationBeanPostProcessor -->

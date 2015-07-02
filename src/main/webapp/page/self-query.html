@@ -44,7 +44,7 @@ li {
 </style>
 <script>
 var param_table;
-var path = "/SSH2Sample";
+var path = "/sshsample";
 $(function() {
 
 	// 根据浏览器设置高度
@@ -59,10 +59,10 @@ $(function() {
 
 	$("#table1").css("height", (winHeight - 30) + "px");
 	$("#cell11").css("height", (winHeight / 3 * 2 - 150) + "px");
-	$("#cell21").css("height", (winHeight / 6) + "px");
-	$("#cell22").css("height", (winHeight / 6) + "px");
-	$("#cell31").css("height", (winHeight / 6) + "px");
-	$("#cell32").css("height", (winHeight / 6) + "px");
+	$("#section_filter").css("height", (winHeight / 6) + "px");
+	$("#section_col").css("height", (winHeight / 6) + "px");
+	$("#section_row").css("height", (winHeight / 6) + "px");
+	$("#section_data").css("height", (winHeight / 6) + "px");
 	
 	$("#cell12").css("width",  (document.body.clientWidth * 0.7) + "px");
 	
@@ -74,26 +74,30 @@ $(function() {
 	    var json=eval("("+data+")"); //解析json对象
 		//var json = {"items":[{"id":"101","name":"name1","type":"col","isKey":true,"isParam":true},{"id":"102","name":"name2","type":"row","isKey":false,"isParam":true}],
 		//			"params":[{"id":"101","name":"name1","type":"1","value":"1"},{"id":"102","name":"name2","type":"2","value":"2"}]};
-		//alert(json);
+		console.log(data);
 		var items = json.items;
 		for(i in items){
 			//alert(items[i].name);
-			$("#items").append("<li key='item_select_" + items[i].id + "' class='ui-state-default'>" + items[i].name + "</li>");
+			var key = "item_select_" + items[i].id;
+			var column = items[i].name;
+			var display = items[i].display;
+			console.log('<li key="' + key + '" type="' + items[i].type + '" column="' + column + '" class="ui-state-default">' + display + "</li>");
+			$("#items").append('<li key="' + key + '" type="' + items[i].type + '" column="' + column + '" class="ui-state-default">' + display + "</li>");
 			
 			if (items[i].type == "col") {
-				add_drag_li($("[key='item_select_" + items[i].id + "']"), $("[groupid='col']"));
+				add_drag_li($("[key='" + key + "']"), $("[groupid='col']"));
 			} else if (items[i].type == "row") {
-				add_drag_li($("[key='item_select_" + items[i].id + "']"), $("[groupid='row']"));
+				add_drag_li($("[key='" + key + "']"), $("[groupid='row']"));
 			} else if (items[i].type == "data") {
-				add_drag_li($("[key='item_select_" + items[i].id + "']"), $("[groupid='data']"));
+				//add_drag_li($("[key='" + key + "']"), $("[groupid='data']"));
 			}
 			
 			if (items[i].isParam == "true") {
-				add_drag_li($("[key='item_select_" + items[i].id + "']"), $("[groupid='param']"));
+				add_drag_li($("[key='" + key + "']"), $("[groupid='param']"));
 			}
 			
 			if (items[i].isKey == "true") {
-				$("[key='item_select_" + items[i].id + "']").addClass("ui-state-disabled");
+				$("[key='" + key + "']").addClass("ui-state-disabled");
 				$("[key='item_data_" + items[i].id + "']").addClass("ui-state-disabled");
 				$("[key='item_param_" + items[i].id + "']").addClass("ui-state-disabled");
 			}
@@ -110,7 +114,7 @@ $(function() {
 		preview();
 	
 		// 禁止选择
-		$("#cell11, #cell21, #cell22, #cell31, #cell32, h4").disableSelection();
+		$("#cell11, #section_filter, #section_col, #section_row, #section_data, h4").disableSelection();
 		//$("table").disableSelection();
 
 		// 设置可拖拽<li>
@@ -123,7 +127,7 @@ $(function() {
 		});
 	
 		// 设置可释放区域<ol>
-		$("ol").droppable({
+		$("#section_filter").droppable({
 			activeClass : "ui-state-default",
 			hoverClass : "ui-state-hover",
 			accept : ":not(.ui-state-disabled)",
@@ -137,12 +141,86 @@ $(function() {
 				$(this).removeClass("ui-state-default");
 			}
 		});
+		
+		$("#section_col").droppable({
+			activeClass : "ui-state-default",
+			hoverClass : "ui-state-hover",
+			accept : ":not(.ui-state-disabled)",
+			drop : function(event, ui) {
+
+				console.log('type=' + $(ui.draggable).attr('type'));
+				if ($(ui.draggable).attr('type') == 'data') {
+					return false;
+				}
+				$("#section_col").each(function(){
+					if ($(this).html() != '') {
+						del_drag_li($(this).html());
+					}
+				});
+				add_drag_li(ui.draggable, event.target);
+				preview();
+			},
+		}).sortable({
+			sort : function() {
+				$(this).removeClass("ui-state-default");
+			}
+		});
+		
+		$("#section_row").droppable({
+			activeClass : "ui-state-default",
+			hoverClass : "ui-state-hover",
+			accept : ":not(.ui-state-disabled)",
+			drop : function(event, ui) {
+
+				console.log('type=' + $(ui.draggable).attr('type'));
+				if ($(ui.draggable).attr('type') == 'data') {
+					return false;
+				}
+				$("#section_row").each(function(){
+					if ($(this).html() != '') {
+						del_drag_li($(this).html());
+					}
+				});
+				add_drag_li(ui.draggable, event.target);
+				preview();
+			},
+		}).sortable({
+			sort : function() {
+				$(this).removeClass("ui-state-default");
+			}
+		});
+		
+		$("#section_data").droppable({
+			activeClass : "ui-state-default",
+			hoverClass : "ui-state-hover",
+			accept : ":not(.ui-state-disabled)",
+			drop : function(event, ui) {
+
+				console.log('type=' + $(ui.draggable).attr('type'));
+				if ($(ui.draggable).attr('type') != 'data') {
+					return false;
+				}
+				$("#section_data").each(function(){
+					if ($(this).html() != '') {
+						del_drag_li($(this).html());
+					}
+				});
+				add_drag_li(ui.draggable, event.target);
+				preview();
+			},
+		}).sortable({
+			sort : function() {
+				$(this).removeClass("ui-state-default");
+			}
+		});
 	
 		// 设置可删除区域<ol>(垃圾箱)
 		$("[key='trash']").droppable({
 			accept : ":not(.ui-state-disabled)",
 			drop : function(event, ui) {
-				
+				if ($(event.toElement).attr('key').indexOf('item_select_') == 0) {
+					return false;
+				}
 				del_drag_li(event.toElement);
 				preview();
 			},
@@ -153,12 +231,13 @@ $(function() {
 
 function add_drag_li(drag_item, target){
 
-	//alert(event.toElement);
-	//alert(event.target);
+	console.log(event.toElement);
+	//console.log(event.target);
 	var srcKey = $(drag_item).attr('key');
 	var key = srcKey.split('_')[1];
 	var num = srcKey.split('_')[2];
 	var targetGroupId = $(target).attr('groupid');
+	console.log(targetGroupId);
 	if (targetGroupId == 'row' || targetGroupId == 'col' || targetGroupId == 'data') {
 		var targetKey = "item_data_" + num;
 	} else if(targetGroupId == 'param'){
@@ -173,7 +252,7 @@ function add_drag_li(drag_item, target){
 	
 	// 删除相同Key的li，再追加新li
 	$("[key='" + targetKey + "']").remove();
-	$(target).append("<li key='" + targetKey + "' class='ui-state-default'>" + $(drag_item).text() + "</li>");
+	$(target).append('<li key="' + targetKey + '" type="' + $(drag_item).attr('type') + '" column="' + $(drag_item).attr('column') + '" class="ui-state-default">' + $(drag_item).text() + "</li>");
 	
 	if($(target).attr("groupid") == 'param'){
 		if($("#table_param_" + num).attr("id") == null){
@@ -193,13 +272,15 @@ function add_drag_li(drag_item, target){
 			$("#table_header").append("<td id='item_col_" + num + "' class='droppable0'>" + $(drag_item).text() + "</td>");
 		}
 	}
-	
-	//alert($("#cell22").html());
+	preview();
+	//alert($("#section_col").html());
 };
 
 function del_drag_li(drag_item){
 
+	console.log(drag_item);
 	var srcKey = $(drag_item).attr('key');
+	console.log(srcKey);
 	var key = srcKey.split('_')[1];
 	var num = srcKey.split('_')[2];
 	//alert(key);
@@ -241,14 +322,21 @@ function getUrlParam(name){
 };
 
 function preview(){
-	var cols = ",";
+	var cols = "";
+	var rows = "";
+	var data = "";
 	//$("[groupid='col'] li").each(function( index ) {
 	//	var num = $(this).attr("key").split('_')[2];
 	//	cols = cols + num + ",";
 	//});
 	$("[groupid='col'] li").each(function( index ) {
-		var name = $(this).html();
-		cols = cols + name + ",";
+		cols = $(this).attr('column');
+	});
+	$("[groupid='row'] li").each(function( index ) {
+		rows = $(this).attr('column');
+	});
+	$("[groupid='data'] li").each(function( index ) {
+		data = $(this).attr('column');
 	});
 	//alert(cols);
 	
@@ -264,7 +352,7 @@ function preview(){
 	//alert(params);
 	
 	// 查询数据
-	var url=path + "/OlapQueryServlet/query?table=" + param_table + "&cols=" + cols + "&params=" + params;
+	var url=path + "/OlapQueryServlet/matrix?table=" + param_table + "&cols=" + cols + "&rows=" + rows + "&data=" + data + "&params=" + params;
 	$.get(url, null, function(data){
 
 	    var json=eval("("+data+")"); //解析json对象
@@ -325,24 +413,35 @@ function preview(){
 						<tr><td><button onclick="preview()" style="width: 150px">预览</button></td></tr>
 					</table>
 					<table id="table_data" style="margin-left: 30px" cellspacing="0">
-						<tr id="table_header" style="font-weight: bolder; padding: 5px;" class="ui-widget-header">
-							<td id="A">行号</td>
-							<!-- 
+						<tr id="table_row_1" style="font-weight: bolder; padding: 5px;" class="ui-widget-header">
+							<!-- <td id="A">行号</td>
+							
 							<td class="droppable0">B</td>
 							<td class="droppable0">C</td>
 							<td class="droppable0">D</td>
 							-->
 						</tr>
-						<tr id="table_row_1" ><td id="table_row_id">01</td></tr>
-						<tr id="table_row_2" ><td id="table_row_id">02</td></tr>
-						<tr id="table_row_3" ><td id="table_row_id">03</td></tr>
-						<tr id="table_row_4" ><td id="table_row_id">04</td></tr>
-						<tr id="table_row_5" ><td id="table_row_id">05</td></tr>
-						<tr id="table_row_6" ><td id="table_row_id">06</td></tr>
-						<tr id="table_row_7" ><td id="table_row_id">07</td></tr>
-						<tr id="table_row_8" ><td id="table_row_id">08</td></tr>
-						<tr id="table_row_9" ><td id="table_row_id">09</td></tr>
-						<tr id="table_row_10"><td id="table_row_id">10</td></tr>
+<!-- 						<tr id="table_row_1" ><td id="table_row_id">01</td></tr> -->
+<!-- 						<tr id="table_row_2" ><td id="table_row_id">02</td></tr> -->
+<!-- 						<tr id="table_row_3" ><td id="table_row_id">03</td></tr> -->
+<!-- 						<tr id="table_row_4" ><td id="table_row_id">04</td></tr> -->
+<!-- 						<tr id="table_row_5" ><td id="table_row_id">05</td></tr> -->
+<!-- 						<tr id="table_row_6" ><td id="table_row_id">06</td></tr> -->
+<!-- 						<tr id="table_row_7" ><td id="table_row_id">07</td></tr> -->
+<!-- 						<tr id="table_row_8" ><td id="table_row_id">08</td></tr> -->
+<!-- 						<tr id="table_row_9" ><td id="table_row_id">09</td></tr> -->
+<!-- 						<tr id="table_row_10"><td id="table_row_id">10</td></tr> -->
+						
+						<tr id="table_row_2" ></tr>
+						<tr id="table_row_3" ></tr>
+						<tr id="table_row_4" ></tr>
+						<tr id="table_row_5" ></tr>
+						<tr id="table_row_6" ></tr>
+						<tr id="table_row_7" ></tr>
+						<tr id="table_row_8" ></tr>
+						<tr id="table_row_9" ></tr>
+						<tr id="table_row_10"></tr>
+						<tr id="table_row_11"></tr>
 					</table>
 				</div>
 			</td>
@@ -350,11 +449,11 @@ function preview(){
 		<tr>
 			<td style="width: 15%; vertical-align: top;"><div>
 					<h4 class="ui-widget-header">筛选:</h4>
-					<ol id="cell21" groupid="param"></ol>
+					<ol id="section_filter" groupid="param"></ol>
 				</div></td>
 			<td style="width: 15%; vertical-align: top;"><div>
 					<h4 class="ui-widget-header">列标签:</h4>
-					<ol id="cell22" groupid="col"></ol>
+					<ol id="section_col" groupid="col"></ol>
 				</div></td>
 			</div>
 			</td>
@@ -363,13 +462,13 @@ function preview(){
 			<td style="width: 15%; vertical-align: top;">
 				<div>
 					<h4 class="ui-widget-header">行标签:</h4>
-					<ol id="cell31" groupid="row"></ol>
+					<ol id="section_row" groupid="row"></ol>
 				</div></td>
 			</div>
 			</td>
 			<td style="width: 15%; vertical-align: top;"><div>
 					<h4 class="ui-widget-header">数值:</h4>
-					<ol id="cell32" groupid="data"></ol>
+					<ol id="section_data" groupid="data"></ol>
 				</div></td>
 			</div>
 			</td>

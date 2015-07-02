@@ -13,6 +13,7 @@
             <list>
 				<value>classpath:hibernate.properties</value>
                 <value>classpath:jms.properties</value>
+                <value>classpath:redis.properties</value>
             </list>
         </property>
     </bean>

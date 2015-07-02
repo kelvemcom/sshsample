@@ -90,13 +90,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
 <body>
 
-<!-- Preloader -->
+<!-- Preloader
 <div id="preloader">
     <div id="status">
         <i class="fa fa-spinner fa-spin"></i>
     </div>
 </div>
-
+ -->
+ 
 <section>
   
   <s:include value="/page/menu_left.jsp"/>
@@ -272,7 +273,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="jquery/jquery-ui.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/toggles.min.js"></script>
-<script type="text/javascript" src="js/custom.js"></script>
+<!-- <script type="text/javascript" src="js/custom.js"></script> --> 
 
 <script type="text/javascript" src="jquery/plugin/jquery.pagination.js"></script>
 <script type="text/javascript" src="bootstrap/ext/bootstrap-datetimepicker.js"></script>

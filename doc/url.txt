@@ -3,3 +3,20 @@ http://www.bootcss.com/
 http://localhost:8080/sshsample/index.jsp
 
 http://localhost:8080/sshsample/page/system/sysUser_sysUserList.action
+
+
+
+【rest】
+http://localhost:8080/sshsample/rest/simple/index
+
+http://localhost:8080/sshsample/rest/simple/user/7
+
+
+
+
+
+
+
+
+
+
